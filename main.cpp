@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     QObject::connect(&worker, &TestWorker::requestAddNode, &w, &MainWindow::addNode,    Qt::QueuedConnection);
     QObject::connect(&worker, &TestWorker::requestAddEdge, &w, &MainWindow::addEdge,    Qt::QueuedConnection);
     QObject::connect(&worker, &TestWorker::requestLayout,  &w, &MainWindow::applyLayout,Qt::QueuedConnection);
+    QObject::connect(&worker, &TestWorker::requestUpdateNodeStyle, &w, &MainWindow::updateNodeStyle, Qt::QueuedConnection);
 
     // 启动后端线程，它会自动开始每隔 2.5 秒刷新一次图
     worker.start();

@@ -25,23 +25,46 @@ void TestWorker::run() {
 
 // 【新增】：极速修改边样式接口演示
 void TestWorker::onFastTick() {
-    if (m_edges.isEmpty()) return;
+    // 50% 概率改连线，50% 概率改节点
+    int target = QRandomGenerator::global()->bounded(2);
 
-    // 随机挑选一条边
-    int idx = QRandomGenerator::global()->bounded(m_edges.size());
-    EdgeDef e = m_edges[idx];
+    if (target == 0 && !m_edges.isEmpty()) {
+        // ======== 改变边的样式 ========
+        int idx = QRandomGenerator::global()->bounded(m_edges.size());
+        EdgeDef e = m_edges[idx];
+        int randStyle = QRandomGenerator::global()->bounded(3);
+        if (randStyle == 0) {
+            emit requestUpdateEdgeStyle(e.src, e.dst, QColor(Qt::red), 4, 2);
+        } else if (randStyle == 1) {
+            emit requestUpdateEdgeStyle(e.src, e.dst, QColor(0, 200, 0), 5, 1);
+        } else {
+            emit requestUpdateEdgeStyle(e.src, e.dst, QColor(Qt::darkMagenta), 3, 3);
+        }
+    }
+    else if (target == 1 && !m_stdNodes.isEmpty()) {
+        // ======== 改变节点的样式 ========
+        int idx = QRandomGenerator::global()->bounded(m_stdNodes.size());
+        QString n = m_stdNodes[idx];
 
-    // 随机给出一种抢眼的样式
-    int randStyle = QRandomGenerator::global()->bounded(3);
-    if (randStyle == 0) {
-        // 变成：红色、粗细为4、虚线 (Qt::DashLine = 2)
-        emit requestUpdateEdgeStyle(e.src, e.dst, QColor(Qt::red), 4, 2);
-    } else if (randStyle == 1) {
-        // 变成：绿色、粗细为5、实线 (Qt::SolidLine = 1)
-        emit requestUpdateEdgeStyle(e.src, e.dst, QColor(0, 200, 0), 5, 1);
-    } else {
-        // 变成：深紫色、粗细为3、点状线 (Qt::DotLine = 3)
-        emit requestUpdateEdgeStyle(e.src, e.dst, QColor(Qt::darkMagenta), 3, 3);
+        // 随机 0 到 3 产生四种不同的形状
+        int randShape = QRandomGenerator::global()->bounded(4);
+
+        if (randShape == 0) {
+            // 0: 圆形 + 粉色
+            emit requestUpdateNodeStyle(n, QColor(255, 182, 193), 0);
+        }
+        else if (randShape == 1) {
+            // 1: 正方形 + 浅蓝色
+            emit requestUpdateNodeStyle(n, QColor(173, 216, 230), 1);
+        }
+        else if (randShape == 2) {
+            // 2: 菱形 + 鲜红色 (危险警报)
+            emit requestUpdateNodeStyle(n, QColor(255, 100, 100), 2);
+        }
+        else {
+            // 3: 六边形 + 浅绿色 (安全节点)
+            emit requestUpdateNodeStyle(n, QColor(150, 255, 150), 3);
+        }
     }
 }
 void TestWorker::generateInitialGraph() {

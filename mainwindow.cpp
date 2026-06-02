@@ -46,6 +46,13 @@ void MainWindow::addNode(const QString& nodeId, int type, const QString& label) 
     m_nodeMap.insert(nodeId, node);
 }
 
+// 【新增核心函数】：接收信号并瞬间改变对应节点的外观
+void MainWindow::updateNodeStyle(const QString& nodeId, const QColor& color, int shape) {
+    if (m_nodeMap.contains(nodeId)) {
+        m_nodeMap[nodeId]->setStyle(color, shape);
+    }
+}
+
 void MainWindow::addEdge(const QString& sourceId, const QString& destId, int type) {
     if (!m_nodeMap.contains(sourceId) || !m_nodeMap.contains(destId)) return;
     GraphNode *source = m_nodeMap[sourceId];

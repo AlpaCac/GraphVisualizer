@@ -13,17 +13,28 @@ class GraphNode : public QGraphicsItem
 {
 public:
     GraphNode(const QString& id, int type, const QString& label);
+
     void addEdge(GraphEdge *edge);
     QString getId() const { return m_id; }
+
+    // 【新增接口】：实时修改节点的外观
+    void setStyle(const QColor& color, int shape);
+
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
+
 private:
     QString m_id;
     int m_type;
     QString m_label;
     QList<GraphEdge *> m_edges;
+
+    // 【新增属性】：储存当前节点样式
+    QColor m_color;
+    int m_shape; // 0: 圆角矩形, 1: 椭圆/圆形, 2: 菱形
 };
 
 // ================= GraphEdge 修改 =================

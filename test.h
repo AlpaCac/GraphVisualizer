@@ -26,6 +26,7 @@ signals:
     void requestAddEdge(const QString& src, const QString& dst, int type);
     void requestLayout();
     void requestUpdateEdgeStyle(const QString& src, const QString& dst, const QColor& color, int thickness, int style);
+    void requestUpdateNodeStyle(const QString& id, const QColor& color, int shape);
 
 private slots:
     void onTick();

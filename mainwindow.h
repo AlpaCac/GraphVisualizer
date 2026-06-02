@@ -40,6 +40,7 @@ public slots:
     void applyLayout();
     void clearGraph();
     void updateEdgeStyle(const QString& sourceId, const QString& destId, const QColor& color, int thickness, int style);
+    void updateNodeStyle(const QString& nodeId, const QColor& color, int shape);
 
 private:
     QGraphicsScene *scene;

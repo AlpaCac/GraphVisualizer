@@ -122,9 +122,7 @@ target_include_directories(GraphVisualizer PRIVATE
 - **参数说明:**
 
   - `id` (QString): **核心主键**。节点的唯一标识符（如 IP 地址、MAC、设备号）。绝不能重复。
-  - `type` (int): 节点类型，决定节点的外观。
-    - `0`: 高级节点（浅蓝色背景，深灰色边框）。
-    - `1`: 标准节点（浅橙色背景，深灰色边框）。
+  - `type` (int): 初始节点颜色预设类型（0为浅蓝色，1为浅橙色）。
   - `label` (QString): 节点上显示的文本文字，支持用 `\n` 换行。
 
 - **调用示例:**
@@ -145,7 +143,7 @@ target_include_directories(GraphVisualizer PRIVATE
 
   - `src` (QString): 起点节点的 `id`。
   - `dst` (QString): 终点节点的 `id`。
-  - `type` (int): 连线的默认类型（0为灰色，1为深蓝色）。
+  - `type` (int): 连线的初始类型预设。
 
 - **注意事项:** 必须确保 `src` 和 `dst` 对应的节点已经被 `requestAddNode` 注入，否则该连线会被静默丢弃。
 
@@ -163,7 +161,7 @@ target_include_directories(GraphVisualizer PRIVATE
 
 - **功能说明:** 通知前端：“数据传输完毕，请调用 OGDF 引擎计算坐标并渲染”。
 
-- **行为特点:** 这是整个框架中最耗时的计算操作（通常在几毫秒到几十毫秒）。在引擎计算完毕前，用户界面不会发生突变。
+- **行为特点:** 这是整个框架中最耗时的计算操作。在引擎计算完毕前，用户界面不会发生突变。
 
 - **调用示例:**
 
@@ -175,39 +173,67 @@ target_include_directories(GraphVisualizer PRIVATE
 
 ## 2. 状态高频刷新接口 (无损热更新)
 
-针对无需改变网络拓扑结构，只需表达**业务状态变化**（如：链路拥堵、节点断联报警、数据流向动画）的场景，无需调用 `requestLayout`，可直接使用极速热更新接口。
+针对无需改变网络拓扑结构，只需表达**业务状态变化**（如：设备宕机、链路拥堵、数据流向动画）的场景，绝对**不要**调用 `requestLayout`，请直接使用以下极速热更新接口。
 
-### 2.1 修改连线样式 (实时报警/状态流)
+### 2.1 修改节点样式 (设备状态/异构展示)
 
-- **接口定义:** `void requestUpdateEdgeStyle(const QString& src, const QString& dst, const QColor& color, int thickness, int style)`
+- **接口定义:** `void requestUpdateNodeStyle(const QString& id, const QColor& color, int shape)`
 
-- **功能说明:** 以极低的性能消耗，瞬间改变画面上某一条指定连线的颜色、粗细和线型，不会触发拓扑重算。
+- **功能说明:** 以极低的性能消耗，瞬间改变指定节点的背景颜色和几何形状，完美适配设备状态指示与设备类型区分。
 
 - **参数说明:**
 
-  - `src` (QString): 起点节点的 `id`。
-  - `dst` (QString): 终点节点的 `id`。
-  - `color` (QColor): 目标颜色。必须使用 `QColor()` 包装，如 `QColor(Qt::red)` 或 `QColor(255, 0, 0)`。
-  - `thickness` (int): 连线的粗细（像素大小）。常规为 2，报警建议设为 4 或 5。
-  - `style` (int): 线条的样式枚举值。
-    - `1`: 实线 (`Qt::SolidLine`)
-    - `2`: 虚线 (`Qt::DashLine`)
-    - `3`: 点状线 (`Qt::DotLine`)
+  - `id` (QString): 目标节点的唯一标识符 (`id`)。
+  - `color` (QColor): 目标颜色。必须使用 `QColor()` 包装（如 `QColor(Qt::red)` 或 `QColor(255, 100, 100)`）。
+  - `shape` (int): 节点几何形状的枚举值。
+    - `0`: **圆形** (常用于普通节点、状态灯、终端设备)
+    - `1`: **正方形** (常用于服务器、数据库节点)
+    - `2`: **菱形** (常用于告警节点、网关、决策节点)
+    - `3`: **六边形** (常用于核心节点、安全设备、集群)
 
 - **调用示例:**
 
   C++
 
   ```
-  // 模拟链路过载：将 Router_A 到 Switch_B 的连线设为 红色、粗细为4、虚线
+  // 模拟核心路由器宕机告警：变成红色菱形
+  emit requestUpdateNodeStyle("Router_A", QColor(255, 100, 100), 2);
+  
+  // 模拟节点恢复健康：变成浅绿色六边形
+  emit requestUpdateNodeStyle("Router_A", QColor(150, 255, 150), 3);
+  ```
+
+### 2.2 修改连线样式 (实时报警/链路追踪)
+
+- **接口定义:** `void requestUpdateEdgeStyle(const QString& src, const QString& dst, const QColor& color, int thickness, int style)`
+
+- **功能说明:** 瞬间改变画面上某一条指定连线的颜色、粗细和线型。
+
+- **参数说明:**
+
+  - `src` (QString): 起点节点的 `id`。
+  - `dst` (QString): 终点节点的 `id`。
+  - `color` (QColor): 目标颜色。
+  - `thickness` (int): 连线的粗细（像素）。常规为 2，报警建议设为 4 或 5。
+  - `style` (int): 线条的样式枚举值。
+    - `1`: **实线** (`Qt::SolidLine`)
+    - `2`: **虚线** (`Qt::DashLine`)
+    - `3`: **点状线** (`Qt::DotLine`)
+
+- **调用示例:**
+
+  C++
+
+  ```
+  // 模拟链路过载：将连线设为红色、粗细为4、虚线
   emit requestUpdateEdgeStyle("Router_A", "Switch_B", QColor(Qt::red), 4, 2);
   ```
 
 ## 3. 典型业务场景调用时序
 
-### 场景 A：网络结构发生变化（如设备上线/掉线）
+### 场景 A：网络拓扑结构发生物理变化（设备增删）
 
-必须严格按照以下顺序发送信号，确保数据一致性：
+必须严格按照以下顺序发送信号，确保数据与视图一致性：
 
 C++
 
@@ -222,20 +248,25 @@ emit requestAddNode("N2", 1, "Client");
 // 3. 发送全量最新连线
 emit requestAddEdge("N1", "N2", 0);
 
-// 4. 通知渲染
+// 4. 通知渲染引擎排版
 emit requestLayout();
 ```
 
-### 场景 B：拓扑不变，仅展示实时监控数据
+### 场景 B：拓扑不变，仅触发网络风暴告警（高频动画）
 
-**不要**调用 `requestClear` 和 `requestLayout`，直接高频发送样式修改指令：
+此场景下，**跳过布局计算**，直接高频发送视图修改指令组合：
 
 C++
 
 ```
-// 收到后端带宽告警数据，直接让指定链路变红变粗
-emit requestUpdateEdgeStyle("N1", "N2", QColor(Qt::red), 5, 1);
+// 收到告警信号，设备节点变异为红色菱形
+emit requestUpdateNodeStyle("N1", QColor(255, 100, 100), 2);
 
-// 报警解除，恢复默认状态（灰色实线）
+// 同时，该设备发出的链路变为红色粗虚线
+emit requestUpdateEdgeStyle("N1", "N2", QColor(Qt::red), 5, 2);
+
+// 1秒后报警解除，恢复原状（浅蓝圆形 + 灰色细实线）
+emit requestUpdateNodeStyle("N1", QColor(200, 230, 255), 0);
 emit requestUpdateEdgeStyle("N1", "N2", QColor(Qt::gray), 2, 1);
 ```
+
