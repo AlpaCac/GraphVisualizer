@@ -1,0 +1,3 @@
+F:\ide\qt\qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\GraphVisualizer.dir/objects.a
+F:\ide\qt\qt\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\GraphVisualizer.dir/objects.a @CMakeFiles\GraphVisualizer.dir\objects1.rsp
+F:\ide\qt\qt\Tools\mingw1310_64\bin\g++.exe -g -mwindows -Wl,--whole-archive CMakeFiles\GraphVisualizer.dir/objects.a -Wl,--no-whole-archive -o GraphVisualizer.exe -Wl,--out-implib,libGraphVisualizer.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\GraphVisualizer.dir\linkLibs.rsp
