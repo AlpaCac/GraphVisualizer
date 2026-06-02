@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include <QScrollBar>
 #include <QDebug>
+#include <cmath> // 在文件顶部添加
 
 // ==================== OGDF 核心与布局库引入 ====================
 #include <ogdf/basic/Graph.h>
@@ -47,9 +48,9 @@ void MainWindow::addNode(const QString& nodeId, int type, const QString& label) 
 }
 
 // 【新增核心函数】：接收信号并瞬间改变对应节点的外观
-void MainWindow::updateNodeStyle(const QString& nodeId, const QColor& color, int shape) {
+void MainWindow::updateNodeStyle(const QString& nodeId, const QColor& color, int shape, int size) {
     if (m_nodeMap.contains(nodeId)) {
-        m_nodeMap[nodeId]->setStyle(color, shape);
+        m_nodeMap[nodeId]->setStyle(color, shape, size);
     }
 }
 
@@ -106,20 +107,95 @@ void MainWindow::applyLayout() {
         }
     }
 
-    // =========================================================================
-    // 【核心排版区】：固定使用 CircularLayout
-    // =========================================================================
-    qDebug() << "[Layout Engine] 当前运行方案：【固定方案：标准圆形/环状布局 (已扩容)】";
 
-    ogdf::CircularLayout layout;
-    layout.call(GA);
-
-    // 【扩容Hack】：将生成的正圆形排版按比例撑大，防止节点遮挡中心连线
-    // 如果你觉得还是挤，可以把 3.5 改成 4.0 或 5.0
-    double scaleFactor = 3.5;
+    // =========================================================================
+    // 【核心排版区】：工业级绝对几何矩阵排版 (法向量双侧阵列)
+    // =========================================================================
+    int mainCount = 0;
+    QHash<QString, int> leafCounts;
     for (ogdf::node v : G.nodes) {
-        GA.x(v) *= scaleFactor;
-        GA.y(v) *= scaleFactor;
+        QString id = ogdfToId[v];
+        if (id.startsWith("Main_")) {
+            mainCount++;
+        } else if (id.startsWith("Leaf_")) {
+            leafCounts[id.split("_")[1]]++;
+        }
+    }
+
+    if (mainCount > 0) {
+        double cx = 0, cy = 0;
+
+        // 1. 【核心修改】：大幅扩大主、备双环的半径
+        double R_backup = 450.0; // 备用网内环 (原 300)
+        double R_main = 750.0;   // 主干网大环 (原 450)
+
+        QHash<QString, QPointF> mainPos;
+        QHash<QString, QPointF> backupPos;
+
+        // 第一遍：先算出所有主节点和备用节点的绝对坐标并存下来
+        for (ogdf::node v : G.nodes) {
+            QString id = ogdfToId[v];
+            if (id.startsWith("Main_")) {
+                int idx = id.split("_")[1].toInt();
+                double rad = (idx * (360.0 / mainCount)) * M_PI / 180.0;
+                mainPos[id] = QPointF(cx + R_main * std::cos(rad), cy + R_main * std::sin(rad));
+                GA.x(v) = mainPos[id].x();
+                GA.y(v) = mainPos[id].y();
+            }
+            else if (id.startsWith("Backup_")) {
+                int idx = id.split("_")[1].toInt();
+                double offset = (360.0 / mainCount) / 2.0;
+                double rad = (idx * (360.0 / mainCount) + offset) * M_PI / 180.0;
+                backupPos[id] = QPointF(cx + R_backup * std::cos(rad), cy + R_backup * std::sin(rad));
+                GA.x(v) = backupPos[id].x();
+                GA.y(v) = backupPos[id].y();
+            }
+        }
+
+        // 第二遍：利用主备坐标，进行法向量几何阵列
+        for (ogdf::node v : G.nodes) {
+            QString id = ogdfToId[v];
+            if (id == "Control_Center") {
+                GA.x(v) = cx; GA.y(v) = cy; // 控制中心依旧居中
+            }
+            else if (id.startsWith("Leaf_")) {
+                QStringList parts = id.split("_");
+                QString mainIdxStr = parts[1];
+                int leafIdx = parts[2].toInt();
+                int totalLeaves = leafCounts[mainIdxStr];
+
+                QString mId = "Main_" + mainIdxStr;
+                QString bId = "Backup_" + mainIdxStr;
+
+                if (mainPos.contains(mId) && backupPos.contains(bId)) {
+                    QPointF pm = mainPos[mId];
+                    QPointF pb = backupPos[bId];
+
+                    // A. 算出从 备节点 指向 主节点 的方向向量
+                    double dx = pm.x() - pb.x();
+                    double dy = pm.y() - pb.y();
+                    double length = std::sqrt(dx*dx + dy*dy);
+
+                    // B. 算出垂直于这条线的 法向量 (Normal Vector)
+                    double nx = -dy / length;
+                    double ny = dx / length;
+
+                    // C. 找到主节点和备节点的绝对中心点 (十字交叉路口)
+                    double midX = pb.x() + dx * 0.5;
+                    double midY = pb.y() + dy * 0.5;
+
+                    // D. 【核心修改：垂直平分线阵列】
+                    // 让所有叶子节点在这个法线上居中、对称排布
+                    double spacing = 50.0; // 叶子节点之间的间距 (像素)
+
+                    // 核心公式：计算当前叶子在法线上的偏移距离，保证整体居中
+                    double offsetDist = (leafIdx - (totalLeaves - 1) / 2.0) * spacing;
+
+                    GA.x(v) = midX + nx * offsetDist;
+                    GA.y(v) = midY + ny * offsetDist;
+                }
+            }
+        }
     }
     // =========================================================================
 

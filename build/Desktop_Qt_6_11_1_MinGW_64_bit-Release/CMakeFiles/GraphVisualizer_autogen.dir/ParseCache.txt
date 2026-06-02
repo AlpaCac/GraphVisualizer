@@ -543,6 +543,13 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qversiontagging.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qxptype_traits.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qyieldcpu.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qcolor.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qrgb.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qrgba64.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtgui-config.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiexports.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiglobal.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/array
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/atomic

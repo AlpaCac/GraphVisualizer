@@ -155,6 +155,7 @@ CMakeFiles/GraphVisualizer.dir/GraphVisualizer_autogen/mocs_compilation.cpp.obj:
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qversiontagging.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qxptype_traits.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qyieldcpu.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QMouseEvent \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QTransform \
@@ -993,6 +994,7 @@ CMakeFiles/GraphVisualizer.dir/main.cpp.obj: F:/items/tuopuyouhua/GraphVisualize
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qversiontagging.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qxptype_traits.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qyieldcpu.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QMouseEvent \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QTransform \
@@ -2643,6 +2645,14 @@ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiexports.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qyieldcpu.h:
 
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor:
+
+F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_classes.tcc:
+
+F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator:
+
+F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_construct.h:
+
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QMouseEvent:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen:
@@ -2870,14 +2880,6 @@ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bi
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/version:
 
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ios_base.h:
-
-F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor:
-
-F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_classes.tcc:
-
-F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator:
-
-F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_construct.h:
 
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/localefwd.h:
 
@@ -3153,8 +3155,6 @@ GraphVisualizer_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 F:/items/tuopuyouhua/GraphVisualizer/main.cpp:
 
-F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream:
-
 F:/env/ogdf_install/include/ogdf/basic/Graph.h:
 
 F:/env/ogdf_install/include/ogdf/basic/GraphList.h:
@@ -3200,6 +3200,8 @@ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cw
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream:
 
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream:
+
+F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream:
 
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/sstream:
 

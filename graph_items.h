@@ -19,6 +19,7 @@ public:
 
     // 【新增接口】：实时修改节点的外观
     void setStyle(const QColor& color, int shape);
+    void setStyle(const QColor& color, int shape, int size = 80);
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -35,6 +36,7 @@ private:
     // 【新增属性】：储存当前节点样式
     QColor m_color;
     int m_shape; // 0: 圆角矩形, 1: 椭圆/圆形, 2: 菱形
+    int m_size;
 };
 
 // ================= GraphEdge 修改 =================

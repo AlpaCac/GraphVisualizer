@@ -177,7 +177,7 @@ target_include_directories(GraphVisualizer PRIVATE
 
 ### 2.1 修改节点样式 (设备状态/异构展示)
 
-- **接口定义:** `void requestUpdateNodeStyle(const QString& id, const QColor& color, int shape)`
+- **接口定义:** `void requestUpdateNodeStyle(const QString& id, const QColor& color, int shape, int size)`
 
 - **功能说明:** 以极低的性能消耗，瞬间改变指定节点的背景颜色和几何形状，完美适配设备状态指示与设备类型区分。
 
@@ -190,6 +190,11 @@ target_include_directories(GraphVisualizer PRIVATE
     - `1`: **正方形** (常用于服务器、数据库节点)
     - `2`: **菱形** (常用于告警节点、网关、决策节点)
     - `3`: **六边形** (常用于核心节点、安全设备、集群)
+  - `size` (int): **空间包围盒边长基准尺寸（像素）**。推荐阶梯：
+    - `100` : 巨型（战略级控制中心）
+    - `80` : 标准（核心主骨架节点）
+    - `60` : 中等（内部备份/辅节点）
+    - `35` : 玲珑（边缘叶子节点）
 
 - **调用示例:**
 
@@ -197,10 +202,10 @@ target_include_directories(GraphVisualizer PRIVATE
 
   ```
   // 模拟核心路由器宕机告警：变成红色菱形
-  emit requestUpdateNodeStyle("Router_A", QColor(255, 100, 100), 2);
+  emit requestUpdateNodeStyle("Router_A", QColor(255, 100, 100), 2, 100);
   
   // 模拟节点恢复健康：变成浅绿色六边形
-  emit requestUpdateNodeStyle("Router_A", QColor(150, 255, 150), 3);
+  emit requestUpdateNodeStyle("Router_A", QColor(150, 255, 150), 3, 100);
   ```
 
 ### 2.2 修改连线样式 (实时报警/链路追踪)

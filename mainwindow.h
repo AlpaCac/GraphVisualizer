@@ -39,8 +39,10 @@ public slots:
     void addEdge(const QString& sourceId, const QString& destId, int type);
     void applyLayout();
     void clearGraph();
+
+    // 【确保下面这两个声明都在这里，一个都不能少】
+    void updateNodeStyle(const QString& nodeId, const QColor& color, int shape, int size = 80);
     void updateEdgeStyle(const QString& sourceId, const QString& destId, const QColor& color, int thickness, int style);
-    void updateNodeStyle(const QString& nodeId, const QColor& color, int shape);
 
 private:
     QGraphicsScene *scene;

@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QString>
 #include <QList>
+#include <QColor>
 
 struct EdgeDef {
     QString src;
@@ -25,21 +26,23 @@ signals:
     void requestAddNode(const QString& id, int type, const QString& label);
     void requestAddEdge(const QString& src, const QString& dst, int type);
     void requestLayout();
-    void requestUpdateEdgeStyle(const QString& src, const QString& dst, const QColor& color, int thickness, int style);
-    void requestUpdateNodeStyle(const QString& id, const QColor& color, int shape);
+
+    // 【关键修复】：确保下面这行是唯一的！删掉原来那个没有 size 参数的重载
+    void requestUpdateNodeStyle(const QString& id, const QColor& color, int shape, int size);
 
 private slots:
     void onTick();
-    void onFastTick();
+    // (已删除 onFastTick)
 
 private:
-    QList<QString> m_highNodes;    // 骨架高级节点 (不可删)
-    QList<QString> m_stdNodes;     // 骨架标准节点 (不可删)
-    QList<QString> m_dynamicNodes; // 【新增】外围动态节点 (允许安全增删)
-    QList<EdgeDef> m_edges;        // 所有的边
-    int m_step;
+    QString m_controlNode;
+    QList<QString> m_mainNodes;
+    QList<QString> m_backupNodes;
+    QList<QString> m_leafNodes;
+    QList<EdgeDef> m_edges;
 
-    void generateInitialGraph();
+    int m_step;
+    void generateGraph();
 };
 
 #endif // TEST_H

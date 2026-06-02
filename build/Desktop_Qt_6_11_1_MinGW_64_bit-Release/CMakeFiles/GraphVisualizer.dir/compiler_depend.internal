@@ -156,6 +156,7 @@ CMakeFiles/GraphVisualizer.dir/GraphVisualizer_autogen/mocs_compilation.cpp.obj
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qversiontagging.h
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qxptype_traits.h
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qyieldcpu.h
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QMouseEvent
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QTransform
@@ -996,6 +997,7 @@ CMakeFiles/GraphVisualizer.dir/main.cpp.obj
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qversiontagging.h
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qxptype_traits.h
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qyieldcpu.h
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QMouseEvent
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QTransform

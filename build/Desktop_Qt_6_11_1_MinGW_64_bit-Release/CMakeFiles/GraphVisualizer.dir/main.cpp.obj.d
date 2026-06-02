@@ -446,5 +446,6 @@ CMakeFiles/GraphVisualizer.dir/main.cpp.obj: \
  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QTimer \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtimer.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QApplication \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qapplication.h

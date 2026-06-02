@@ -338,6 +338,13 @@ CMakeFiles/GraphVisualizer.dir/test.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qeventloop.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QString \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qcolor.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiglobal.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtgui-config.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiexports.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qrgb.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qrgba64.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRandomGenerator \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrandom.h \
  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
@@ -349,11 +356,4 @@ CMakeFiles/GraphVisualizer.dir/test.cpp.obj: \
  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mmintrin.h \
  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h \
  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.tcc \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMetaObject \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qcolor.h \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiglobal.h \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtgui-config.h \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiexports.h \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qrgb.h \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qrgba64.h
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMetaObject

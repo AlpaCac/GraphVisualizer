@@ -49,15 +49,12 @@ template <> constexpr inline auto TestWorker::qt_create_metaobjectdata<qt_meta_t
         "src",
         "dst",
         "requestLayout",
-        "requestUpdateEdgeStyle",
+        "requestUpdateNodeStyle",
         "QColor",
         "color",
-        "thickness",
-        "style",
-        "requestUpdateNodeStyle",
         "shape",
-        "onTick",
-        "onFastTick"
+        "size",
+        "onTick"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -73,19 +70,12 @@ template <> constexpr inline auto TestWorker::qt_create_metaobjectdata<qt_meta_t
         }}),
         // Signal 'requestLayout'
         QtMocHelpers::SignalData<void()>(10, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'requestUpdateEdgeStyle'
-        QtMocHelpers::SignalData<void(const QString &, const QString &, const QColor &, int, int)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 8 }, { QMetaType::QString, 9 }, { 0x80000000 | 12, 13 }, { QMetaType::Int, 14 },
-            { QMetaType::Int, 15 },
-        }}),
         // Signal 'requestUpdateNodeStyle'
-        QtMocHelpers::SignalData<void(const QString &, const QColor &, int)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 4 }, { 0x80000000 | 12, 13 }, { QMetaType::Int, 17 },
+        QtMocHelpers::SignalData<void(const QString &, const QColor &, int, int)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 4 }, { 0x80000000 | 12, 13 }, { QMetaType::Int, 14 }, { QMetaType::Int, 15 },
         }}),
         // Slot 'onTick'
-        QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onFastTick'
-        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -113,10 +103,8 @@ void TestWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->requestAddNode((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3]))); break;
         case 2: _t->requestAddEdge((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
         case 3: _t->requestLayout(); break;
-        case 4: _t->requestUpdateEdgeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[5]))); break;
-        case 5: _t->requestUpdateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
-        case 6: _t->onTick(); break;
-        case 7: _t->onFastTick(); break;
+        case 4: _t->requestUpdateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4]))); break;
+        case 5: _t->onTick(); break;
         default: ;
         }
     }
@@ -129,9 +117,7 @@ void TestWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             return;
         if (QtMocHelpers::indexOfMethod<void (TestWorker::*)()>(_a, &TestWorker::requestLayout, 3))
             return;
-        if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , const QString & , const QColor & , int , int )>(_a, &TestWorker::requestUpdateEdgeStyle, 4))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , const QColor & , int )>(_a, &TestWorker::requestUpdateNodeStyle, 5))
+        if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , const QColor & , int , int )>(_a, &TestWorker::requestUpdateNodeStyle, 4))
             return;
     }
 }
@@ -155,14 +141,14 @@ int TestWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 6;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 6;
     }
     return _id;
 }
@@ -192,14 +178,8 @@ void TestWorker::requestLayout()
 }
 
 // SIGNAL 4
-void TestWorker::requestUpdateEdgeStyle(const QString & _t1, const QString & _t2, const QColor & _t3, int _t4, int _t5)
+void TestWorker::requestUpdateNodeStyle(const QString & _t1, const QColor & _t2, int _t3, int _t4)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1, _t2, _t3, _t4, _t5);
-}
-
-// SIGNAL 5
-void TestWorker::requestUpdateNodeStyle(const QString & _t1, const QColor & _t2, int _t3)
-{
-    QMetaObject::activate<void>(this, &staticMetaObject, 5, nullptr, _t1, _t2, _t3);
+    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1, _t2, _t3, _t4);
 }
 QT_WARNING_POP
