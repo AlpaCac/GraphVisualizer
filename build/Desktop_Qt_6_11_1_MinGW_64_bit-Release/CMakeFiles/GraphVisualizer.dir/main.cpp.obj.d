@@ -434,18 +434,49 @@ CMakeFiles/GraphVisualizer.dir/main.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QString \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QSplitter \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qsplitter.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidget \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlistwidget.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlistview.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractitemview.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qabstractitemmodel.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qitemselectionmodel.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qstyleoption.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractspinbox.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qvalidator.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qregularexpression.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qslider.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractslider.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qstyle.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qtabbar.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qrubberband.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QLabel \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlabel.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpicture.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextdocument.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidgetItem \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QVBoxLayout \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qboxlayout.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlayout.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlayoutitem.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgridlayout.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QHBoxLayout \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGroupBox \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgroupbox.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QPushButton \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qpushbutton.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractbutton.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QComboBox \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qcombobox.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QLineEdit \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlineedit.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextcursor.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextformat.h \
  F:\items\tuopuyouhua\GraphVisualizer\test.h \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QThread \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qthread.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/future \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/condition_variable \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_futex.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QTimer \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtimer.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QColor \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QApplication \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qapplication.h

@@ -1,16 +1,13 @@
 F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Release/GraphVisualizer_autogen/EWIEGA46WW/moc_test.cpp: F:/items/tuopuyouhua/GraphVisualizer/test.h \
   F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Release/GraphVisualizer_autogen/moc_predefs.h \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QString \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QThread \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QTimer \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q17memory.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q20bit.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q20functional.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q20memory.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q20type_traits.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q23type_traits.h \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qabstracteventdispatcher.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qalgorithms.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qanystringview.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qarraydata.h \
@@ -20,7 +17,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qatomic.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qatomic_cxx11.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbasicatomic.h \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbasictimer.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbindingstorage.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbytearray.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -38,8 +34,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qcontainertools_impl.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdarwinhelpers.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdatastream.h \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdeadlinetimer.h \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qeventloop.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qexceptionhandling.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qflags.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qfloat16.h \
@@ -98,8 +92,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtdeprecationmarkers.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtenvironmentvariables.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtformat_impl.h \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qthread.h \
-  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtimer.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtmetamacros.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtnoop.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtpreprocessorsupport.h \
@@ -133,7 +125,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocator.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_base.h \
-  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_futex.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_lockfree_defines.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.tcc \
@@ -180,8 +171,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/specfun.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_abs.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_function.h \
-  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
-  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algobase.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
@@ -208,7 +197,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/string_view.tcc \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stringfwd.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
-  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h \
@@ -221,7 +209,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/clocale \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/compare \
-  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/condition_variable \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdint \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdio \
@@ -240,7 +227,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/string_conversions.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/type_traits.h \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/functional \
-  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/future \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/initializer_list \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iosfwd \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator \
@@ -248,7 +234,6 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/list \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory \
-  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/new \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric \
   F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional \

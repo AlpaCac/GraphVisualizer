@@ -434,17 +434,62 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QString \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QSplitter \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qsplitter.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidget \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlistwidget.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlistview.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractitemview.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qabstractitemmodel.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qitemselectionmodel.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qstyleoption.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractspinbox.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qvalidator.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qregularexpression.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qslider.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractslider.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qstyle.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qtabbar.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qrubberband.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QLabel \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlabel.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpicture.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextdocument.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidgetItem \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QVBoxLayout \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qboxlayout.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlayout.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlayoutitem.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgridlayout.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QHBoxLayout \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGroupBox \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgroupbox.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QPushButton \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qpushbutton.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractbutton.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QComboBox \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qcombobox.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QLineEdit \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlineedit.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextcursor.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextformat.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QScrollBar \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qscrollbar.h \
- F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractslider.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QDebug \
- F:/env/ogdf_install/include/ogdf/basic/Graph.h \
- F:/env/ogdf_install/include/ogdf/basic/Graph_d.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRandomGenerator \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrandom.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/opt_random.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pmmintrin.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/emmintrin.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xmmintrin.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mmintrin.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.tcc \
+ F:/env/ogdf_install/include/ogdf/misclayout/CircularLayout.h \
  F:/env/ogdf_install/include/ogdf/basic/Array.h \
  F:/env/ogdf_install/include/ogdf/basic/basic.h \
  F:/env/ogdf_install/include/ogdf/basic/internal/config.h \
@@ -480,15 +525,8 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: \
  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
  F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/opt_random.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pmmintrin.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/emmintrin.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xmmintrin.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mmintrin.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h \
- F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.tcc \
+ F:/env/ogdf_install/include/ogdf/basic/Graph.h \
+ F:/env/ogdf_install/include/ogdf/basic/Graph_d.h \
  F:/env/ogdf_install/include/ogdf/basic/GraphList.h \
  F:/env/ogdf_install/include/ogdf/basic/internal/graph_iterators.h \
  F:/env/ogdf_install/include/ogdf/basic/List.h \
@@ -499,9 +537,12 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: \
  F:/env/ogdf_install/include/ogdf/basic/Math.h \
  F:/env/ogdf_install/include/ogdf/basic/ArrayBuffer.h \
  F:/env/ogdf_install/include/ogdf/basic/InducedSubgraph.h \
+ F:/env/ogdf_install/include/ogdf/basic/LayoutModule.h \
  F:/env/ogdf_install/include/ogdf/basic/GraphAttributes.h \
  F:/env/ogdf_install/include/ogdf/basic/geometry.h \
  F:/env/ogdf_install/include/ogdf/basic/EpsilonTest.h \
  F:/env/ogdf_install/include/ogdf/basic/graphics.h \
- F:/env/ogdf_install/include/ogdf/misclayout/CircularLayout.h \
- F:/env/ogdf_install/include/ogdf/basic/LayoutModule.h
+ F:/env/ogdf_install/include/ogdf/energybased/SpringEmbedderFRExact.h \
+ F:/env/ogdf_install/include/ogdf/basic/SList.h \
+ F:/env/ogdf_install/include/ogdf/energybased/ForceLayoutModule.h \
+ F:/env/ogdf_install/include/ogdf/energybased/multilevel_mixer/MultilevelGraph.h

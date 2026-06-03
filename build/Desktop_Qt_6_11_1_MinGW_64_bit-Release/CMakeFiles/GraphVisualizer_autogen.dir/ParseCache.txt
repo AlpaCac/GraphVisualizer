@@ -4,6 +4,7 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mmc:Q_OBJECT
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QHash
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRect
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QSize
@@ -19,6 +20,7 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q23type_traits.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q23utility.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qabstracteventdispatcher.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qabstractitemmodel.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qalgorithms.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qalloc.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qanystringview.h
@@ -69,6 +71,7 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qhashfunctions.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qiodevice.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qiodevicebase.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qitemselectionmodel.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qiterable.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qiterator.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qlatin1stringview.h
@@ -96,6 +99,7 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocessordetection.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrect.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrefcount.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qregularexpression.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qscopedpointer.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qscopeguard.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qset.h
@@ -175,6 +179,7 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpainterpath.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpalette.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpen.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpicture.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpixelformat.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpixmap.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpointingdevice.h
@@ -184,27 +189,63 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qrgba64.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qscreen.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qscreen_platform.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextcursor.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextdocument.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextformat.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextoption.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtgui-config.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiexports.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtguiglobal.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtransform.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qvalidator.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qvector2d.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qvectornd.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qwindowdefs.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qwindowdefs_win.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QComboBox
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsItem
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsScene
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsView
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGroupBox
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QHBoxLayout
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QLabel
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QLineEdit
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidget
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidgetItem
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QMainWindow
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QPushButton
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QSplitter
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QVBoxLayout
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractbutton.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractitemdelegate.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractitemview.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractscrollarea.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractslider.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qabstractspinbox.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qboxlayout.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qcombobox.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qframe.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsitem.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsscene.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsview.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgridlayout.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgroupbox.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlabel.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlayout.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlayoutitem.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlineedit.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlistview.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlistwidget.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qmainwindow.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qpushbutton.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qrubberband.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qscrollarea.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qsizepolicy.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qslider.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qsplitter.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qstyle.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qstyleoption.h
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qtabbar.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qtabwidget.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qtwidgets-config.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qtwidgetsexports.h
@@ -429,17 +470,14 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
 F:/items/tuopuyouhua/GraphVisualizer/graph_items.h
 F:/items/tuopuyouhua/GraphVisualizer/test.h
  mmc:Q_OBJECT
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QString
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QThread
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QTimer
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q17memory.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q20bit.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q20functional.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q20memory.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q20type_traits.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q23type_traits.h
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qabstracteventdispatcher.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qalgorithms.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qanystringview.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qarraydata.h
@@ -449,7 +487,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qatomic.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qatomic_cxx11.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbasicatomic.h
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbasictimer.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbindingstorage.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbytearray.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbytearrayalgorithms.h
@@ -467,8 +504,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qcontainertools_impl.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdatastream.h
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdeadlinetimer.h
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qeventloop.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qexceptionhandling.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qflags.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qfloat16.h
@@ -527,8 +562,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtdeprecationmarkers.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtenvironmentvariables.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtformat_impl.h
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qthread.h
- mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtimer.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtmetamacros.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtnoop.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtpreprocessorsupport.h
@@ -562,7 +595,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocator.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_base.h
- mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_futex.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_lockfree_defines.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.tcc
@@ -609,8 +641,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/specfun.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_abs.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_function.h
- mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h
- mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algobase.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h
@@ -637,7 +667,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/string_view.tcc
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stringfwd.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h
- mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h
@@ -650,7 +679,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/clocale
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/compare
- mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/condition_variable
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdint
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdio
@@ -669,7 +697,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/string_conversions.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/type_traits.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/functional
- mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/future
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/initializer_list
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iosfwd
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator
@@ -677,7 +704,6 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/list
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory
- mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/new
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional

@@ -1,48 +1,33 @@
-#ifndef TEST_H
-#define TEST_H
+#ifndef TESTWORKER_H
+#define TESTWORKER_H
 
-#include <QThread>
-#include <QTimer>
+#include <QObject>
 #include <QString>
-#include <QList>
 #include <QColor>
 
-struct EdgeDef {
-    QString src;
-    QString dst;
-};
-
-class TestWorker : public QThread
-{
+class TestWorker : public QObject {
     Q_OBJECT
 public:
     explicit TestWorker(QObject *parent = nullptr);
 
-protected:
-    void run() override;
-
 signals:
+    // 拓扑图基础结构信号
     void requestClear();
-    void requestAddNode(const QString& id, int type, const QString& label);
-    void requestAddEdge(const QString& src, const QString& dst, int type);
+    void requestAddNode(const QString& nodeId, int type, const QString& label, int shape, const QColor& color, int size);
+    void requestAddEdge(const QString& sourceId, const QString& destId, int type);
     void requestLayout();
 
-    // 【关键修复】：确保下面这行是唯一的！删掉原来那个没有 size 参数的重载
-    void requestUpdateNodeStyle(const QString& id, const QColor& color, int shape, int size);
+    // 【补充漏掉的样式更新信号】
+    void requestUpdateNodeStyle(const QString& nodeId, const QColor& color, int shape, int size);
+    void requestUpdateEdgeStyle(const QString& sourceId, const QString& destId, const QColor& color, int thickness, int style);
 
-private slots:
-    void onTick();
-    // (已删除 onFastTick)
-
-private:
-    QString m_controlNode;
-    QList<QString> m_mainNodes;
-    QList<QString> m_backupNodes;
-    QList<QString> m_leafNodes;
-    QList<EdgeDef> m_edges;
-
-    int m_step;
-    void generateGraph();
+    // 业务队列信号
+    void requestAddTask(const QString& taskId, const QString& taskName, const QString& priority, const QString& statusIcon);
+    void requestRemoveTask(const QString& taskId);
+    void requestClearTasks();
+public slots:
+    // 【核心接口】：生成随机连通图
+    void generateRandomGraph();
 };
 
-#endif // TEST_H
+#endif // TESTWORKER_H

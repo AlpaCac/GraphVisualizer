@@ -17,7 +17,12 @@ int main(int argc, char *argv[])
     QObject::connect(&worker, &TestWorker::requestLayout,  &w, &MainWindow::applyLayout,Qt::QueuedConnection);
     QObject::connect(&worker, &TestWorker::requestUpdateNodeStyle, &w, &MainWindow::updateNodeStyle, Qt::QueuedConnection);
 
-    worker.start();
+    QObject::connect(&worker, &TestWorker::requestAddTask, &w, &MainWindow::addTask, Qt::QueuedConnection);
+    QObject::connect(&worker, &TestWorker::requestRemoveTask, &w, &MainWindow::removeTask, Qt::QueuedConnection);
+    QObject::connect(&worker, &TestWorker::requestClearTasks, &w, &MainWindow::clearTasks, Qt::QueuedConnection);
+
+    // 替换为这行代码：
+    worker.generateRandomGraph();
 
     return a.exec();
 }

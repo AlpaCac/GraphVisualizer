@@ -115,23 +115,23 @@ target_include_directories(GraphVisualizer PRIVATE
 
 ### 1.2 注入节点
 
-- **接口定义:** `void requestAddNode(const QString& id, int type, const QString& label)`
+- **接口定义:** `void requestAddNode(const QString& nodeId, int type, const QString& label, int shape, const QColor& color, int size);`
 
 - **功能说明:** 向内存中注入一个新的节点。此时节点尚未显示，等待布局引擎分配坐标。
 
 - **参数说明:**
 
-  - `id` (QString): **核心主键**。节点的唯一标识符（如 IP 地址、MAC、设备号）。绝不能重复。
-  - `type` (int): 初始节点颜色预设类型（0为浅蓝色，1为浅橙色）。
-  - `label` (QString): 节点上显示的文本文字，支持用 `\n` 换行。
+  - `nodeId` (QString): 节点唯一标识，如 `"Node_01"`。**UI 会自动截断 `_` 后的部分 (如 `"01"`) 用于画布渲染。**
 
-- **调用示例:**
+    `type` (int): 节点逻辑层级分类 (例如: 1 代表核心/高性能，0 代表边缘/标准)。
 
-  C++
+    `label` (QString): 节点的完整物理属性富文本（如 `"🟢 [Node_01] 高性能节点 | CPU: 82%..."`）。**该文本将仅展示在左侧边栏。**
 
-  ```
-  emit requestAddNode("Router_A", 0, "核心路由器\n192.168.1.1");
-  ```
+    `shape` (int): **[新增]** 节点形状 (建议定义: 0=圆形, 1=矩形/菱形)。
+
+    `color` (QColor): **[新增]** 节点填充颜色 (如 `#2ecc71` 绿色代表正常，`#e74c3c` 红色代表异常)。
+
+    `size` (int): **[新增]** 节点的基准尺寸直径/边长 (像素值，建议范围 30-60)。
 
 ### 1.3 注入连线
 
@@ -170,6 +170,59 @@ target_include_directories(GraphVisualizer PRIVATE
   ```
   emit requestLayout();
   ```
+
+### 1.5 注入新任务 (Task Addition)
+
+- **方向**: `TestWorker` (发出信号) -> `MainWindow` (执行槽函数)
+
+- **信号声明 (`test.h`)**:
+
+  C++
+
+  ```
+  void requestAddTask(const QString& taskId, const QString& taskName, const QString& priority, const QString& statusIcon);
+  ```
+
+- **参数说明**:
+
+  - `taskId` (QString): 任务或业务流的唯一 ID（例如 `"01"`, `"Flow_V1"`），用于后续精准销毁。
+  - `taskName` (QString): 任务名称（例如 `"实时视频协同"`）。
+  - `priority` (QString): 优先级标签（例如 `"高"`, `"特急"`）。
+  - `statusIcon` (QString): 状态前缀图标（例如 `"▶"`, `"⏳"`, `"⏸"`）。
+
+- **UI 表现**: 左侧面板会自动生成一张深色卡片：`▶ [流 ID: 01] 实时视频协同 | 优先级: 高`。
+
+### 1.6 销毁已完成任务 (Task Removal)
+
+- **方向**: `TestWorker` (发出信号) -> `MainWindow` (执行槽函数)
+
+- **信号声明 (`test.h`)**:
+
+  C++
+
+  ```
+  void requestRemoveTask(const QString& taskId);
+  ```
+
+- **参数说明**:
+
+  - `taskId` (QString): 需要销毁的任务的唯一标识。
+
+- **机制**: UI 内部通过 Hash Map (`QMap<QString, QListWidgetItem*>`) 实现 O(1) 复杂度的精准无痕删除。
+
+### 1.7 一键清空任务队列 (Clear Queue)
+
+- **方向**: `TestWorker` (发出信号) -> `MainWindow` (执行槽函数)
+
+- **信号声明 (`test.h`)**:
+
+  C++
+
+  ```
+  void requestClearTasks();
+  ```
+
+- **场景**: 在执行“全局拓扑重构”或“断线重连”时，用于瞬间清空左侧任务面板。
 
 ## 2. 状态高频刷新接口 (无损热更新)
 

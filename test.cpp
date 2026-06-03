@@ -1,94 +1,91 @@
 #include "test.h"
 #include <QRandomGenerator>
-#include <QMetaObject>
+#include <QStringList>
 
-TestWorker::TestWorker(QObject *parent) : QThread(parent), m_step(0) {}
+TestWorker::TestWorker(QObject *parent) : QObject(parent) {}
 
-void TestWorker::run() {
-    generateGraph();
-
-    // 仅保留 10 秒刷新一次的静态主循环
-    QTimer layoutTimer;
-    connect(&layoutTimer, &QTimer::timeout, this, &TestWorker::onTick);
-    layoutTimer.start(10000);
-
-    QMetaObject::invokeMethod(this, "onTick", Qt::QueuedConnection);
-    exec();
-}
-
-void TestWorker::generateGraph() {
-    m_mainNodes.clear();
-    m_backupNodes.clear();
-    m_leafNodes.clear();
-    m_edges.clear();
-
-    m_controlNode = "Control_Center";
-
-    for(int i = 0; i < 10; i++) {
-        m_mainNodes.append(QString("Main_%1").arg(i));
-        m_backupNodes.append(QString("Backup_%1").arg(i));
-    }
-
-    for(int i = 0; i < 10; i++) {
-        // 1. 主干双环网：主节点连成外环，备节点连成内环
-        m_edges.append({m_mainNodes[i], m_mainNodes[(i + 1) % 10]});
-        m_edges.append({m_backupNodes[i], m_backupNodes[(i + 1) % 10]});
-
-        // 2. 主备桥接：主节点和对应的备节点直接相连
-        m_edges.append({m_mainNodes[i], m_backupNodes[i]});
-
-        // 3. 终端双线并发 (Dual-homing) + 边缘菊花链 (Daisy Chain)
-        int leafGroupSize = 8;
-        QList<QString> currentLeafGroup; // 用于记录当前组的叶子，方便后续串联
-
-        for(int j = 0; j < leafGroupSize; j++) {
-            QString leaf = QString("Leaf_%1_%2").arg(i).arg(j);
-            m_leafNodes.append(leaf);
-            currentLeafGroup.append(leaf); // 存入临时列表
-
-            // 连主、连备
-            m_edges.append({m_mainNodes[i], leaf});
-            m_edges.append({m_backupNodes[i], leaf});
-        }
-
-        // 【核心新增】：用一条线把这 8 个叶子节点依次串联起来
-        for(int j = 0; j < leafGroupSize - 1; j++) {
-            m_edges.append({currentLeafGroup[j], currentLeafGroup[j+1]});
-        }
-    }
-
-    // 控制中心连在 Main_0 上
-    m_edges.append({m_mainNodes[0], m_controlNode});
-}
-void TestWorker::onTick() {
+void TestWorker::generateRandomGraph() {
+    // 1. 发送清空信号
     emit requestClear();
+    emit requestClearTasks();
 
-    emit requestAddNode(m_controlNode, 0, "控制中心\n(Master)");
-    // 【巨型尺寸 100】：让控制中心显得不可撼动
-    emit requestUpdateNodeStyle(m_controlNode, QColor(255, 215, 0), 3, 100);
+    int numNodes = 20;
+    QStringList nodeIds;
 
-    for(const auto& n : m_mainNodes) {
-        emit requestAddNode(n, 1, n);
-        // 【标准尺寸 80】：主环核心保持原样
-        emit requestUpdateNodeStyle(n, QColor(255, 100, 100), 2, 80);
+    // 2. 生成节点并赋予随机物理属性
+    for (int i = 0; i < numNodes; ++i) {
+        // 生成节点 ID，例如 Node_01, Node_02
+        QString nodeId = QString("Node_%1").arg(i + 1, 2, 10, QChar('0'));
+        nodeIds.append(nodeId);
+
+        // 随机属性生成
+        bool isHighPerf = QRandomGenerator::global()->bounded(100) < 25; // 25% 概率是高性能节点
+        QString nodeType = isHighPerf ? "高性能节点" : "标准节点";
+
+        // 状态生成 (90% 在线, 10% 异常)
+        bool isNormal = QRandomGenerator::global()->bounded(100) < 90;
+        QString statusIcon = isNormal ? "🟢" : "🔴";
+        QString statusText = isNormal ? "在线" : "异常";
+
+        int cpu = QRandomGenerator::global()->bounded(5, 95);     // CPU负载 5% ~ 95%
+        int mem = QRandomGenerator::global()->bounded(15, 90);    // 内存占用 15% ~ 90%
+        QString bw = isHighPerf ? "10Gbps" : "1Gbps";             // 物理带宽
+        int syncDiff = QRandomGenerator::global()->bounded(200) - 100; // 时钟同步差 -100 ~ 100 us
+
+        // 将这些属性拼装成一个详细的 Label 传给前端 UI 列表
+        QString label = QString("%1 [%2] %3 | %4 | CPU: %5% | 内存: %6% | 带宽: %7 | 时钟差: %8us")
+                            .arg(statusIcon)
+                            .arg(nodeId)
+                            .arg(nodeType)
+                            .arg(statusText)
+                            .arg(cpu, 2)
+                            .arg(mem, 2)
+                            .arg(bw)
+                            .arg(syncDiff);
+
+
+        // 【核心新增】：根据业务属性决定节点的物理长相
+        QColor nodeColor;
+        if (!isNormal) {
+            nodeColor = QColor("#e74c3c"); // 异常节点：红色
+        } else if (isHighPerf) {
+            nodeColor = QColor("#f39c12"); // 高性能节点：橙色
+        } else {
+            nodeColor = QColor("#2ecc71"); // 标准节点：绿色
+        }
+
+        // 假设 1 代表菱形/方形 (突出高性能)，0 代表圆形 (标准)
+        int nodeShape = isHighPerf ? 1 : 0;
+
+        // 高性能节点体型更大 (比如 60)，标准节点稍小 (比如 40)
+        int nodeSize = isHighPerf ? 15 : 10;
+
+        // 强参数发射信号
+        emit requestAddNode(nodeId, isHighPerf ? 1 : 0, label, nodeShape, nodeColor, nodeSize);
     }
 
-    for(const auto& n : m_backupNodes) {
-        emit requestAddNode(n, 1, n);
-        // 【中等尺寸 60】：备用节点略小于主节点
-        emit requestUpdateNodeStyle(n, QColor(173, 216, 230), 1, 60);
+    // 3. 构建全连通图 (连通主干生成树)
+    // 从第 2 个节点开始，每个节点随机向前面的 1 个节点连线，保证整张图绝对没有孤岛
+    for (int i = 1; i < numNodes; ++i) {
+        int targetIdx = QRandomGenerator::global()->bounded(i);
+        emit requestAddEdge(nodeIds[i], nodeIds[targetIdx], 0);
     }
 
-    for(const auto& n : m_leafNodes) {
-        emit requestAddNode(n, 1, "");
-        // 【玲珑尺寸 35】：叶子节点大幅缩小，组成精致的小圆环
-        emit requestUpdateNodeStyle(n, QColor(150, 255, 150), 0, 35);
+    // 4. 增加随机冗余边 (形成网状结构)
+    int extraEdges = 15; // 增加 15 条随机冗余边
+    for (int i = 0; i < extraEdges; ++i) {
+        int src = QRandomGenerator::global()->bounded(numNodes);
+        int dst = QRandomGenerator::global()->bounded(numNodes);
+        if (src != dst) {
+            emit requestAddEdge(nodeIds[src], nodeIds[dst], 0); // type=0 代表普通边
+        }
     }
 
-    for(const auto& e : m_edges) {
-        emit requestAddEdge(e.src, e.dst, 0);
-    }
-
+    // 5. 通知前端执行物理碰撞排版
     emit requestLayout();
-    m_step++;
+
+    // 6. 顺便注入几个模拟任务流
+    emit requestAddTask("01", "实时视频协同", "高", "▶");
+    emit requestAddTask("02", "传感数据汇聚", "中", "⏳");
+    emit requestAddTask("03", "节点探活同步", "最高", "⚡");
 }
