@@ -90,9 +90,13 @@ void TestWorker::loadGraphFromJson(const QString& fileName) { // 【修改】增
             size = 25;
         }
 
+        // 【新增】：提取 x, y 坐标，默认为 0
+        double x = nodeObj.contains("x") ? nodeObj["x"].toDouble() : 0.0;
+        double y = nodeObj.contains("y") ? nodeObj["y"].toDouble() : 0.0;
+
         // 【修改 3】：把发射信号的第一个参数从 name 换成 strId
         // 这样前端画布上渲染的文字就会是这个数字 ID
-        emit requestAddNode(strId, 0, label, shape, color, size);
+        emit requestAddNode(strId, 0, label, shape, color, size, x, y);
     }
 
     // ==============================================================

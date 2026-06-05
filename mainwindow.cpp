@@ -206,8 +206,8 @@ MainWindow::MainWindow(QWidget *parent)
     };
 
     // 【修改 5】：去掉之前代码里带的换行符 \n(Baseline)，直接用纯中文字符串，高度更纯粹
-    createStrategyBlock("📊 静态启发式调度", "78.5", "#f39c12", m_lblScoreBaseline, evalLayout);
-    createStrategyBlock("🚀 动态代价模型优化", "96.2", "#00d2d3", m_lblScoreAdvanced, evalLayout);
+    createStrategyBlock("场景驱动的多指标运行效能评估", "78.5", "#f39c12", m_lblScoreBaseline, evalLayout);
+    createStrategyBlock("结构驱动的拓扑鲁棒性效能评估", "96.2", "#00d2d3", m_lblScoreAdvanced, evalLayout);
 
     evalLayout->addStretch();
     sideLayout->addWidget(evalGroup);
@@ -375,27 +375,20 @@ MainWindow::MainWindow(QWidget *parent)
 } // 构造函数结束
 MainWindow::~MainWindow() {}
 
-void MainWindow::addNode(const QString& nodeId, int type, const QString& label, int shape, const QColor& color, int size) {
+void MainWindow::addNode(const QString& nodeId, int type, const QString& label, int shape, const QColor& color, int size, double x, double y) {
     if (m_nodeMap.contains(nodeId)) return;
 
-    QString shortLabel = nodeId;
-    if (nodeId.contains("_")) {
-        shortLabel = nodeId.split("_").last();
-    }
-
-    GraphNode *node = new GraphNode(nodeId, type, shortLabel);
-
-    // ==========================================================
-    // 【核心修复】：利用 Qt 的隐藏数据字典，将长文本存入 Key 为 0 的位置
-    // 这样既不会破坏画布上的短名字显示，又能完整保留详细数据
-    // ==========================================================
+    GraphNode *node = new GraphNode(nodeId, type, nodeId); // 或使用 shortLabel
     node->setData(0, label);
+    node->setStyle(color, shape, size);
+
+    // ==========================================================
+    // 【核心】：不再等待布局引擎，直接设置坐标
+    // ==========================================================
+    node->setPos(x, y);
 
     scene->addItem(node);
     m_nodeMap.insert(nodeId, node);
-
-    // 强制应用后端下发的形状、颜色和尺寸
-    node->setStyle(color, shape, size);
 }
 void MainWindow::updateNodeStyle(const QString& nodeId, const QColor& color, int shape, int size) {
     if (m_nodeMap.contains(nodeId)) {
@@ -530,109 +523,11 @@ void MainWindow::clearTasks() {
     }
 }
 
-// =========================================================================
-// 核心排版引擎：纯数据驱动的物理力导向算法
-// 彻底屏蔽业务逻辑，不解析任何节点字符串名称，自适应渲染任意网络拓扑
-// =========================================================================
 void MainWindow::applyLayout() {
-    if (m_nodeMap.isEmpty()) return;
-
-    ogdf::Graph G;
-    ogdf::GraphAttributes GA(G, ogdf::GraphAttributes::nodeGraphics | ogdf::GraphAttributes::edgeGraphics);
-
-    QHash<QString, ogdf::node> idToOgdf;
-    QHash<ogdf::node, QString> ogdfToId;
-
-    // 1. 构建底层拓扑图结构
-    for (auto it = m_nodeMap.begin(); it != m_nodeMap.end(); ++it) {
-        ogdf::node v = G.newNode();
-        idToOgdf[it.key()] = v;
-        ogdfToId[v] = it.key();
-
-        // 【修改】：把底层的物理碰撞盒从 30 放大到 50，匹配现在的节点尺寸
-        GA.width(v) = 50.0;
-        GA.height(v) = 50.0;
-    }
-
-    for (const EdgeData& edge : qAsConst(m_edges)) {
-        if (idToOgdf.contains(edge.sourceId) && idToOgdf.contains(edge.destId)) {
-            G.newEdge(idToOgdf[edge.sourceId], idToOgdf[edge.destId]);
-        }
-    }
-
-    // 2. 物理排版与计算
-    if (G.numberOfNodes() > 0) {
-
-        // 【宇宙大爆炸初始化】
-        for (ogdf::node v : G.nodes) {
-            GA.x(v) = QRandomGenerator::global()->bounded(1000) - 500.0;
-            GA.y(v) = QRandomGenerator::global()->bounded(1000) - 500.0;
-        }
-
-        // =====================================================================
-        // 【修改】：切回纯粹的环状布局引擎 (CircularLayout)
-        // 环形布局能更好地体现工业控制中的“主干环网”或“星环”结构
-        // =====================================================================
-        ogdf::CircularLayout circleLayout;
-        // 适当加大环状分布的基准间距，让生成的圆环足够宽敞
-        circleLayout.minDistCC(150.0);
-        circleLayout.call(GA);
-
-        // =====================================================================
-        // 【终极核心修复：强制物理碰撞排斥 (Overlap Resolution)】
-        // 依然保留这个物理推挤循环，确保哪怕圆环上的节点太密集，也会被强行挤开
-        // =====================================================================
-        double padding = 40.0; // 维持 40.0 的安全缓冲间距，防止贴脸
-        int maxIterations = 200;
-
-        for (int iter = 0; iter < maxIterations; ++iter) {
-            bool hasOverlap = false;
-            for (ogdf::node v : G.nodes) {
-                for (ogdf::node u : G.nodes) {
-                    if (v == u) continue;
-
-                    double dx = GA.x(v) - GA.x(u);
-                    double dy = GA.y(v) - GA.y(u);
-                    double dist = std::sqrt(dx*dx + dy*dy);
-
-                    double minDist = (GA.width(v) + GA.width(u)) / 2.0 + padding;
-
-                    if (dist < minDist) {
-                        if (dist < 0.01) {
-                            dx = (QRandomGenerator::global()->generateDouble() - 0.5) * 5.0;
-                            dy = (QRandomGenerator::global()->generateDouble() - 0.5) * 5.0;
-                            dist = std::sqrt(dx*dx + dy*dy);
-                        }
-
-                        double overlap = minDist - dist;
-                        double pushX = (dx / dist) * (overlap / 2.0);
-                        double pushY = (dy / dist) * (overlap / 2.0);
-
-                        GA.x(v) += pushX;
-                        GA.y(v) += pushY;
-                        GA.x(u) -= pushX;
-                        GA.y(u) -= pushY;
-
-                        hasOverlap = true;
-                    }
-                }
-            }
-            if (!hasOverlap) break;
-        }
-    }
-
-    // 3. 将计算完毕的绝对坐标同步回 Qt 界面
-    for (ogdf::node v : G.nodes) {
-        QString nodeId = ogdfToId[v];
-        if (m_nodeMap.contains(nodeId)) {
-            m_nodeMap[nodeId]->setPos(GA.x(v), GA.y(v));
-        }
-    }
-
-    // 4. 初次排版视角自适应适配
-    if (m_isFirstLayout) {
+    // 既然坐标由 JSON 决定，这里不需要计算
+    // 只需要确保画布视口覆盖所有节点即可
+    if (!m_nodeMap.isEmpty()) {
         view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-        m_isFirstLayout = false;
     }
 }
 void MainWindow::updateMetrics(const QString& latency, const QString& connectivity, const QString& reliability, const QString& throughput, const QString& cost) {

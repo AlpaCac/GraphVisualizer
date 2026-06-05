@@ -59,7 +59,7 @@ public:
     ~MainWindow();  // 【核心修复：补上这行析构函数的声明】
 
 public slots:
-    void addNode(const QString& nodeId, int type, const QString& label, int shape, const QColor& color, int size);
+    void addNode(const QString& nodeId, int type, const QString& label, int shape, const QColor& color, int size, double x, double y);
     // 【修改】：末尾增加 const QString& label 默认参数
     // 【修改】：同步增加 const QString& linkType
     // 【恢复】

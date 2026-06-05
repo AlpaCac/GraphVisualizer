@@ -1,0 +1,46 @@
+[
+  {
+    "taskId": "7",
+    "taskName": "姿态控制指令",
+    "taskType": "ControlCommand",
+    "description": "周期性姿态控制",
+    "sceneId": "S_move",
+    "startTime": 0,
+    "endTime": 60,
+    "isCritical": true,
+    "srcNodeId": "NID-001",
+    "dstNodeIds": ["NID-005"],
+    "commMode": "P2P",
+    "packetSizeBytes": 128,
+    "sendFrequencyHz": 50,
+    "isPeriodic": true,
+    "maxDelayMs": 20,
+    "maxJitterMs": 5,
+    "minReliability": 0.999,
+    "deadlineMs": 30,
+    "requiredBandwidthMbps": 1.0,
+    "reserveResource": true,
+    "dedicatedChannel": true,
+    "migratable": false,
+    "priority": "Critical",
+    "importanceLevel": 9,
+    "dependencies": [
+      { "dependsOnTaskId": "T00", "isHardDependency": true }
+    ]
+  },
+  {
+    "taskId": "8",
+    "taskName": "图像下传",
+    "taskType": "FileTransfer",
+    "sceneId": "S_move",
+    "srcNodeId": "NID-003",
+    "dstNodeIds": ["NID-001", "NID-002"],
+    "commMode": "P2MP",
+    "isMulticastOrConverge": true,
+    "totalDataBytes": 10485760,
+    "minThroughputMbps": 50,
+    "priority": "Normal",
+    "allowDelay": true,
+    "dependencies": ["T01"]
+  }
+]

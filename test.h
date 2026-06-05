@@ -13,7 +13,7 @@ public:
 signals:
     // 拓扑图基础结构信号
     void requestClear();
-    void requestAddNode(const QString& nodeId, int type, const QString& label, int shape, const QColor& color, int size);
+    void requestAddNode(const QString& nodeId, int type, const QString& label, int shape, const QColor& color, int size, double x, double y);
     // 【修改】：末尾增加 const QString& label 默认参数
     // 【修改】：在末尾增加 const QString& linkType
     // 【恢复】

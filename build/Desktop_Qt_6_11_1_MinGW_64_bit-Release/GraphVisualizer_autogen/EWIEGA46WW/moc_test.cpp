@@ -49,6 +49,8 @@ template <> constexpr inline auto TestWorker::qt_create_metaobjectdata<qt_meta_t
         "QColor",
         "color",
         "size",
+        "x",
+        "y",
         "requestAddEdge",
         "sourceId",
         "destId",
@@ -82,55 +84,55 @@ template <> constexpr inline auto TestWorker::qt_create_metaobjectdata<qt_meta_t
         // Signal 'requestClear'
         QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'requestAddNode'
-        QtMocHelpers::SignalData<void(const QString &, int, const QString &, int, const QColor &, int)>(3, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SignalData<void(const QString &, int, const QString &, int, const QColor &, int, double, double)>(3, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 4 }, { QMetaType::Int, 5 }, { QMetaType::QString, 6 }, { QMetaType::Int, 7 },
-            { 0x80000000 | 8, 9 }, { QMetaType::Int, 10 },
+            { 0x80000000 | 8, 9 }, { QMetaType::Int, 10 }, { QMetaType::Double, 11 }, { QMetaType::Double, 12 },
         }}),
         // Signal 'requestAddEdge'
-        QtMocHelpers::SignalData<void(const QString &, const QString &, int, const QString &)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 12 }, { QMetaType::QString, 13 }, { QMetaType::Int, 5 }, { QMetaType::QString, 6 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &, int, const QString &)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 14 }, { QMetaType::QString, 15 }, { QMetaType::Int, 5 }, { QMetaType::QString, 6 },
         }}),
         // Signal 'requestAddEdge'
-        QtMocHelpers::SignalData<void(const QString &, const QString &, int)>(11, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
-            { QMetaType::QString, 12 }, { QMetaType::QString, 13 }, { QMetaType::Int, 5 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &, int)>(13, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
+            { QMetaType::QString, 14 }, { QMetaType::QString, 15 }, { QMetaType::Int, 5 },
         }}),
         // Signal 'requestLayout'
-        QtMocHelpers::SignalData<void()>(14, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SignalData<void()>(16, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'requestUpdateNodeStyle'
-        QtMocHelpers::SignalData<void(const QString &, const QColor &, int, int)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SignalData<void(const QString &, const QColor &, int, int)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 4 }, { 0x80000000 | 8, 9 }, { QMetaType::Int, 7 }, { QMetaType::Int, 10 },
         }}),
         // Signal 'requestUpdateEdgeStyle'
-        QtMocHelpers::SignalData<void(const QString &, const QString &, const QColor &, int, int)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 12 }, { QMetaType::QString, 13 }, { 0x80000000 | 8, 9 }, { QMetaType::Int, 17 },
-            { QMetaType::Int, 18 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &, const QColor &, int, int)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 14 }, { QMetaType::QString, 15 }, { 0x80000000 | 8, 9 }, { QMetaType::Int, 19 },
+            { QMetaType::Int, 20 },
         }}),
         // Signal 'requestAddTask'
-        QtMocHelpers::SignalData<void(const QString &, const QString &, bool, const QString &, const QString &)>(19, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 20 }, { QMetaType::QString, 21 }, { QMetaType::Bool, 22 }, { QMetaType::QString, 23 },
-            { QMetaType::QString, 24 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &, bool, const QString &, const QString &)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 22 }, { QMetaType::QString, 23 }, { QMetaType::Bool, 24 }, { QMetaType::QString, 25 },
+            { QMetaType::QString, 26 },
         }}),
         // Signal 'requestRemoveTask'
-        QtMocHelpers::SignalData<void(const QString &)>(25, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 20 },
+        QtMocHelpers::SignalData<void(const QString &)>(27, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 22 },
         }}),
         // Signal 'requestClearTasks'
-        QtMocHelpers::SignalData<void()>(26, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SignalData<void()>(28, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'requestUpdateMetrics'
-        QtMocHelpers::SignalData<void(const QString &, const QString &, const QString &, const QString &, const QString &)>(27, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 28 }, { QMetaType::QString, 29 }, { QMetaType::QString, 30 }, { QMetaType::QString, 31 },
-            { QMetaType::QString, 32 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &, const QString &, const QString &, const QString &)>(29, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 30 }, { QMetaType::QString, 31 }, { QMetaType::QString, 32 }, { QMetaType::QString, 33 },
+            { QMetaType::QString, 34 },
         }}),
         // Signal 'requestUpdateEvaluation'
-        QtMocHelpers::SignalData<void(const QString &, const QString &)>(33, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 34 }, { QMetaType::QString, 35 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &)>(35, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 36 }, { QMetaType::QString, 37 },
         }}),
         // Slot 'loadGraphFromJson'
-        QtMocHelpers::SlotData<void(const QString &)>(36, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 37 },
+        QtMocHelpers::SlotData<void(const QString &)>(38, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 39 },
         }}),
         // Slot 'loadGraphFromJson'
-        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(38, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -155,7 +157,7 @@ void TestWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->requestClear(); break;
-        case 1: _t->requestAddNode((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[5])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[6]))); break;
+        case 1: _t->requestAddNode((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[5])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[6])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[7])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[8]))); break;
         case 2: _t->requestAddEdge((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4]))); break;
         case 3: _t->requestAddEdge((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
         case 4: _t->requestLayout(); break;
@@ -174,7 +176,7 @@ void TestWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (TestWorker::*)()>(_a, &TestWorker::requestClear, 0))
             return;
-        if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , int , const QString & , int , const QColor & , int )>(_a, &TestWorker::requestAddNode, 1))
+        if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , int , const QString & , int , const QColor & , int , double , double )>(_a, &TestWorker::requestAddNode, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , const QString & , int , const QString & )>(_a, &TestWorker::requestAddEdge, 2))
             return;
@@ -235,9 +237,9 @@ void TestWorker::requestClear()
 }
 
 // SIGNAL 1
-void TestWorker::requestAddNode(const QString & _t1, int _t2, const QString & _t3, int _t4, const QColor & _t5, int _t6)
+void TestWorker::requestAddNode(const QString & _t1, int _t2, const QString & _t3, int _t4, const QColor & _t5, int _t6, double _t7, double _t8)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2, _t3, _t4, _t5, _t6);
+    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2, _t3, _t4, _t5, _t6, _t7, _t8);
 }
 
 // SIGNAL 2
