@@ -5,6 +5,7 @@
 #include <QString>
 #include <QList>
 #include <QPen> // 新增 QPen
+#include <QPainterPath> // 【新增】
 
 class GraphEdge;
 
@@ -12,6 +13,13 @@ class GraphEdge;
 class GraphNode : public QGraphicsItem
 {
 public:
+    // 【新增】：定义安全的类型标识，方便后续转换
+    enum { Type = UserType + 1 };
+    int type() const override { return Type; }
+
+    // 【新增】：暴露获取 Label 的接口
+    QString getLabel() const { return m_label; }
+
     GraphNode(const QString& id, int type, const QString& label);
 
     void addEdge(GraphEdge *edge);
@@ -43,6 +51,18 @@ private:
 class GraphEdge : public QGraphicsItem
 {
 public:
+    // 【新增】：定义安全的类型标识
+    enum { Type = UserType + 2 };
+    int type() const override { return Type; }
+
+    // 【新增】：暴露获取两端节点的接口
+    GraphNode* getSource() const { return m_source; }
+    GraphNode* getDest() const { return m_dest; }
+
+    // 【新增】：重写热区函数，确保点击精准度
+    QPainterPath shape() const override;
+
+    // 【修改】：在末尾增加 const QString& linkType 参数
     GraphEdge(GraphNode *sourceNode, GraphNode *destNode, int type);
 
     void adjust();

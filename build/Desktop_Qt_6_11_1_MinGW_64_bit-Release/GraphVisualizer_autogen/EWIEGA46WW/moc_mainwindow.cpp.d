@@ -151,7 +151,9 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qxptype_traits.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qyieldcpu.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QMouseEvent \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPainterPath \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QResizeEvent \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QTransform \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QWheelEvent \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qaction.h \
@@ -201,7 +203,9 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qwindowdefs.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qwindowdefs_win.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QComboBox \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QFrame \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsItem \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsLineItem \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsScene \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsView \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGroupBox \

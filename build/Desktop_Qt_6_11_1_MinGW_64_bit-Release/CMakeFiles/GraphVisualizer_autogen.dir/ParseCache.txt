@@ -153,7 +153,9 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qxptype_traits.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qyieldcpu.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QMouseEvent
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPainterPath
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QResizeEvent
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QTransform
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QWheelEvent
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qaction.h
@@ -203,7 +205,9 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qwindowdefs.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qwindowdefs_win.h
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QComboBox
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QFrame
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsItem
+ mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsLineItem
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsScene
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsView
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGroupBox
@@ -468,6 +472,8 @@ F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
  mdp:F:/items/tuopuyouhua/GraphVisualizer/graph_items.h
  mdp:F:/items/tuopuyouhua/GraphVisualizer/mainwindow.h
 F:/items/tuopuyouhua/GraphVisualizer/graph_items.h
+F:/items/tuopuyouhua/GraphVisualizer/mainwindow.cpp
+F:/items/tuopuyouhua/GraphVisualizer/graph_items.cpp
 F:/items/tuopuyouhua/GraphVisualizer/test.h
  mmc:Q_OBJECT
  mdp:F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject
@@ -791,6 +797,4 @@ F:/items/tuopuyouhua/GraphVisualizer/test.h
  mdp:F:/ide/qt/qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
  mdp:F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Release/GraphVisualizer_autogen/moc_predefs.h
  mdp:F:/items/tuopuyouhua/GraphVisualizer/test.h
-F:/items/tuopuyouhua/GraphVisualizer/mainwindow.cpp
-F:/items/tuopuyouhua/GraphVisualizer/graph_items.cpp
 F:/items/tuopuyouhua/GraphVisualizer/main.cpp

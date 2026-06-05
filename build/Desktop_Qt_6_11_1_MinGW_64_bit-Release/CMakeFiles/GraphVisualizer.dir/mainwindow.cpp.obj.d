@@ -434,6 +434,7 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QString \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPainterPath \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QSplitter \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qsplitter.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidget \
@@ -456,6 +457,9 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlabel.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpicture.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextdocument.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QFrame \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QResizeEvent \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsLineItem \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidgetItem \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QVBoxLayout \

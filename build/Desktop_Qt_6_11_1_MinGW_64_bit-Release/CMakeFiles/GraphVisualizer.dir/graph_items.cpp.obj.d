@@ -377,6 +377,7 @@ CMakeFiles/GraphVisualizer.dir/graph_items.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPen \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpen.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qbrush.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPainterPath \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPainter \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qpainter.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qtextoption.h \

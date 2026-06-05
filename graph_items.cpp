@@ -10,7 +10,8 @@ GraphNode::GraphNode(const QString& id, int type, const QString& label)
 {
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
-    setZValue(1);
+    setFlag(ItemIsSelectable); // 【新增】：允许被点击选中
+    setZValue(10);
 }
 
 void GraphNode::setStyle(const QColor& color, int shape, int size) {
@@ -30,8 +31,13 @@ QRectF GraphNode::boundingRect() const {
 
 void GraphNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     painter->setBrush(m_color);
-    painter->setPen(QPen(Qt::darkGray, 2));
-
+    // 【修改】：将选中边框换成统一的科幻亮青色 (#00d2d3)
+    if (isSelected()) {
+        // 顺便把边框厚度从 4 降到 3，让高亮光环更加锐利、干练
+        painter->setPen(QPen(QColor("#00d2d3"), 3));
+    } else {
+        painter->setPen(QPen(Qt::darkGray, 2));
+    }
     double R = m_size / 2.0; // 动态半径计算
 
     if (m_shape == 0) {
@@ -58,11 +64,13 @@ void GraphNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         painter->drawPolygon(hexagon);
     }
 
-    // 绘制内部文字（叶子节点如果尺寸太小，可以隐藏文字或缩小字体，此处我们根据尺寸自动适配）
-    if (m_size >= 40) {
+    // 绘制内部文字
+    // 【修改】：将显示门槛从 40 降低到 20，确保尺寸为 25 的普通节点也能显示 ID
+    if (m_size >= 20) {
         painter->setPen(Qt::black);
         QFont font = painter->font();
-        font.setPointSize(m_size < 60 ? 7 : 9); // 小节点用小字体
+        // 根据新尺寸自动适配一下字号：较小节点用 8 号字，较大节点用 10 号字
+        font.setPointSize(m_size < 40 ? 8 : 10);
         painter->setFont(font);
         painter->drawText(boundingRect(), Qt::AlignCenter, m_label);
     }
@@ -75,15 +83,13 @@ QVariant GraphNode::itemChange(GraphicsItemChange change, const QVariant &value)
     }
     return QGraphicsItem::itemChange(change, value);
 }
-
-// ================= GraphEdge 修改 =================
+// 【核心修复】：使用初始化列表，赋予线条默认的颜色、粗细和线型
 GraphEdge::GraphEdge(GraphNode *sourceNode, GraphNode *destNode, int type)
     : m_source(sourceNode), m_dest(destNode), m_type(type),
-    m_color(type == 0 ? Qt::gray : Qt::darkBlue), // 默认颜色
-    m_thickness(2),                               // 默认粗细
-    m_penStyle(Qt::SolidLine)                     // 默认实线
+    m_color(Qt::darkGray), m_thickness(2), m_penStyle(Qt::SolidLine)
 {
-    setZValue(0);
+    setFlag(ItemIsSelectable);
+    setZValue(-10);
 }
 
 // 【新增】：接收新样式并触发重绘
@@ -108,8 +114,34 @@ QRectF GraphEdge::boundingRect() const {
 }
 
 void GraphEdge::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    // 【修改】：使用我们自定义的变量，而不是写死
+    // 防御性判断：如果没有连接节点，则不绘制
+    if (!m_source || !m_dest) return;
+
     QPen pen(m_color, m_thickness, m_penStyle);
+
+    // 设置线段的两端为圆角 (RoundCap)，让插入节点时显得非常自然
+    pen.setCapStyle(Qt::RoundCap);
+    pen.setJoinStyle(Qt::RoundJoin);
+
+    // 判断是否被鼠标点击选中
+    if (isSelected()) {
+        pen.setColor(QColor("#00d2d3")); // 选中时的高亮亮青色
+        pen.setWidth(m_thickness + 1);   // 选中时稍微加粗一点
+    }
+
     painter->setPen(pen);
+
+    // 【最关键的一句】：画出真正的连线！千万不能漏掉这一行！
     painter->drawLine(m_sourcePoint, m_destPoint);
+}
+// 【新增】：生成紧贴线条轮廓的 10 像素热区，方便用户用鼠标精准点中细线
+QPainterPath GraphEdge::shape() const {
+    QPainterPath path;
+    if (!m_source || !m_dest) return path;
+    path.moveTo(m_sourcePoint);
+    path.lineTo(m_destPoint);
+
+    QPainterPathStroker stroker;
+    stroker.setWidth(10); // 设置点击热区的宽度为 10 像素
+    return stroker.createStroke(path);
 }

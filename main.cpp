@@ -21,8 +21,13 @@ int main(int argc, char *argv[])
     QObject::connect(&worker, &TestWorker::requestRemoveTask, &w, &MainWindow::removeTask, Qt::QueuedConnection);
     QObject::connect(&worker, &TestWorker::requestClearTasks, &w, &MainWindow::clearTasks, Qt::QueuedConnection);
 
-    // 替换为这行代码：
-    worker.generateRandomGraph();
+
+    // 【新增】：将后端解析出的评估指标信号与 MainWindow 连接
+    QObject::connect(&worker, &TestWorker::requestUpdateMetrics, &w, &MainWindow::updateMetrics, Qt::QueuedConnection);
+    QObject::connect(&worker, &TestWorker::requestUpdateEvaluation, &w, &MainWindow::updateEvaluation, Qt::QueuedConnection);
+
+    // 【修改】：使用我们全新编写的 JSON 自动解析引擎
+    worker.loadGraphFromJson();
 
     return a.exec();
 }
