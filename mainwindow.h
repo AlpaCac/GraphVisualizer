@@ -50,6 +50,10 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+signals: // 如果没有 signals: 关键字，请自己加一个
+    // 【新增】：请求后端读取指定 JSON 文件的信号
+    void requestLoadJson(const QString& fileName);
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();  // 【核心修复：补上这行析构函数的声明】
@@ -89,6 +93,10 @@ private slots:
     void onTaskSelectionChanged();
     // 【新增】：监听具体的点击动作
     // void onTaskItemClicked(QListWidgetItem *item);
+    // 【新增】：处理两个拓扑按钮的点击
+    void onPhysicalTopologyClicked();
+    void onLogicalTopologyClicked();
+    void onOptimizeTopologyClicked(); // 【新增】
 
 private:
     QGraphicsScene *scene;
@@ -126,6 +134,14 @@ private:
     QList<QGraphicsLineItem*> m_flowEdges;
 
     // bool m_selectionJustChanged = false;
+
+    QPushButton *m_btnPhysical;
+    QPushButton *m_btnLogical;
+    QPushButton *m_btnOptimize;
+    QPushButton *m_btnDestroy;
+
+    // 【必须添加这一行】：
+    QLabel *m_canvasTitle;
 };
 
 #endif // MAINWINDOW_H

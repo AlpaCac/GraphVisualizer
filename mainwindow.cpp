@@ -214,6 +214,77 @@ MainWindow::MainWindow(QWidget *parent)
     sideLayout->addStretch();
 
     // ==============================================================
+    // 7. 底部核心控制操作台 (2x2 网格)
+    // ==============================================================
+    QGridLayout *buttonLayout = new QGridLayout();
+    buttonLayout->setSpacing(12); // 按钮之间的间距
+
+    m_btnPhysical = new QPushButton("🌐 物理拓扑", sideBarWidget);
+    m_btnLogical  = new QPushButton("🔗 逻辑拓扑", sideBarWidget);
+    m_btnOptimize = new QPushButton("⚡ 拓扑优化", sideBarWidget);
+    m_btnDestroy  = new QPushButton("💥 损毁模拟", sideBarWidget);
+
+    // 标准科技蓝按钮样式
+    QString btnStyle =
+        "QPushButton { "
+        "   background-color: #2980b9; "
+        "   color: white; "
+        "   border: 1px solid #3498db; "
+        "   border-radius: 6px; "
+        "   padding: 12px; "
+        "   font-weight: bold; "
+        "   font-size: 14px; "
+        "   font-family: 'Microsoft YaHei'; "
+        "}"
+        "QPushButton:hover { "
+        "   background-color: #3498db; "
+        "   border: 1px solid #5dade2; "
+        "}"
+        "QPushButton:pressed { "
+        "   background-color: #1f618d; "
+        "}";
+
+    // 危险操作红色警告样式
+    QString btnDangerStyle =
+        "QPushButton { "
+        "   background-color: rgba(192, 57, 43, 0.8); "
+        "   color: #ecf0f1; "
+        "   border: 1px solid #e74c3c; "
+        "   border-radius: 6px; "
+        "   padding: 12px; "
+        "   font-weight: bold; "
+        "   font-size: 14px; "
+        "   font-family: 'Microsoft YaHei'; "
+        "}"
+        "QPushButton:hover { "
+        "   background-color: #e74c3c; "
+        "   border: 1px solid #ff7675; "
+        "}"
+        "QPushButton:pressed { "
+        "   background-color: #922b21; "
+        "}";
+
+    // 应用样式
+    m_btnPhysical->setStyleSheet(btnStyle);
+    m_btnLogical->setStyleSheet(btnStyle);
+    m_btnOptimize->setStyleSheet(btnStyle);
+    m_btnDestroy->setStyleSheet(btnDangerStyle); // 特殊红色涂装
+
+    // 鼠标悬停变小手
+    m_btnPhysical->setCursor(Qt::PointingHandCursor);
+    m_btnLogical->setCursor(Qt::PointingHandCursor);
+    m_btnOptimize->setCursor(Qt::PointingHandCursor);
+    m_btnDestroy->setCursor(Qt::PointingHandCursor);
+
+    // 组装到 2x2 网格中
+    buttonLayout->addWidget(m_btnPhysical, 0, 0); // 第 1 行，左
+    buttonLayout->addWidget(m_btnLogical, 0, 1);  // 第 1 行，右
+    buttonLayout->addWidget(m_btnOptimize, 1, 0); // 第 2 行，左
+    buttonLayout->addWidget(m_btnDestroy, 1, 1);  // 第 2 行，右
+
+    // 将网格添加到侧边栏最底部
+    sideLayout->addLayout(buttonLayout);
+    // ==============================================================
     // 组装切分器并强设宽度
     // ==============================================================
     m_splitter->addWidget(sideBarWidget);
@@ -227,9 +298,9 @@ MainWindow::MainWindow(QWidget *parent)
     // ==============================================================
     // 5. 画布左上角悬浮标题
     // ==============================================================
-    QLabel *canvasTitle = new QLabel("物理拓扑", view); // 将 view 作为父组件，实现悬浮叠加
+    m_canvasTitle = new QLabel("物理拓扑", view);
     // 设置半透明深色背景和高亮文字，极具科幻感
-    canvasTitle->setStyleSheet(
+    m_canvasTitle->setStyleSheet(
         "QLabel { "
         "   color: #34495e; "  /* 高级的深蓝灰色，比纯黑更柔和 */
         "   font-size: 32px; " /* 稍微放大一点显得更大气 */
@@ -240,7 +311,7 @@ MainWindow::MainWindow(QWidget *parent)
         "}"
         );
     // 将它固定在距离画布左上角 (20, 20) 的位置
-    canvasTitle->move(20, 20);
+    m_canvasTitle->move(20, 20);
 
     // ==============================================================
     // 6. 右上角图元属性悬浮侦察面板 (高颜值重构版)
@@ -293,6 +364,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(scene, &QGraphicsScene::selectionChanged, this, &MainWindow::onSceneSelectionChanged);
     // 【新增】：监听业务流队列的点击事件
     connect(m_taskListWidget, &QListWidget::itemSelectionChanged, this, &MainWindow::onTaskSelectionChanged);
+    // ==========================================================
+    // 【新增】：绑定物理与逻辑拓扑按钮的点击事件
+    // ==========================================================
+    connect(m_btnPhysical, &QPushButton::clicked, this, &MainWindow::onPhysicalTopologyClicked);
+    connect(m_btnLogical, &QPushButton::clicked, this, &MainWindow::onLogicalTopologyClicked);
+
+    // 【新增】：连接拓扑优化按钮
+    connect(m_btnOptimize, &QPushButton::clicked, this, &MainWindow::onOptimizeTopologyClicked);
 } // 构造函数结束
 MainWindow::~MainWindow() {}
 
@@ -344,11 +423,15 @@ void MainWindow::addEdge(const QString& sourceId, const QString& destId, int typ
     m_edgeItemMap.insert(sourceId + "->" + destId, edge);
 }
 void MainWindow::clearGraph() {
-    scene->clear();
+    scene->clear(); // 这句会物理销毁图上的所有线和节点
     m_nodeMap.clear();
     m_edges.clear();
     m_edgeItemMap.clear();
 
+    // ==========================================================
+    // 【关键修复】：清除旧的发光绿线指针，防止切换图表时崩溃
+    // ==========================================================
+    m_flowEdges.clear();
 }
 void MainWindow::updateEdgeStyle(const QString& sourceId, const QString& destId, const QColor& color, int thickness, int style) {
     QString key = sourceId + "->" + destId;
@@ -681,7 +764,7 @@ void MainWindow::onTaskSelectionChanged() {
             GraphNode* srcNode = m_nodeMap[srcId];
             GraphNode* dstNode = m_nodeMap[dstId];
 
-            QPen glowPen(QColor("#2ecc71"), 4, Qt::DashLine, Qt::RoundCap);
+            QPen glowPen(QColor("#9b59b6"), 4, Qt::DashLine, Qt::RoundCap);
             QGraphicsLineItem* flowEdge = new QGraphicsLineItem(QLineF(srcNode->scenePos(), dstNode->scenePos()));
             flowEdge->setPen(glowPen);
             flowEdge->setZValue(5);
@@ -691,4 +774,33 @@ void MainWindow::onTaskSelectionChanged() {
             m_flowEdges.append(flowEdge);
         }
     }
+}
+// ==========================================================
+// 底部控制台按钮联动逻辑
+// ==========================================================
+// 确保函数名前面带有 MainWindow::
+void MainWindow::onPhysicalTopologyClicked() {
+    if (m_canvasTitle) {
+        m_canvasTitle->setText("物理拓扑");
+    }
+    emit requestLoadJson("wuli.json");
+}
+
+void MainWindow::onLogicalTopologyClicked() {
+    if (m_canvasTitle) {
+        m_canvasTitle->setText("逻辑拓扑");
+    }
+    emit requestLoadJson("luoji.json");
+}
+
+// ==========================================================
+// 拓扑优化按钮点击逻辑
+// ==========================================================
+void MainWindow::onOptimizeTopologyClicked() {
+    // 1. 修改标题
+    if (m_canvasTitle) {
+        m_canvasTitle->setText("拓扑优化");
+    }
+    // 2. 指挥后端读取 youhua.json 并执行全量重绘
+    emit requestLoadJson("youhua.json");
 }

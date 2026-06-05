@@ -74,7 +74,8 @@ template <> constexpr inline auto TestWorker::qt_create_metaobjectdata<qt_meta_t
         "requestUpdateEvaluation",
         "scoreBaseline",
         "scoreAdvanced",
-        "loadGraphFromJson"
+        "loadGraphFromJson",
+        "fileName"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -125,7 +126,11 @@ template <> constexpr inline auto TestWorker::qt_create_metaobjectdata<qt_meta_t
             { QMetaType::QString, 34 }, { QMetaType::QString, 35 },
         }}),
         // Slot 'loadGraphFromJson'
-        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void(const QString &)>(36, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 37 },
+        }}),
+        // Slot 'loadGraphFromJson'
+        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -161,7 +166,8 @@ void TestWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 9: _t->requestClearTasks(); break;
         case 10: _t->requestUpdateMetrics((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
         case 11: _t->requestUpdateEvaluation((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
-        case 12: _t->loadGraphFromJson(); break;
+        case 12: _t->loadGraphFromJson((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 13: _t->loadGraphFromJson(); break;
         default: ;
         }
     }
@@ -210,14 +216,14 @@ int TestWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 14)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }

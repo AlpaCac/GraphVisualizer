@@ -34,8 +34,8 @@ signals:
     void requestUpdateEvaluation(const QString& scoreBaseline, const QString& scoreAdvanced);
 
 public slots:
-    // 【核心接口】：从 JSON 文件读取并生成整套拓扑与指标
-    void loadGraphFromJson();
+    // 【修改】：支持传入文件名，默认加载 wuli.json
+    void loadGraphFromJson(const QString& fileName = "wuli.json");
 };
 
 #endif // TESTWORKER_H

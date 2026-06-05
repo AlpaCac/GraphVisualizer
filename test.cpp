@@ -9,22 +9,20 @@
 
 TestWorker::TestWorker(QObject *parent) : QObject(parent) {}
 
-void TestWorker::loadGraphFromJson() {
+void TestWorker::loadGraphFromJson(const QString& fileName) { // 【修改】增加参数
     emit requestClear();
     emit requestClearTasks();
 
     // ==========================================
-    // 智能寻址：适配不同的运行目录环境
+    // 智能寻址：动态拼接传进来的文件名
     // ==========================================
-    QString filePath = "./data/in.json"; // 假设打包发布后，data 和 exe 在同级目录
+    QString filePath = "./data/" + fileName;
 
     if (!QFile::exists(filePath)) {
-        // 适配 Qt Creator 默认的 build/build-xxx-Debug/ 结构 (回退两层)
-        filePath = "../../data/in.json";
+        filePath = "../../data/" + fileName;
     }
     if (!QFile::exists(filePath)) {
-        // 备用：适配普通的单层 build/ 结构 (回退一层)
-        filePath = "../data/in.json";
+        filePath = "../data/" + fileName;
     }
 
     QFile file(filePath);

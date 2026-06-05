@@ -26,8 +26,13 @@ int main(int argc, char *argv[])
     QObject::connect(&worker, &TestWorker::requestUpdateMetrics, &w, &MainWindow::updateMetrics, Qt::QueuedConnection);
     QObject::connect(&worker, &TestWorker::requestUpdateEvaluation, &w, &MainWindow::updateEvaluation, Qt::QueuedConnection);
 
-    // 【修改】：使用我们全新编写的 JSON 自动解析引擎
-    worker.loadGraphFromJson();
+    // ==========================================================
+    // 【新增】：将前端界面的“加载 JSON 请求”与后端解析器连接起来
+    // ==========================================================
+    QObject::connect(&w, &MainWindow::requestLoadJson, &worker, &TestWorker::loadGraphFromJson, Qt::QueuedConnection);
+
+    // 【修改】：程序刚启动时，初始读取 wuli.json
+    worker.loadGraphFromJson("wuli.json");
 
     return a.exec();
 }

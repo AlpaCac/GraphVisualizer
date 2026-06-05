@@ -97,8 +97,10 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "MainWindow",
-        "addNode",
+        "requestLoadJson",
         "",
+        "fileName",
+        "addNode",
         "nodeId",
         "type",
         "label",
@@ -133,64 +135,77 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "scoreBaseline",
         "scoreAdvanced",
         "onSceneSelectionChanged",
-        "onTaskSelectionChanged"
+        "onTaskSelectionChanged",
+        "onPhysicalTopologyClicked",
+        "onLogicalTopologyClicked",
+        "onOptimizeTopologyClicked"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'requestLoadJson'
+        QtMocHelpers::SignalData<void(const QString &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 3 },
+        }}),
         // Slot 'addNode'
-        QtMocHelpers::SlotData<void(const QString &, int, const QString &, int, const QColor &, int)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 3 }, { QMetaType::Int, 4 }, { QMetaType::QString, 5 }, { QMetaType::Int, 6 },
-            { 0x80000000 | 7, 8 }, { QMetaType::Int, 9 },
+        QtMocHelpers::SlotData<void(const QString &, int, const QString &, int, const QColor &, int)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 5 }, { QMetaType::Int, 6 }, { QMetaType::QString, 7 }, { QMetaType::Int, 8 },
+            { 0x80000000 | 9, 10 }, { QMetaType::Int, 11 },
         }}),
         // Slot 'addEdge'
-        QtMocHelpers::SlotData<void(const QString &, const QString &, int, const QString &)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 11 }, { QMetaType::QString, 12 }, { QMetaType::Int, 4 }, { QMetaType::QString, 5 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &, int, const QString &)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 13 }, { QMetaType::QString, 14 }, { QMetaType::Int, 6 }, { QMetaType::QString, 7 },
         }}),
         // Slot 'addEdge'
-        QtMocHelpers::SlotData<void(const QString &, const QString &, int)>(10, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
-            { QMetaType::QString, 11 }, { QMetaType::QString, 12 }, { QMetaType::Int, 4 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &, int)>(12, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
+            { QMetaType::QString, 13 }, { QMetaType::QString, 14 }, { QMetaType::Int, 6 },
         }}),
         // Slot 'applyLayout'
-        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'clearGraph'
-        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'updateNodeStyle'
-        QtMocHelpers::SlotData<void(const QString &, const QColor &, int, int)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 3 }, { 0x80000000 | 7, 8 }, { QMetaType::Int, 6 }, { QMetaType::Int, 9 },
+        QtMocHelpers::SlotData<void(const QString &, const QColor &, int, int)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 5 }, { 0x80000000 | 9, 10 }, { QMetaType::Int, 8 }, { QMetaType::Int, 11 },
         }}),
         // Slot 'updateNodeStyle'
-        QtMocHelpers::SlotData<void(const QString &, const QColor &, int)>(15, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
-            { QMetaType::QString, 3 }, { 0x80000000 | 7, 8 }, { QMetaType::Int, 6 },
+        QtMocHelpers::SlotData<void(const QString &, const QColor &, int)>(17, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
+            { QMetaType::QString, 5 }, { 0x80000000 | 9, 10 }, { QMetaType::Int, 8 },
         }}),
         // Slot 'updateEdgeStyle'
-        QtMocHelpers::SlotData<void(const QString &, const QString &, const QColor &, int, int)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 11 }, { QMetaType::QString, 12 }, { 0x80000000 | 7, 8 }, { QMetaType::Int, 17 },
-            { QMetaType::Int, 18 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &, const QColor &, int, int)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 13 }, { QMetaType::QString, 14 }, { 0x80000000 | 9, 10 }, { QMetaType::Int, 19 },
+            { QMetaType::Int, 20 },
         }}),
         // Slot 'addTask'
-        QtMocHelpers::SlotData<void(const QString &, const QString &, bool, const QString &, const QString &)>(19, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 20 }, { QMetaType::QString, 21 }, { QMetaType::Bool, 22 }, { QMetaType::QString, 23 },
-            { QMetaType::QString, 24 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &, bool, const QString &, const QString &)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 22 }, { QMetaType::QString, 23 }, { QMetaType::Bool, 24 }, { QMetaType::QString, 25 },
+            { QMetaType::QString, 26 },
         }}),
         // Slot 'removeTask'
-        QtMocHelpers::SlotData<void(const QString &)>(25, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 20 },
+        QtMocHelpers::SlotData<void(const QString &)>(27, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 22 },
         }}),
         // Slot 'clearTasks'
-        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(28, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'updateMetrics'
-        QtMocHelpers::SlotData<void(const QString &, const QString &, const QString &, const QString &, const QString &)>(27, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 28 }, { QMetaType::QString, 29 }, { QMetaType::QString, 30 }, { QMetaType::QString, 31 },
-            { QMetaType::QString, 32 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &, const QString &, const QString &, const QString &)>(29, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 30 }, { QMetaType::QString, 31 }, { QMetaType::QString, 32 }, { QMetaType::QString, 33 },
+            { QMetaType::QString, 34 },
         }}),
         // Slot 'updateEvaluation'
-        QtMocHelpers::SlotData<void(const QString &, const QString &)>(33, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 34 }, { QMetaType::QString, 35 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &)>(35, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 36 }, { QMetaType::QString, 37 },
         }}),
         // Slot 'onSceneSelectionChanged'
-        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(38, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onTaskSelectionChanged'
-        QtMocHelpers::SlotData<void()>(37, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(39, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onPhysicalTopologyClicked'
+        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onLogicalTopologyClicked'
+        QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onOptimizeTopologyClicked'
+        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -214,23 +229,31 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     auto *_t = static_cast<MainWindow *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->addNode((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[5])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[6]))); break;
-        case 1: _t->addEdge((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4]))); break;
-        case 2: _t->addEdge((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
-        case 3: _t->applyLayout(); break;
-        case 4: _t->clearGraph(); break;
-        case 5: _t->updateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4]))); break;
-        case 6: _t->updateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
-        case 7: _t->updateEdgeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[5]))); break;
-        case 8: _t->addTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
-        case 9: _t->removeTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 10: _t->clearTasks(); break;
-        case 11: _t->updateMetrics((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
-        case 12: _t->updateEvaluation((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
-        case 13: _t->onSceneSelectionChanged(); break;
-        case 14: _t->onTaskSelectionChanged(); break;
+        case 0: _t->requestLoadJson((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 1: _t->addNode((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[5])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[6]))); break;
+        case 2: _t->addEdge((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4]))); break;
+        case 3: _t->addEdge((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
+        case 4: _t->applyLayout(); break;
+        case 5: _t->clearGraph(); break;
+        case 6: _t->updateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4]))); break;
+        case 7: _t->updateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
+        case 8: _t->updateEdgeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[5]))); break;
+        case 9: _t->addTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
+        case 10: _t->removeTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 11: _t->clearTasks(); break;
+        case 12: _t->updateMetrics((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
+        case 13: _t->updateEvaluation((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
+        case 14: _t->onSceneSelectionChanged(); break;
+        case 15: _t->onTaskSelectionChanged(); break;
+        case 16: _t->onPhysicalTopologyClicked(); break;
+        case 17: _t->onLogicalTopologyClicked(); break;
+        case 18: _t->onOptimizeTopologyClicked(); break;
         default: ;
         }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (MainWindow::*)(const QString & )>(_a, &MainWindow::requestLoadJson, 0))
+            return;
     }
 }
 
@@ -253,15 +276,21 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 19;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 19)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 15;
+        _id -= 19;
     }
     return _id;
+}
+
+// SIGNAL 0
+void MainWindow::requestLoadJson(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
 }
 QT_WARNING_POP
