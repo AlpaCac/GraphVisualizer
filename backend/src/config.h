@@ -94,6 +94,7 @@ typedef struct {
 
     /* 节点 / 流的存在与否标记 —— 若 = 0 表示加载时未指定，构造时落回 initializer 默认值 */
     int   has_nodes;
+    int   has_links;
     int   has_flows;
 } SandboxConfig;
 

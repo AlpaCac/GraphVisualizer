@@ -15,6 +15,7 @@
 #include <QLabel>   // 【新增】
 #include <QResizeEvent> // 【新增】
 #include <QGraphicsLineItem> // 【新增】：用于绘制逻辑连线
+#include <QProcess> // 【新增】
 
 #include <QListWidgetItem>
 #include <QMap>
@@ -142,6 +143,12 @@ private:
 
     // 【必须添加这一行】：
     QLabel *m_canvasTitle;
+
+    QProcess *m_optimizerProcess; // 【新增】
+
+    QLabel *m_loadingOverlay = nullptr;
+
+    void showLoading(bool visible);
 };
 
 #endif // MAINWINDOW_H

@@ -13,12 +13,34 @@
 void jw_init(JsonWriter *jw, FILE *out) {
     jw->out = out;
     jw->depth = 0;
-    for (int i = 0; i < JW_MAX_DEPTH; i++) jw->need_comma[i] = 0;
+    jw->after_key = 0;
+    for (int i = 0; i < JW_MAX_DEPTH; i++) {
+        jw->need_comma[i] = 0;
+        jw->item_count[i] = 0;
+    }
 }
-void jw_done(JsonWriter *jw) { fflush(jw->out); }
+void jw_done(JsonWriter *jw) {
+    fputc('\n', jw->out);
+    fflush(jw->out);
+}
+
+static void jw_indent(JsonWriter *jw, int depth) {
+    for (int i = 0; i < depth; i++) fputs("  ", jw->out);
+}
 
 static void jw_pre_element(JsonWriter *jw) {
-    if (jw->depth > 0 && jw->need_comma[jw->depth - 1]) fputc(',', jw->out);
+    if (jw->after_key) {
+        fputc(' ', jw->out);
+        jw->after_key = 0;
+        return;
+    }
+    if (jw->depth > 0) {
+        int level = jw->depth - 1;
+        if (jw->need_comma[level]) fputc(',', jw->out);
+        fputc('\n', jw->out);
+        jw_indent(jw, jw->depth);
+        jw->item_count[level]++;
+    }
 }
 static void jw_post_element(JsonWriter *jw) {
     if (jw->depth > 0) jw->need_comma[jw->depth - 1] = 1;
@@ -48,12 +70,20 @@ void jw_obj_open(JsonWriter *jw) {
     fputc('{', jw->out);
     if (jw->depth < JW_MAX_DEPTH) {
         jw->need_comma[jw->depth] = 0;
+        jw->item_count[jw->depth] = 0;
         jw->depth++;
     }
 }
 void jw_obj_close(JsonWriter *jw) {
+    if (jw->depth > 0) {
+        int level = jw->depth - 1;
+        if (jw->item_count[level] > 0) {
+            fputc('\n', jw->out);
+            jw_indent(jw, level);
+        }
+        jw->depth--;
+    }
     fputc('}', jw->out);
-    if (jw->depth > 0) jw->depth--;
     jw_post_element(jw);
 }
 void jw_arr_open(JsonWriter *jw) {
@@ -61,12 +91,20 @@ void jw_arr_open(JsonWriter *jw) {
     fputc('[', jw->out);
     if (jw->depth < JW_MAX_DEPTH) {
         jw->need_comma[jw->depth] = 0;
+        jw->item_count[jw->depth] = 0;
         jw->depth++;
     }
 }
 void jw_arr_close(JsonWriter *jw) {
+    if (jw->depth > 0) {
+        int level = jw->depth - 1;
+        if (jw->item_count[level] > 0) {
+            fputc('\n', jw->out);
+            jw_indent(jw, level);
+        }
+        jw->depth--;
+    }
     fputc(']', jw->out);
-    if (jw->depth > 0) jw->depth--;
     jw_post_element(jw);
 }
 
@@ -74,6 +112,7 @@ void jw_key(JsonWriter *jw, const char *name) {
     jw_pre_element(jw);
     jw_write_str_escaped(jw, name);
     fputc(':', jw->out);
+    jw->after_key = 1;
     if (jw->depth > 0) jw->need_comma[jw->depth - 1] = 0;
 }
 

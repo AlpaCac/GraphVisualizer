@@ -5,6 +5,8 @@
 #include <cmath>
 #include <QRandomGenerator> // 【核心引入】：随机数发生器，用于打破奇点
 #include <ogdf/misclayout/CircularLayout.h>
+#include <QCoreApplication> // 确保包含了这个头文件
+#include <QGraphicsProxyWidget>
 
 // ==================== OGDF 核心与布局库引入 ====================
 #include <ogdf/basic/Graph.h>
@@ -361,6 +363,8 @@ MainWindow::MainWindow(QWidget *parent)
     infoLayout->addWidget(m_infoContent);
 // infoLayout->addStretch(); // 【把这行彻底删掉！】取消多余的推挤空白
 
+    m_optimizerProcess = new QProcess(this);
+
     connect(scene, &QGraphicsScene::selectionChanged, this, &MainWindow::onSceneSelectionChanged);
     // 【新增】：监听业务流队列的点击事件
     connect(m_taskListWidget, &QListWidget::itemSelectionChanged, this, &MainWindow::onTaskSelectionChanged);
@@ -372,6 +376,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // 【新增】：连接拓扑优化按钮
     connect(m_btnOptimize, &QPushButton::clicked, this, &MainWindow::onOptimizeTopologyClicked);
+
+
 } // 构造函数结束
 MainWindow::~MainWindow() {}
 
@@ -692,10 +698,84 @@ void MainWindow::onLogicalTopologyClicked() {
 // 拓扑优化按钮点击逻辑
 // ==========================================================
 void MainWindow::onOptimizeTopologyClicked() {
-    // 1. 修改标题
-    if (m_canvasTitle) {
-        m_canvasTitle->setText("拓扑优化");
+    if (m_canvasTitle) m_canvasTitle->setText("拓扑优化");
+
+    // 1. 弹出遮罩层（因为下面是异步操作，界面绝对不会卡顿）
+    showLoading(true);
+
+    // 2. 准备执行程序路径与参数
+    QString rootDir = "F:/items/tuopuyouhua/GraphVisualizer";
+    QString program = rootDir + "/backend/build/main_full.exe";
+    QString dataPath = rootDir + "/data/luoji.json";
+
+    m_optimizerProcess->setWorkingDirectory(rootDir + "/backend/build");
+
+    QStringList arguments;
+    arguments << "-c" << dataPath << "42" << rootDir + "/data/youhua.json";
+
+    // ==========================================================
+    // 【核心修复】：全面拥抱异步！断开旧连接，使用 Lambda 监听结束信号
+    // ==========================================================
+
+    // 断开之前的绑定，防止用户多次点击按钮导致重复触发
+    m_optimizerProcess->disconnect();
+
+    // 监听程序【正常结束】信号
+    connect(m_optimizerProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus status) {
+        // 判断程序是否完美运行完毕
+        if (status == QProcess::NormalExit && exitCode == 0) {
+            emit requestLoadJson("youhua.json");
+        } else {
+            qDebug() << "❌ 优化程序执行异常，退出代码:" << exitCode;
+        }
+        // 核心：无论成功还是失败，程序一结束，立刻隐蔽遮罩！
+        showLoading(false);
+    });
+
+    // 监听程序【启动失败】信号（比如路径写错了，根本没跑起来）
+    connect(m_optimizerProcess, &QProcess::errorOccurred, this, [this](QProcess::ProcessError error) {
+        qDebug() << "❌ 外部程序启动失败，错误类型:" << error;
+        // 启动失败也要把遮罩关掉，防止死锁
+        showLoading(false);
+    });
+
+    // 3. 启动后台进程 (非阻塞启动，主界面继续如丝般顺滑)
+    qDebug() << "正在后台异步执行:" << program;
+    m_optimizerProcess->start(program, arguments);
+}
+void MainWindow::showLoading(bool visible) {
+    if (visible) {
+        // 1. 如果还没有创建，就创建一个贴在 view 表面的 Label
+        if (!m_loadingOverlay) {
+            m_loadingOverlay = new QLabel("⚡ 优化计算中，请稍候...", view);
+            m_loadingOverlay->setStyleSheet(
+                "QLabel { "
+                "   color: #ecf0f1; "
+                "   font-size: 24px; "
+                "   font-weight: bold; "
+                "   background: rgba(15, 23, 30, 220); " // 带有科幻感的半透明深色背景
+                "   border: 2px solid #3498db; "         // 科技蓝边框
+                "   padding: 30px; "
+                "   border-radius: 12px; "
+                "}"
+                );
+            m_loadingOverlay->setAlignment(Qt::AlignCenter);
+        }
+
+        // 2. 每次显示前，重新计算并居中（防止窗口大小改变过）
+        m_loadingOverlay->adjustSize();
+        int x = (view->width() - m_loadingOverlay->width()) / 2;
+        int y = (view->height() - m_loadingOverlay->height()) / 2;
+        m_loadingOverlay->move(x, y);
+
+        // 3. 强制显示并提升到最顶层
+        m_loadingOverlay->show();
+        m_loadingOverlay->raise();
+
+    } else {
+        // 4. 隐藏遮罩，但不销毁它，下次可以直接复用
+        if (m_loadingOverlay) {
+            m_loadingOverlay->hide();
+        }
     }
-    // 2. 指挥后端读取 youhua.json 并执行全量重绘
-    emit requestLoadJson("youhua.json");
 }

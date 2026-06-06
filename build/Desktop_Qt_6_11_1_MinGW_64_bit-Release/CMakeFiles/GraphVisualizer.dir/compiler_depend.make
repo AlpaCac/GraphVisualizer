@@ -6,6 +6,7 @@ CMakeFiles/GraphVisualizer.dir/GraphVisualizer_autogen/mocs_compilation.cpp.obj:
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QProcess \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRect \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QSize \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QSizeF \
@@ -97,6 +98,7 @@ CMakeFiles/GraphVisualizer.dir/GraphVisualizer_autogen/mocs_compilation.cpp.obj:
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qoverload.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpair.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpoint.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocess.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocessordetection.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrect.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrefcount.h \
@@ -883,6 +885,7 @@ CMakeFiles/GraphVisualizer.dir/main.cpp.obj: F:/items/tuopuyouhua/GraphVisualize
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QProcess \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRect \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QSize \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QSizeF \
@@ -973,6 +976,7 @@ CMakeFiles/GraphVisualizer.dir/main.cpp.obj: F:/items/tuopuyouhua/GraphVisualize
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qoverload.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpair.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpoint.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocess.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocessordetection.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrect.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrefcount.h \
@@ -1396,11 +1400,13 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: F:/items/tuopuyouhua/GraphVis
   F:/env/ogdf_install/include/ogdf/energybased/SpringEmbedderFRExact.h \
   F:/env/ogdf_install/include/ogdf/energybased/multilevel_mixer/MultilevelGraph.h \
   F:/env/ogdf_install/include/ogdf/misclayout/CircularLayout.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QCoreApplication \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QDebug \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QHash \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QProcess \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRandomGenerator \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRect \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QSize \
@@ -1492,6 +1498,7 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: F:/items/tuopuyouhua/GraphVis
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qoverload.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpair.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpoint.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocess.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocessordetection.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrandom.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrect.h \
@@ -1605,6 +1612,7 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: F:/items/tuopuyouhua/GraphVis
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QFrame \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsItem \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsLineItem \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsProxyWidget \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsScene \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsView \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGroupBox \
@@ -1628,8 +1636,11 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: F:/items/tuopuyouhua/GraphVis
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qcombobox.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qframe.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsitem.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicslayoutitem.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsproxywidget.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsscene.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsview.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicswidget.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgridlayout.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgroupbox.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qlabel.h \
@@ -2352,6 +2363,12 @@ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qsystemdetection.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap:
 
+F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h:
+
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbytearraylist.h:
+
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QProcess:
+
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.h:
 
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h:
@@ -2403,6 +2420,8 @@ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qmargins.h:
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cctype:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qarraydataops.h:
+
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsproxywidget.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/q17memory.h:
 
@@ -2525,10 +2544,6 @@ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qiodevicebase.h:
 F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/refwrap.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbytearrayalgorithms.h:
-
-F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h:
-
-F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qbytearraylist.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qchar.h:
 
@@ -2669,6 +2684,10 @@ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpair.h:
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpoint.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qapplication.h:
+
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QComboBox:
+
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocess.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qstringconverter.h:
 
@@ -2858,6 +2877,8 @@ F:/ide/qt/qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_timeval.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QTransform:
 
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QCoreApplication:
+
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QWheelEvent:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qaction.h:
@@ -2985,8 +3006,6 @@ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/io
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QPainter:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/qwindowdefs.h:
-
-F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QComboBox:
 
 GraphVisualizer_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
@@ -3437,6 +3456,12 @@ F:/env/ogdf_install/include/ogdf/misclayout/CircularLayout.h:
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QDebug:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRandomGenerator:
+
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicswidget.h:
+
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsProxyWidget:
+
+F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicslayoutitem.h:
 
 F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qscrollbar.h:
 

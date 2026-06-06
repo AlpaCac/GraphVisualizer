@@ -193,6 +193,27 @@ static const char *j_str(const JNode *o, const char *key, const char *def) {
     JNode *v = j_get(o, key);
     return (v && v->type == JV_STR) ? v->str : def;
 }
+static int j_int2(const JNode *o, const char *key1, const char *key2, int def) {
+    JNode *v = j_get(o, key1);
+    if (!v && key2) v = j_get(o, key2);
+    return (v && v->type == JV_NUM) ? (int)v->num : def;
+}
+static double j_num2(const JNode *o, const char *key1, const char *key2, double def) {
+    JNode *v = j_get(o, key1);
+    if (!v && key2) v = j_get(o, key2);
+    return (v && v->type == JV_NUM) ? v->num : def;
+}
+
+static InterfaceType medium_from_str(const char *s) {
+    if (!s) return IF_WIFI;
+    if (!strcmp(s, "wifi") || !strcmp(s, "WiFi") || !strcmp(s, "WIFI")) return IF_WIFI;
+    if (!strcmp(s, "蓝牙") || !strcmp(s, "Bluetooth")) return IF_BLUETOOTH;
+    if (!strcmp(s, "光纤") || !strcmp(s, "Ethernet")) return IF_ETHERNET;
+    if (!strcmp(s, "5G")) return IF_5G;
+    if (!strcmp(s, "USB")) return IF_USB;
+    if (!strcmp(s, "CAN")) return IF_CAN;
+    return IF_OTHER;
+}
 
 /* ============================================================
  *  顶层加载流程
@@ -260,6 +281,26 @@ static void apply_link_gen(const JNode *o, LinkGenParams *p) {
     p->cost_slope        = j_num(o, "cost_slope",        p->cost_slope);
     p->reliability_base  = j_num(o, "reliability_base",  p->reliability_base);
     p->reliability_decay = j_num(o, "reliability_decay", p->reliability_decay);
+}
+
+static void apply_links(const JNode *arr, Sandbox *sb) {
+    int n = arr->count;
+    if (n > SB_MAX_LINKS) n = SB_MAX_LINKS;
+    sb->c_link_count = n;
+    for (int i = 0; i < n; i++) {
+        const JNode *o = arr->items[i];
+        PhysicalLink *pl = &sb->c_links[i];
+        memset(pl, 0, sizeof(*pl));
+        pl->id        = j_int(o, "id", i);
+        pl->node_a_id = j_int2(o, "node_a", "a", 0);
+        pl->node_b_id = j_int2(o, "node_b", "b", 1);
+        pl->bandwidth = j_num(o, "bandwidth", 0.0);
+        pl->propagation_delay = j_num2(o, "propagation_delay", "prop_delay", 0.0);
+        pl->reliability = j_num(o, "reliability", 1.0);
+        pl->cost = j_num(o, "cost", 0.0);
+        pl->destroyed = 0;
+        pl->medium = medium_from_str(j_str(o, "type", NULL));
+    }
 }
 
 /* 按 LinkGenParams 生成候选链路 */
@@ -372,6 +413,12 @@ int sb_load_config(const char *path, SandboxConfig *cfg, Sandbox *sb) {
         apply_link_gen(jlg, &cfg->link_gen);
     }
 
+    JNode *jlinks = j_get(root, "links");
+    if (jlinks && jlinks->type == JV_ARR) {
+        cfg->has_links = 1;
+        apply_links(jlinks, sb);
+    }
+
     JNode *jflows = j_get(root, "flows");
     if (jflows && jflows->type == JV_ARR) {
         cfg->has_flows = 1;
@@ -402,7 +449,7 @@ int sb_apply_config(const SandboxConfig *cfg, Sandbox *sb) {
         sb_init_physical_nodes(sb->p_nodes, &sb->p_node_count);
     }
 
-    /* Step 2: 候选链路总是按 LinkGenParams 生成 */
+    /* Step 2: links 表示配置/输出中的当前拓扑快照；GA 候选链路池仍按公式生成 */
     gen_candidate_links(sb, &cfg->link_gen);
 
     /* Step 3: 若未指定 flows，落回 initializer 默认 */
@@ -438,8 +485,8 @@ void sb_config_print(const SandboxConfig *cfg, const Sandbox *sb) {
     printf("== Sandbox config ==\n");
     printf("  name = %s\n", cfg->sandbox_name);
     printf("  rng_seed = %llu\n", (unsigned long long)cfg->rng_seed);
-    printf("  has_nodes=%d has_link_gen=%d has_flows=%d has_ga=%d has_mac=%d\n",
-           cfg->has_nodes, cfg->has_link_gen, cfg->has_flows,
+    printf("  has_nodes=%d has_links=%d has_link_gen=%d has_flows=%d has_ga=%d has_mac=%d\n",
+           cfg->has_nodes, cfg->has_links, cfg->has_link_gen, cfg->has_flows,
            cfg->has_ga, cfg->has_mac);
     printf("  p_nodes=%d c_links=%d flows=%d\n",
            sb->p_node_count, sb->c_link_count, sb->flow_graph.count);

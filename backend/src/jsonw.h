@@ -16,8 +16,7 @@
  * Writer 自动处理同一容器内多个值之间的逗号。
  * 不做任何嵌套校验——错配是调用方的责任。
  *
- * 输出非 pretty（无缩进无换行），便于机器读取且文件最小。
- * 如需可读性，外面接 `python3 -m json.tool` 即可。
+ * 默认输出 pretty JSON（2 空格缩进），便于和输入配置文件保持同类格式。
  *
  * 双精度浮点序列化：
  *   - INF / NaN -> "null"（JSON 标准不允许 inf）
@@ -29,6 +28,8 @@
 typedef struct {
     FILE *out;
     int   need_comma[JW_MAX_DEPTH];    /* 每层"下一个值前是否需要逗号" */
+    int   item_count[JW_MAX_DEPTH];     /* 每层已写入元素数，用于收尾缩进 */
+    int   after_key;                    /* 刚写完对象 key，下一次写的是 value */
     int   depth;
 } JsonWriter;
 

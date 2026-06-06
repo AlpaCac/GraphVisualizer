@@ -460,6 +460,8 @@ CMakeFiles/GraphVisualizer.dir/main.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QFrame \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QResizeEvent \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsLineItem \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QProcess \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocess.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidgetItem \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QVBoxLayout \

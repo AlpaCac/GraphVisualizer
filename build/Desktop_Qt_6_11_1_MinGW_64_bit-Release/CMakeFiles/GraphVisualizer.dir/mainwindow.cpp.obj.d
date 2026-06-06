@@ -460,6 +460,8 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QFrame \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtGui/QResizeEvent \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsLineItem \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QProcess \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocess.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QListWidgetItem \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QVBoxLayout \
@@ -542,6 +544,11 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: \
  F:/env/ogdf_install/include/ogdf/basic/ArrayBuffer.h \
  F:/env/ogdf_install/include/ogdf/basic/InducedSubgraph.h \
  F:/env/ogdf_install/include/ogdf/basic/LayoutModule.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QCoreApplication \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/QGraphicsProxyWidget \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsproxywidget.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicswidget.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicslayoutitem.h \
  F:/env/ogdf_install/include/ogdf/basic/GraphAttributes.h \
  F:/env/ogdf_install/include/ogdf/basic/geometry.h \
  F:/env/ogdf_install/include/ogdf/basic/EpsilonTest.h \

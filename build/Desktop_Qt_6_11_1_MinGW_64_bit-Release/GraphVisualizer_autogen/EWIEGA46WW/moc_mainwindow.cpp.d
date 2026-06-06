@@ -4,6 +4,7 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QList \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QMap \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QObject \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QProcess \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QRect \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QSize \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QSizeF \
@@ -94,6 +95,7 @@ F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Releas
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qoverload.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpair.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qpoint.h \
+  F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocess.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qprocessordetection.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrect.h \
   F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qrefcount.h \
