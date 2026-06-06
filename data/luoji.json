@@ -239,16 +239,6 @@
       "type": "logical"
     },
     {
-      "id": 1,
-      "node_a": 1,
-      "node_b": 2,
-      "bandwidth": 30395.1367781155,
-      "propagation_delay": 0.766637297521078,
-      "reliability": 0.99756875,
-      "cost": 25.1327459504216,
-      "type": "wifi"
-    },
-    {
       "id": 10,
       "node_a": 1,
       "node_b": 3,
@@ -259,74 +249,64 @@
       "type": "wifi"
     },
     {
-      "id": 26,
+      "id": 31,
       "node_a": 1,
-      "node_b": 9,
-      "bandwidth": 1574.8031496063,
-      "propagation_delay": 3.96284707521047,
-      "reliability": 0.9599375,
-      "cost": 89.0569415042095,
-      "type": "logical"
-    },
-    {
-      "id": 2,
-      "node_a": 1,
-      "node_b": 17,
-      "bandwidth": 28571.4285714286,
-      "propagation_delay": 0.800569415042095,
-      "reliability": 0.9974375,
-      "cost": 25.8113883008419,
-      "type": "wifi"
-    },
-    {
-      "id": 29,
-      "node_a": 2,
       "node_b": 14,
-      "bandwidth": 16420.3612479475,
-      "propagation_delay": 1.13805141726785,
-      "reliability": 0.99581875,
-      "cost": 32.561028345357,
-      "type": "蓝牙"
-    },
-    {
-      "id": 9,
-      "node_a": 2,
-      "node_b": 17,
-      "bandwidth": 27100.27100271,
-      "propagation_delay": 0.830060973342836,
-      "reliability": 0.99731875,
-      "cost": 26.4012194668567,
-      "type": "wifi"
-    },
-    {
-      "id": 52,
-      "node_a": 2,
-      "node_b": 18,
-      "bandwidth": 1555.45185876497,
-      "propagation_delay": 3.98775062063976,
-      "reliability": 0.95944375,
-      "cost": 89.5550124127952,
+      "bandwidth": 11111.1111111111,
+      "propagation_delay": 1.4242135623731,
+      "reliability": 0.994,
+      "cost": 38.2842712474619,
       "type": "logical"
     },
     {
-      "id": 61,
-      "node_a": 3,
-      "node_b": 11,
-      "bandwidth": 2116.40211640212,
-      "propagation_delay": 3.41036762718386,
-      "reliability": 0.97009375,
-      "cost": 78.0073525436772,
+      "id": 37,
+      "node_a": 2,
+      "node_b": 3,
+      "bandwidth": 8741.25874125874,
+      "propagation_delay": 1.62554944214035,
+      "reliability": 0.992475,
+      "cost": 42.310988842807,
       "type": "logical"
     },
     {
-      "id": 26,
-      "node_a": 3,
+      "id": 43,
+      "node_a": 2,
+      "node_b": 9,
+      "bandwidth": 1821.82546912006,
+      "propagation_delay": 3.68049043044659,
+      "reliability": 0.96531875,
+      "cost": 83.4098086089318,
+      "type": "logical"
+    },
+    {
+      "id": 49,
+      "node_a": 2,
+      "node_b": 15,
+      "bandwidth": 6807.3519400953,
+      "propagation_delay": 1.86,
+      "reliability": 0.99044375,
+      "cost": 47,
+      "type": "logical"
+    },
+    {
+      "id": 53,
+      "node_a": 2,
       "node_b": 19,
-      "bandwidth": 16666.6666666667,
-      "propagation_delay": 1.12803398874989,
-      "reliability": 0.995875,
-      "cost": 32.3606797749979,
-      "type": "wifi"
+      "bandwidth": 3671.07195301028,
+      "propagation_delay": 2.57124969497314,
+      "reliability": 0.9826,
+      "cost": 61.2249938994628,
+      "type": "logical"
+    },
+    {
+      "id": 57,
+      "node_a": 3,
+      "node_b": 7,
+      "bandwidth": 3636.36363636364,
+      "propagation_delay": 2.58390753524675,
+      "reliability": 0.9824375,
+      "cost": 61.478150704935,
+      "type": "logical"
     },
     {
       "id": 11,
@@ -339,24 +319,14 @@
       "type": "wifi"
     },
     {
-      "id": 75,
+      "id": 77,
       "node_a": 4,
-      "node_b": 10,
-      "bandwidth": 5797.10144927536,
-      "propagation_delay": 2.02556443707464,
-      "reliability": 0.98884375,
-      "cost": 50.3112887414927,
+      "node_b": 12,
+      "bandwidth": 9090.90909090909,
+      "propagation_delay": 1.59113883008419,
+      "reliability": 0.99275,
+      "cost": 41.6227766016838,
       "type": "logical"
-    },
-    {
-      "id": 3,
-      "node_a": 4,
-      "node_b": 14,
-      "bandwidth": 28571.4285714286,
-      "propagation_delay": 0.800569415042095,
-      "reliability": 0.9974375,
-      "cost": 25.8113883008419,
-      "type": "wifi"
     },
     {
       "id": 0,
@@ -369,64 +339,64 @@
       "type": "光纤"
     },
     {
-      "id": 16,
+      "id": 84,
+      "node_a": 4,
+      "node_b": 19,
+      "bandwidth": 9756.09756097561,
+      "propagation_delay": 1.53069063257456,
+      "reliability": 0.99321875,
+      "cost": 40.4138126514911,
+      "type": "logical"
+    },
+    {
+      "id": 88,
       "node_a": 5,
-      "node_b": 6,
+      "node_b": 9,
+      "bandwidth": 3100.77519379845,
+      "propagation_delay": 2.80508497187474,
+      "reliability": 0.97946875,
+      "cost": 65.9016994374947,
+      "type": "logical"
+    },
+    {
+      "id": 96,
+      "node_a": 5,
+      "node_b": 17,
+      "bandwidth": 3100.77519379845,
+      "propagation_delay": 2.80508497187474,
+      "reliability": 0.97946875,
+      "cost": 65.9016994374947,
+      "type": "logical"
+    },
+    {
+      "id": 18,
+      "node_a": 6,
+      "node_b": 7,
       "bandwidth": 19047.619047619,
       "propagation_delay": 1.04077640640442,
       "reliability": 0.99634375,
       "cost": 30.6155281280883,
-      "type": "wifi"
+      "type": "星闪"
     },
     {
-      "id": 22,
-      "node_a": 5,
-      "node_b": 7,
-      "bandwidth": 18181.8181818182,
-      "propagation_delay": 1.07066017177982,
-      "reliability": 0.9961875,
-      "cost": 31.2132034355964,
-      "type": "wifi"
-    },
-    {
-      "id": 27,
-      "node_a": 5,
-      "node_b": 19,
-      "bandwidth": 16666.6666666667,
-      "propagation_delay": 1.12803398874989,
-      "reliability": 0.995875,
-      "cost": 32.3606797749979,
-      "type": "wifi"
-    },
-    {
-      "id": 107,
+      "id": 100,
       "node_a": 6,
-      "node_b": 15,
-      "bandwidth": 7407.40740740741,
-      "propagation_delay": 1.77776695296637,
-      "reliability": 0.9911875,
-      "cost": 45.3553390593274,
+      "node_b": 8,
+      "bandwidth": 7017.54385964912,
+      "propagation_delay": 1.83002747232013,
+      "reliability": 0.99071875,
+      "cost": 46.4005494464026,
       "type": "logical"
     },
     {
-      "id": 4,
+      "id": 103,
       "node_a": 6,
-      "node_b": 18,
-      "bandwidth": 28571.4285714286,
-      "propagation_delay": 0.800569415042095,
-      "reliability": 0.9974375,
-      "cost": 25.8113883008419,
-      "type": "wifi"
-    },
-    {
-      "id": 23,
-      "node_a": 7,
-      "node_b": 8,
-      "bandwidth": 18181.8181818182,
-      "propagation_delay": 1.07066017177982,
-      "reliability": 0.9961875,
-      "cost": 31.2132034355964,
-      "type": "光纤"
+      "node_b": 11,
+      "bandwidth": 2173.91304347826,
+      "propagation_delay": 3.36410196624968,
+      "reliability": 0.970875,
+      "cost": 77.0820393249937,
+      "type": "logical"
     },
     {
       "id": 117,
@@ -439,14 +409,14 @@
       "type": "logical"
     },
     {
-      "id": 19,
+      "id": 118,
       "node_a": 7,
-      "node_b": 15,
-      "bandwidth": 19047.619047619,
-      "propagation_delay": 1.04077640640442,
-      "reliability": 0.99634375,
-      "cost": 30.6155281280883,
-      "type": "光纤"
+      "node_b": 14,
+      "bandwidth": 7017.54385964912,
+      "propagation_delay": 1.83002747232013,
+      "reliability": 0.99071875,
+      "cost": 46.4005494464026,
+      "type": "logical"
     },
     {
       "id": 5,
@@ -459,64 +429,34 @@
       "type": "光纤"
     },
     {
-      "id": 20,
+      "id": 130,
       "node_a": 8,
-      "node_b": 9,
-      "bandwidth": 19047.619047619,
-      "propagation_delay": 1.04077640640442,
-      "reliability": 0.99634375,
-      "cost": 30.6155281280883,
-      "type": "wifi"
-    },
-    {
-      "id": 15,
-      "node_a": 8,
-      "node_b": 16,
-      "bandwidth": 20000,
-      "propagation_delay": 1.01,
-      "reliability": 0.9965,
-      "cost": 30,
-      "type": "wifi"
-    },
-    {
-      "id": 133,
-      "node_a": 8,
-      "node_b": 18,
-      "bandwidth": 9756.09756097561,
-      "propagation_delay": 1.53069063257456,
-      "reliability": 0.99321875,
-      "cost": 40.4138126514911,
+      "node_b": 15,
+      "bandwidth": 7017.54385964912,
+      "propagation_delay": 1.83002747232013,
+      "reliability": 0.99071875,
+      "cost": 46.4005494464026,
       "type": "logical"
     },
     {
-      "id": 21,
+      "id": 136,
       "node_a": 9,
-      "node_b": 10,
-      "bandwidth": 19047.619047619,
-      "propagation_delay": 1.04077640640442,
-      "reliability": 0.99634375,
-      "cost": 30.6155281280883,
-      "type": "wifi"
-    },
-    {
-      "id": 144,
-      "node_a": 9,
-      "node_b": 19,
-      "bandwidth": 1606.42570281125,
-      "propagation_delay": 3.92311896062463,
-      "reliability": 0.96071875,
-      "cost": 88.2623792124926,
-      "type": "logical"
-    },
-    {
-      "id": 12,
-      "node_a": 10,
       "node_b": 11,
-      "bandwidth": 23529.4117647059,
-      "propagation_delay": 0.911387818865997,
-      "reliability": 0.99696875,
-      "cost": 28.0277563773199,
-      "type": "光纤"
+      "bandwidth": 7407.40740740741,
+      "propagation_delay": 1.77776695296637,
+      "reliability": 0.9911875,
+      "cost": 45.3553390593274,
+      "type": "logical"
+    },
+    {
+      "id": 149,
+      "node_a": 10,
+      "node_b": 15,
+      "bandwidth": 12121.2121212121,
+      "propagation_delay": 1.35629120178363,
+      "reliability": 0.99446875,
+      "cost": 36.9258240356725,
+      "type": "logical"
     },
     {
       "id": 6,
@@ -549,16 +489,6 @@
       "type": "wifi"
     },
     {
-      "id": 7,
-      "node_a": 12,
-      "node_b": 14,
-      "bandwidth": 28571.4285714286,
-      "propagation_delay": 0.800569415042095,
-      "reliability": 0.9974375,
-      "cost": 25.8113883008419,
-      "type": "wifi"
-    },
-    {
       "id": 166,
       "node_a": 12,
       "node_b": 17,
@@ -579,23 +509,33 @@
       "type": "星闪"
     },
     {
-      "id": 13,
-      "node_a": 15,
+      "id": 176,
+      "node_a": 14,
       "node_b": 16,
-      "bandwidth": 23529.4117647059,
-      "propagation_delay": 0.911387818865997,
-      "reliability": 0.99696875,
-      "cost": 28.0277563773199,
-      "type": "wifi"
+      "bandwidth": 9756.09756097561,
+      "propagation_delay": 1.53069063257456,
+      "reliability": 0.99321875,
+      "cost": 40.4138126514911,
+      "type": "logical"
     },
     {
-      "id": 181,
-      "node_a": 15,
+      "id": 177,
+      "node_a": 14,
       "node_b": 17,
-      "bandwidth": 3703.7037037037,
-      "propagation_delay": 2.55950975679639,
-      "reliability": 0.98275,
-      "cost": 60.9901951359278,
+      "bandwidth": 6451.61290322581,
+      "propagation_delay": 1.91394327646598,
+      "reliability": 0.9899375,
+      "cost": 48.0788655293195,
+      "type": "logical"
+    },
+    {
+      "id": 182,
+      "node_a": 15,
+      "node_b": 18,
+      "bandwidth": 4761.90476190476,
+      "propagation_delay": 2.24606797749979,
+      "reliability": 0.9865,
+      "cost": 54.7213595499958,
       "type": "logical"
     }
   ],
@@ -683,9 +623,8 @@
       "dst": 6,
       "routing_path": [
         11,
-        12,
-        14,
-        15,
+        10,
+        16,
         7,
         6
       ],
@@ -703,6 +642,9 @@
       "dst": 14,
       "routing_path": [
         12,
+        14,
+        4,
+        15,
         14
       ],
       "priority": 10,
@@ -720,7 +662,8 @@
       "routing_path": [
         10,
         16,
-        7,
+        15,
+        4,
         5,
         19
       ],
@@ -755,6 +698,8 @@
       "dst": 8,
       "routing_path": [
         7,
+        6,
+        7,
         8
       ],
       "priority": 7,
@@ -770,6 +715,8 @@
       "src": 15,
       "dst": 16,
       "routing_path": [
+        15,
+        14,
         15,
         16
       ],
@@ -855,11 +802,11 @@
     }
   ],
   "assess_data": {
-    "comp_lat": "0.30",
-    "C_conn_norm": "505.73 %",
-    "E_throughput": "2.0679 Gbps",
-    "comp_rel": "96.31 %",
-    "cost": "33",
+    "comp_lat": "0.34",
+    "C_conn_norm": "306.68 %",
+    "E_throughput": "2.0698 Gbps",
+    "comp_rel": "95.91 %",
+    "cost": "37",
     "data1": "100.00",
     "data2": "80.00"
   },

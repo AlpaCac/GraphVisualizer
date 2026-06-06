@@ -200,15 +200,12 @@ void TestWorker::loadGraphFromJson(const QString& fileName) { // 【修改】增
     if (root.contains("assess_data")) {
         QJsonObject assessObj = root["assess_data"].toObject();
 
-        // 前五个为实时指标 (时延、连通度、可靠性、吞吐量、组网成本)
-        QString latency = assessObj["comp_lat"].toString() + " ms";
+        // 【核心修改】：不再自行拼接 " ms" 和 "¥ "，直接读取原始字符串
+        QString latency = assessObj["comp_lat"].toString();
         QString connectivity = assessObj["C_conn_norm"].toString();
-
-        // 【修正】：严格按字段字面含义映射
         QString reliability = assessObj["comp_rel"].toString();
         QString throughput = assessObj["E_throughput"].toString();
-
-        QString cost = "¥ " + assessObj["cost"].toString();
+        QString cost = assessObj["cost"].toString();
 
         emit requestUpdateMetrics(latency, connectivity, reliability, throughput, cost);
 
