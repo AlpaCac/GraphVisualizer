@@ -160,60 +160,26 @@ void TestWorker::loadGraphFromJson(const QString& fileName) { // 【修改】增
     double act_cost = extractNum(assessObj, "cost", 0.0);          // 例如: 14441
 
     // ==============================================================
-    // 2. 解析 Flows (业务流数组) 兼 “五维硬核判定”
+    // 2. 解析 Flows (业务流调度队列)
     // ==============================================================
     QJsonArray flowsArr = root["flows"].toArray();
     for (int i = 0; i < flowsArr.size(); ++i) {
         QJsonObject flowObj = flowsArr[i].toObject();
+
         QString taskId = QString::number(flowObj["id"].toInt());
         QString taskName = flowObj["name"].toString();
 
-        // --- 提取业务流对 5 大指标的独立要求 (Requirement) ---
-        // (如果某个业务流没写某项要求，则赋予一个绝对能达标的默认值)
-
-        // 越小越好指标 (时延、成本) -> 默认给极大值 (999999)
-        double req_lat  = extractNum(flowObj, "comp_lat", 999999.0);
-        double req_cost = extractNum(flowObj, "cost", 99999999.0);
-
-        // 越大越好指标 (连通度、吞吐量、可靠性) -> 默认给极小值 (0.0)
-        double req_conn = extractNum(flowObj, "C_conn_norm", 0.0);
-        double req_thr  = extractNum(flowObj, "E_throughput", 0.0);
-        double req_rel  = extractNum(flowObj, "comp_rel", 0.0);
-
-        // --- 智能量纲对齐 (防呆设计) ---
-        // 防止出现 Actual 是 63.95(%)，而 Flow 要求是 0.6 的对比乌龙
-        auto alignPercent = [](double& act, double& req) {
-            if (act > 1.0 && req > 0.0 && req <= 1.0) req *= 100.0;
-            else if (req > 1.0 && act > 0.0 && act <= 1.0) act *= 100.0;
-        };
-        double cmp_act_conn = act_conn, cmp_req_conn = req_conn;
-        double cmp_act_rel = act_rel, cmp_req_rel = req_rel;
-        alignPercent(cmp_act_conn, cmp_req_conn);
-        alignPercent(cmp_act_rel, cmp_req_rel);
-
-        // --- 核心校验引擎：五项指标一票否决 ---
-        bool isCompliant = true;
-
-        // 1. 时延：必须 小于等于 要求
-        if (act_lat > req_lat) isCompliant = false;
-
-        // 2. 成本：必须 小于等于 要求
-        if (act_cost > req_cost) isCompliant = false;
-
-        // 3. 连通度：必须 大于等于 要求
-        if (cmp_act_conn < cmp_req_conn) isCompliant = false;
-
-        // 4. 吞吐量：必须 大于等于 要求
-        if (act_thr < req_thr) isCompliant = false;
-
-        // 5. 可靠性：必须 大于等于 要求
-        if (cmp_act_rel < cmp_req_rel) isCompliant = false;
-
-        // ... (前面的提取要求和 isCompliant 判定的代码保持不变) ...
+        // ==========================================================
+        // 【核心修改】：不再进行复杂的五维对比，直接读取 pass 字段
+        // pass: 1 表示达标，0 表示未达标
+        // ==========================================================
+        bool isCompliant = false;
+        if (flowObj.contains("pass")) {
+            isCompliant = (flowObj["pass"].toInt() == 1);
+        }
 
         // ==========================================================
-        // 【新增】：智能提取业务流的起点和终点
-        // 尝试多种常见的 JSON 字段命名习惯
+        // 智能提取业务流的起点和终点
         // ==========================================================
         int srcNode = flowObj.contains("source") ? flowObj["source"].toInt() :
                           (flowObj.contains("src") ? flowObj["src"].toInt() : flowObj["node_a"].toInt());
@@ -224,7 +190,7 @@ void TestWorker::loadGraphFromJson(const QString& fileName) { // 【修改】增
         QString srcId = QString::number(srcNode);
         QString dstId = QString::number(dstNode);
 
-        // 【修改】：发射带有起点和终点的完整信号
+        // 发射带有起点和终点的完整信号，交由前端渲染徽章和绿色虚线
         emit requestAddTask(taskId, taskName, isCompliant, srcId, dstId);
     }
 

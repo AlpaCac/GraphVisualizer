@@ -99,6 +99,8 @@ private slots:
     void onLogicalTopologyClicked();
     void onOptimizeTopologyClicked(); // 【新增】
 
+    void onDestroyButtonClicked();
+
 private:
     QGraphicsScene *scene;
     InteractiveGraphicsView *view;
@@ -149,6 +151,8 @@ private:
     QLabel *m_loadingOverlay = nullptr;
 
     void showLoading(bool visible);
+
+    bool m_isDestroyed = false;
 };
 
 #endif // MAINWINDOW_H

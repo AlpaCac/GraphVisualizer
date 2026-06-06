@@ -376,7 +376,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     // 【新增】：连接拓扑优化按钮
     connect(m_btnOptimize, &QPushButton::clicked, this, &MainWindow::onOptimizeTopologyClicked);
-
+    // ==========================================================
+    // 【必须补上这一行】：连接损毁模拟按钮！
+    // ==========================================================
+    connect(m_btnDestroy, &QPushButton::clicked, this, &MainWindow::onDestroyButtonClicked);
 
 } // 构造函数结束
 MainWindow::~MainWindow() {}
@@ -777,5 +780,78 @@ void MainWindow::showLoading(bool visible) {
         if (m_loadingOverlay) {
             m_loadingOverlay->hide();
         }
+    }
+}
+// ==========================================================
+// 损毁与恢复按钮的 Toggle 联动逻辑
+// ==========================================================
+void MainWindow::onDestroyButtonClicked() {
+    if (!m_isDestroyed) {
+        // ======================================================
+        // 当前为【正常状态】 -> 触发【损毁模拟】
+        // ======================================================
+        if (m_canvasTitle) m_canvasTitle->setText("物理拓扑 (链路故障)");
+
+        // 1. 读取损毁文件
+        emit requestLoadJson("wuli_sunhui.json");
+
+        // 2. 将按钮改造成“绿色恢复按钮”
+        m_btnDestroy->setText("✨ 故障恢复");
+        QString btnSuccessStyle =
+            "QPushButton { "
+            "   background-color: rgba(46, 204, 113, 0.8); " // 半透明微光绿
+            "   color: #ffffff; "
+            "   border: 1px solid #2ecc71; "
+            "   border-radius: 6px; "
+            "   padding: 12px; "
+            "   font-weight: bold; "
+            "   font-size: 14px; "
+            "   font-family: 'Microsoft YaHei'; "
+            "}"
+            "QPushButton:hover { "
+            "   background-color: #2ecc71; "
+            "   border: 1px solid #58d68d; "
+            "}"
+            "QPushButton:pressed { "
+            "   background-color: #27ae60; "
+            "}";
+        m_btnDestroy->setStyleSheet(btnSuccessStyle);
+
+        // 3. 翻转状态记忆
+        m_isDestroyed = true;
+
+    } else {
+        // ======================================================
+        // 当前为【损毁状态】 -> 触发【故障恢复】
+        // ======================================================
+        if (m_canvasTitle) m_canvasTitle->setText("物理拓扑");
+
+        // 1. 重新读取正常文件
+        emit requestLoadJson("wuli.json");
+
+        // 2. 将按钮变回“红色损毁按钮”
+        m_btnDestroy->setText("💥 损毁模拟");
+        QString btnDangerStyle =
+            "QPushButton { "
+            "   background-color: rgba(192, 57, 43, 0.8); " // 半透明微光红
+            "   color: #ecf0f1; "
+            "   border: 1px solid #e74c3c; "
+            "   border-radius: 6px; "
+            "   padding: 12px; "
+            "   font-weight: bold; "
+            "   font-size: 14px; "
+            "   font-family: 'Microsoft YaHei'; "
+            "}"
+            "QPushButton:hover { "
+            "   background-color: #e74c3c; "
+            "   border: 1px solid #ff7675; "
+            "}"
+            "QPushButton:pressed { "
+            "   background-color: #922b21; "
+            "}";
+        m_btnDestroy->setStyleSheet(btnDangerStyle);
+
+        // 3. 翻转状态记忆
+        m_isDestroyed = false;
     }
 }
