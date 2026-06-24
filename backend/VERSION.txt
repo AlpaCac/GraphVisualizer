@@ -1,0 +1,4 @@
+TopoOptV2 C++17 frontend delivery
+Version: 2026.06.24
+Interface: CLI JSON v2.1
+Frontend outputs: luoji, youhua1, youhua2 and *_sunhui

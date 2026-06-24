@@ -1,0 +1,805 @@
+{
+  "sandbox_name": "scene3_normal",
+  "rng_seed": 45,
+  "nodes": [
+    {
+      "id": 0,
+      "x": 120.0,
+      "y": 120.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-00",
+      "R": 24
+    },
+    {
+      "id": 1,
+      "x": 240.0,
+      "y": 100.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-01",
+      "R": 0
+    },
+    {
+      "id": 2,
+      "x": 180.0,
+      "y": 240.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-02",
+      "R": 0
+    },
+    {
+      "id": 3,
+      "x": 320.0,
+      "y": 250.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-03",
+      "R": 0
+    },
+    {
+      "id": 4,
+      "x": 250.0,
+      "y": 360.0,
+      "cpu_capacity": 9000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 7,
+      "reliability": 0.999,
+      "device_name": "Master-04",
+      "R": 0,
+      "static_type": "Master"
+    },
+    {
+      "id": 5,
+      "x": 520.0,
+      "y": 110.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-05",
+      "R": 0
+    },
+    {
+      "id": 6,
+      "x": 660.0,
+      "y": 100.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-06",
+      "R": 0
+    },
+    {
+      "id": 7,
+      "x": 590.0,
+      "y": 250.0,
+      "cpu_capacity": 9000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 7,
+      "reliability": 0.999,
+      "device_name": "Master-07",
+      "R": 0,
+      "static_type": "Master"
+    },
+    {
+      "id": 8,
+      "x": 760.0,
+      "y": 260.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-08",
+      "R": 0
+    },
+    {
+      "id": 9,
+      "x": 650.0,
+      "y": 390.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Backup-09",
+      "R": 0,
+      "static_type": "Backup"
+    },
+    {
+      "id": 10,
+      "x": 930.0,
+      "y": 130.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-10",
+      "R": 24
+    },
+    {
+      "id": 11,
+      "x": 1080.0,
+      "y": 140.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-11",
+      "R": 0
+    },
+    {
+      "id": 12,
+      "x": 1010.0,
+      "y": 280.0,
+      "cpu_capacity": 9000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 7,
+      "reliability": 0.999,
+      "device_name": "Master-12",
+      "R": 0,
+      "static_type": "Master"
+    },
+    {
+      "id": 13,
+      "x": 1160.0,
+      "y": 330.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-13",
+      "R": 0
+    },
+    {
+      "id": 14,
+      "x": 980.0,
+      "y": 440.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Backup-14",
+      "R": 0,
+      "static_type": "Backup"
+    },
+    {
+      "id": 15,
+      "x": 440.0,
+      "y": 430.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-15",
+      "R": 0
+    },
+    {
+      "id": 16,
+      "x": 560.0,
+      "y": 560.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-16",
+      "R": 0
+    },
+    {
+      "id": 17,
+      "x": 720.0,
+      "y": 560.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-17",
+      "R": 0
+    },
+    {
+      "id": 18,
+      "x": 860.0,
+      "y": 560.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-18",
+      "R": 0
+    },
+    {
+      "id": 19,
+      "x": 1040.0,
+      "y": 580.0,
+      "cpu_capacity": 7000.0,
+      "memory_mb": 16384.0,
+      "max_ports": 5,
+      "reliability": 0.995,
+      "device_name": "Node-19",
+      "R": 24
+    }
+  ],
+  "links": [
+    {
+      "id": 0,
+      "node_a": 0,
+      "node_b": 1,
+      "bandwidth": 107064.821559,
+      "propagation_delay": 0.223979,
+      "reliability": 0.99895889,
+      "cost": 12.257934,
+      "type": "光纤"
+    },
+    {
+      "id": 1,
+      "node_a": 1,
+      "node_b": 3,
+      "bandwidth": 97093.791281,
+      "propagation_delay": 0.311,
+      "reliability": 0.99891972,
+      "cost": 13.95,
+      "type": "wifi"
+    },
+    {
+      "id": 2,
+      "node_a": 3,
+      "node_b": 4,
+      "bandwidth": 105376.344086,
+      "propagation_delay": 0.239691,
+      "reliability": 0.99895278,
+      "cost": 12.563442,
+      "type": "wifi"
+    },
+    {
+      "id": 3,
+      "node_a": 4,
+      "node_b": 2,
+      "bandwidth": 103667.136812,
+      "propagation_delay": 0.255064,
+      "reliability": 0.99894639,
+      "cost": 12.862355,
+      "type": "光纤"
+    },
+    {
+      "id": 4,
+      "node_a": 2,
+      "node_b": 0,
+      "bandwidth": 104626.33452,
+      "propagation_delay": 0.246495,
+      "reliability": 0.99895,
+      "cost": 12.695743,
+      "type": "wifi"
+    },
+    {
+      "id": 5,
+      "node_a": 1,
+      "node_b": 2,
+      "bandwidth": 100892.244338,
+      "propagation_delay": 0.279168,
+      "reliability": 0.99893556,
+      "cost": 13.331041,
+      "type": "wifi"
+    },
+    {
+      "id": 6,
+      "node_a": 5,
+      "node_b": 6,
+      "bandwidth": 103375.527426,
+      "propagation_delay": 0.257642,
+      "reliability": 0.99894528,
+      "cost": 12.912484,
+      "type": "光纤"
+    },
+    {
+      "id": 7,
+      "node_a": 6,
+      "node_b": 8,
+      "bandwidth": 92979.127135,
+      "propagation_delay": 0.344623,
+      "reliability": 0.99890111,
+      "cost": 14.603787,
+      "type": "wifi"
+    },
+    {
+      "id": 8,
+      "node_a": 8,
+      "node_b": 9,
+      "bandwidth": 97029.70297,
+      "propagation_delay": 0.311529,
+      "reliability": 0.99891944,
+      "cost": 13.960285,
+      "type": "wifi"
+    },
+    {
+      "id": 9,
+      "node_a": 9,
+      "node_b": 7,
+      "bandwidth": 100892.244338,
+      "propagation_delay": 0.279168,
+      "reliability": 0.99893556,
+      "cost": 13.331041,
+      "type": "光纤"
+    },
+    {
+      "id": 10,
+      "node_a": 7,
+      "node_b": 5,
+      "bandwidth": 100000.0,
+      "propagation_delay": 0.286745,
+      "reliability": 0.99893194,
+      "cost": 13.478367,
+      "type": "wifi"
+    },
+    {
+      "id": 11,
+      "node_a": 6,
+      "node_b": 7,
+      "bandwidth": 98065.376918,
+      "propagation_delay": 0.302953,
+      "reliability": 0.99892389,
+      "cost": 13.793531,
+      "type": "wifi"
+    },
+    {
+      "id": 12,
+      "node_a": 10,
+      "node_b": 11,
+      "bandwidth": 101309.441764,
+      "propagation_delay": 0.275599,
+      "reliability": 0.99893722,
+      "cost": 13.261654,
+      "type": "光纤"
+    },
+    {
+      "id": 13,
+      "node_a": 11,
+      "node_b": 13,
+      "bandwidth": 89090.909091,
+      "propagation_delay": 0.37608,
+      "reliability": 0.99888194,
+      "cost": 15.215435,
+      "type": "wifi"
+    },
+    {
+      "id": 14,
+      "node_a": 13,
+      "node_b": 14,
+      "bandwidth": 88023.952096,
+      "propagation_delay": 0.38471,
+      "reliability": 0.99887639,
+      "cost": 15.383258,
+      "type": "wifi"
+    },
+    {
+      "id": 15,
+      "node_a": 14,
+      "node_b": 12,
+      "bandwidth": 98657.718121,
+      "propagation_delay": 0.298019,
+      "reliability": 0.99892639,
+      "cost": 13.697587,
+      "type": "光纤"
+    },
+    {
+      "id": 16,
+      "node_a": 12,
+      "node_b": 10,
+      "bandwidth": 97093.791281,
+      "propagation_delay": 0.311,
+      "reliability": 0.99891972,
+      "cost": 13.95,
+      "type": "wifi"
+    },
+    {
+      "id": 17,
+      "node_a": 11,
+      "node_b": 12,
+      "bandwidth": 100000.0,
+      "propagation_delay": 0.286745,
+      "reliability": 0.99893194,
+      "cost": 13.478367,
+      "type": "wifi"
+    },
+    {
+      "id": 18,
+      "node_a": 4,
+      "node_b": 15,
+      "bandwidth": 89908.256881,
+      "propagation_delay": 0.369472,
+      "reliability": 0.99888611,
+      "cost": 15.08696,
+      "type": "光纤"
+    },
+    {
+      "id": 19,
+      "node_a": 15,
+      "node_b": 16,
+      "bandwidth": 95578.673602,
+      "propagation_delay": 0.323453,
+      "reliability": 0.99891306,
+      "cost": 14.192132,
+      "type": "wifi"
+    },
+    {
+      "id": 20,
+      "node_a": 16,
+      "node_b": 17,
+      "bandwidth": 99257.258609,
+      "propagation_delay": 0.293,
+      "reliability": 0.99892889,
+      "cost": 13.6,
+      "type": "wifi"
+    },
+    {
+      "id": 21,
+      "node_a": 17,
+      "node_b": 18,
+      "bandwidth": 103448.275862,
+      "propagation_delay": 0.257,
+      "reliability": 0.99894556,
+      "cost": 12.9,
+      "type": "光纤"
+    },
+    {
+      "id": 22,
+      "node_a": 18,
+      "node_b": 19,
+      "bandwidth": 94655.505473,
+      "propagation_delay": 0.330994,
+      "reliability": 0.99890889,
+      "cost": 14.33877,
+      "type": "wifi"
+    },
+    {
+      "id": 23,
+      "node_a": 19,
+      "node_b": 14,
+      "bandwidth": 100892.244338,
+      "propagation_delay": 0.279168,
+      "reliability": 0.99893556,
+      "cost": 13.331041,
+      "type": "wifi"
+    },
+    {
+      "id": 24,
+      "node_a": 4,
+      "node_b": 7,
+      "bandwidth": 58752.997602,
+      "propagation_delay": 0.648232,
+      "reliability": 0.99864528,
+      "cost": 20.507298,
+      "type": "光纤"
+    },
+    {
+      "id": 25,
+      "node_a": 7,
+      "node_b": 12,
+      "bandwidth": 49032.688459,
+      "propagation_delay": 0.762926,
+      "reliability": 0.9985075,
+      "cost": 22.737452,
+      "type": "wifi"
+    },
+    {
+      "id": 26,
+      "node_a": 9,
+      "node_b": 17,
+      "bandwidth": 94049.904031,
+      "propagation_delay": 0.335926,
+      "reliability": 0.99890611,
+      "cost": 14.434672,
+      "type": "wifi"
+    },
+    {
+      "id": 27,
+      "node_a": 15,
+      "node_b": 7,
+      "bandwidth": 82863.585118,
+      "propagation_delay": 0.426753,
+      "reliability": 0.9988475,
+      "cost": 16.200762,
+      "type": "光纤"
+    },
+    {
+      "id": 28,
+      "node_a": 18,
+      "node_b": 12,
+      "bandwidth": 65801.253357,
+      "propagation_delay": 0.576766,
+      "reliability": 0.99871972,
+      "cost": 19.117666,
+      "type": "wifi"
+    },
+    {
+      "id": 29,
+      "node_a": 3,
+      "node_b": 5,
+      "bandwidth": 80724.876442,
+      "propagation_delay": 0.444436,
+      "reliability": 0.99883444,
+      "cost": 16.544589,
+      "type": "wifi"
+    }
+  ],
+  "flows": [
+    {
+      "id": 0,
+      "name": "视频传输任务1（0到10）",
+      "src": 0,
+      "dst": 10,
+      "priority": 1,
+      "period": 33,
+      "deadline": 800,
+      "message_size": 24000,
+      "reliability_req": 0.7,
+      "routing_path": [
+        0,
+        2,
+        4,
+        7,
+        12,
+        10
+      ],
+      "pass": 1
+    },
+    {
+      "id": 1,
+      "name": "视频传输任务2（5到11）",
+      "src": 5,
+      "dst": 11,
+      "priority": 1,
+      "period": 33,
+      "deadline": 800,
+      "message_size": 24000,
+      "reliability_req": 0.7,
+      "routing_path": [
+        5,
+        7,
+        12,
+        11
+      ],
+      "pass": 1
+    },
+    {
+      "id": 2,
+      "name": "视频传输任务3（13到12）",
+      "src": 13,
+      "dst": 12,
+      "priority": 1,
+      "period": 33,
+      "deadline": 800,
+      "message_size": 24000,
+      "reliability_req": 0.7,
+      "routing_path": [
+        13,
+        11,
+        12
+      ],
+      "pass": 1
+    },
+    {
+      "id": 3,
+      "name": "指令控制任务1（10到1）",
+      "src": 10,
+      "dst": 1,
+      "priority": 10,
+      "period": 20,
+      "deadline": 300,
+      "message_size": 128,
+      "reliability_req": 0.78,
+      "routing_path": [
+        10,
+        12,
+        7,
+        5,
+        3,
+        1
+      ],
+      "pass": 1
+    },
+    {
+      "id": 4,
+      "name": "指令控制任务2（11到6）",
+      "src": 11,
+      "dst": 6,
+      "priority": 10,
+      "period": 20,
+      "deadline": 300,
+      "message_size": 128,
+      "reliability_req": 0.78,
+      "routing_path": [
+        11,
+        12,
+        7,
+        6
+      ],
+      "pass": 1
+    },
+    {
+      "id": 5,
+      "name": "指令控制任务3（12到14）",
+      "src": 12,
+      "dst": 14,
+      "priority": 10,
+      "period": 20,
+      "deadline": 300,
+      "message_size": 128,
+      "reliability_req": 0.78,
+      "routing_path": [
+        12,
+        14
+      ],
+      "pass": 1
+    },
+    {
+      "id": 6,
+      "name": "指令控制任务4（10到19）",
+      "src": 10,
+      "dst": 19,
+      "priority": 10,
+      "period": 20,
+      "deadline": 300,
+      "message_size": 128,
+      "reliability_req": 0.78,
+      "routing_path": [
+        10,
+        12,
+        14,
+        19
+      ],
+      "pass": 1
+    },
+    {
+      "id": 7,
+      "name": "编队同步任务1（2到3）",
+      "src": 2,
+      "dst": 3,
+      "priority": 7,
+      "period": 10,
+      "deadline": 400,
+      "message_size": 2048,
+      "reliability_req": 0.74,
+      "routing_path": [
+        2,
+        4,
+        3
+      ],
+      "pass": 1
+    },
+    {
+      "id": 8,
+      "name": "编队同步任务2（7到8）",
+      "src": 7,
+      "dst": 8,
+      "priority": 7,
+      "period": 10,
+      "deadline": 400,
+      "message_size": 2048,
+      "reliability_req": 0.74,
+      "routing_path": [
+        7,
+        9,
+        8
+      ],
+      "pass": 1
+    },
+    {
+      "id": 9,
+      "name": "编队同步任务3（15到16）",
+      "src": 15,
+      "dst": 16,
+      "priority": 7,
+      "period": 10,
+      "deadline": 400,
+      "message_size": 2048,
+      "reliability_req": 0.74,
+      "routing_path": [
+        15,
+        16
+      ],
+      "pass": 1
+    },
+    {
+      "id": 10,
+      "name": "遥测回传任务1（4到10）",
+      "src": 4,
+      "dst": 10,
+      "priority": 5,
+      "period": 100,
+      "deadline": 1600,
+      "message_size": 1024,
+      "reliability_req": 0.74,
+      "routing_path": [
+        4,
+        7,
+        12,
+        10
+      ],
+      "pass": 1
+    },
+    {
+      "id": 11,
+      "name": "遥测回传任务2（9到11）",
+      "src": 9,
+      "dst": 11,
+      "priority": 5,
+      "period": 100,
+      "deadline": 1600,
+      "message_size": 1024,
+      "reliability_req": 0.74,
+      "routing_path": [
+        9,
+        7,
+        12,
+        11
+      ],
+      "pass": 1
+    },
+    {
+      "id": 12,
+      "name": "遥测回传任务3（17到12）",
+      "src": 17,
+      "dst": 12,
+      "priority": 5,
+      "period": 100,
+      "deadline": 1600,
+      "message_size": 1024,
+      "reliability_req": 0.74,
+      "routing_path": [
+        17,
+        18,
+        12
+      ],
+      "pass": 1
+    },
+    {
+      "id": 13,
+      "name": "遥测回传任务4（18到10）",
+      "src": 18,
+      "dst": 10,
+      "priority": 5,
+      "period": 100,
+      "deadline": 1600,
+      "message_size": 1024,
+      "reliability_req": 0.74,
+      "routing_path": [
+        18,
+        12,
+        10
+      ],
+      "pass": 1
+    }
+  ],
+  "assess_data": {
+    "comp_lat": "0.70",
+    "C_conn_norm": "157.89 %",
+    "E_throughput": "2.2000 Gbps",
+    "comp_rel": "94.90 %",
+    "cost": "31",
+    "data1": "30.00",
+    "data2": "94.90"
+  },
+  "ga_params": {
+    "pop_size": 30,
+    "max_gen": 10,
+    "mutation_rate": 0.01
+  },
+  "mac_params": {
+    "sigma_us": 9.0,
+    "sifs_us": 10.0,
+    "difs_us": 28.0,
+    "ack_us": 24.0,
+    "header_us": 20.0,
+    "p_cap": 0.0,
+    "p_e_base": 0.01
+  }
+}

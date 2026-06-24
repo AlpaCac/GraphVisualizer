@@ -1,0 +1,10 @@
+^F:\ITEMS\TUOPUYOUHUA\GRAPHVISUALIZER\BACKEND\BUILD\CMAKEFILES\94414D51671F63F3717DBE90E938E194\GENERATE.STAMP.RULE
+setlocal
+F:\env\cmake\bin\cmake.exe -SF:/items/tuopuyouhua/GraphVisualizer/backend -BF:/items/tuopuyouhua/GraphVisualizer/backend/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file F:/items/tuopuyouhua/GraphVisualizer/backend/build/TopoOptV2_CPP.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

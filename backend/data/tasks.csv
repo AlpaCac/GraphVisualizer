@@ -1,4 +1,0 @@
-taskId,taskName,taskType,sceneId,isCritical,srcNodeId,dstNodeIds,commMode,packetSizeBytes,sendFrequencyHz,maxDelayMs,minReliability,priority,dependencies
-T01,姿态控制指令,ControlCommand,S_move,1,NID-001,NID-005,P2P,128,50,20,0.999,Critical,T00:1
-T02,图像下传,FileTransfer,S_move,0,NID-003,NID-001;NID-002,P2MP,0,0,0,0,Normal,T01
-T03,温度上报,StatusReport,S_move,0,NID-007,NID-014,P2P,256,1,100,0.95,Normal,

@@ -65,6 +65,7 @@ template <> constexpr inline auto TestWorker::qt_create_metaobjectdata<qt_meta_t
         "isCompliant",
         "srcId",
         "dstId",
+        "routingPath",
         "requestRemoveTask",
         "requestClearTasks",
         "requestUpdateMetrics",
@@ -108,31 +109,31 @@ template <> constexpr inline auto TestWorker::qt_create_metaobjectdata<qt_meta_t
             { QMetaType::Int, 20 },
         }}),
         // Signal 'requestAddTask'
-        QtMocHelpers::SignalData<void(const QString &, const QString &, bool, const QString &, const QString &)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SignalData<void(const QString &, const QString &, bool, const QString &, const QString &, const QStringList &)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 22 }, { QMetaType::QString, 23 }, { QMetaType::Bool, 24 }, { QMetaType::QString, 25 },
-            { QMetaType::QString, 26 },
+            { QMetaType::QString, 26 }, { QMetaType::QStringList, 27 },
         }}),
         // Signal 'requestRemoveTask'
-        QtMocHelpers::SignalData<void(const QString &)>(27, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SignalData<void(const QString &)>(28, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 22 },
         }}),
         // Signal 'requestClearTasks'
-        QtMocHelpers::SignalData<void()>(28, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SignalData<void()>(29, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'requestUpdateMetrics'
-        QtMocHelpers::SignalData<void(const QString &, const QString &, const QString &, const QString &, const QString &)>(29, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 30 }, { QMetaType::QString, 31 }, { QMetaType::QString, 32 }, { QMetaType::QString, 33 },
-            { QMetaType::QString, 34 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &, const QString &, const QString &, const QString &)>(30, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 31 }, { QMetaType::QString, 32 }, { QMetaType::QString, 33 }, { QMetaType::QString, 34 },
+            { QMetaType::QString, 35 },
         }}),
         // Signal 'requestUpdateEvaluation'
-        QtMocHelpers::SignalData<void(const QString &, const QString &)>(35, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 36 }, { QMetaType::QString, 37 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &)>(36, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 37 }, { QMetaType::QString, 38 },
         }}),
         // Slot 'loadGraphFromJson'
-        QtMocHelpers::SlotData<void(const QString &)>(38, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 39 },
+        QtMocHelpers::SlotData<void(const QString &)>(39, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 40 },
         }}),
         // Slot 'loadGraphFromJson'
-        QtMocHelpers::SlotData<void()>(38, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(39, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -163,7 +164,7 @@ void TestWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->requestLayout(); break;
         case 5: _t->requestUpdateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4]))); break;
         case 6: _t->requestUpdateEdgeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[5]))); break;
-        case 7: _t->requestAddTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
+        case 7: _t->requestAddTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5])),(*reinterpret_cast<std::add_pointer_t<QStringList>>(_a[6]))); break;
         case 8: _t->requestRemoveTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 9: _t->requestClearTasks(); break;
         case 10: _t->requestUpdateMetrics((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
@@ -186,7 +187,7 @@ void TestWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             return;
         if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , const QString & , const QColor & , int , int )>(_a, &TestWorker::requestUpdateEdgeStyle, 6))
             return;
-        if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , const QString & , bool , const QString & , const QString & )>(_a, &TestWorker::requestAddTask, 7))
+        if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & , const QString & , bool , const QString & , const QString & , const QStringList & )>(_a, &TestWorker::requestAddTask, 7))
             return;
         if (QtMocHelpers::indexOfMethod<void (TestWorker::*)(const QString & )>(_a, &TestWorker::requestRemoveTask, 8))
             return;
@@ -267,9 +268,9 @@ void TestWorker::requestUpdateEdgeStyle(const QString & _t1, const QString & _t2
 }
 
 // SIGNAL 7
-void TestWorker::requestAddTask(const QString & _t1, const QString & _t2, bool _t3, const QString & _t4, const QString & _t5)
+void TestWorker::requestAddTask(const QString & _t1, const QString & _t2, bool _t3, const QString & _t4, const QString & _t5, const QStringList & _t6)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 7, nullptr, _t1, _t2, _t3, _t4, _t5);
+    QMetaObject::activate<void>(this, &staticMetaObject, 7, nullptr, _t1, _t2, _t3, _t4, _t5, _t6);
 }
 
 // SIGNAL 8

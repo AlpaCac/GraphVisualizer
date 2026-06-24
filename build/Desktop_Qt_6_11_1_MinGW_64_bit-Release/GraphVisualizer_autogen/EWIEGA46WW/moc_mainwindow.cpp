@@ -125,6 +125,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "isCompliant",
         "srcId",
         "dstId",
+        "routingPath",
         "removeTask",
         "clearTasks",
         "updateMetrics",
@@ -140,8 +141,11 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onTaskSelectionChanged",
         "onPhysicalTopologyClicked",
         "onLogicalTopologyClicked",
-        "onOptimizeTopologyClicked",
-        "onDestroyButtonClicked"
+        "onOptimizeLatencyClicked",
+        "onOptimizeReliabilityClicked",
+        "onDestroyButtonClicked",
+        "onSwitchSceneClicked",
+        "onSimulateMoveClicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -180,37 +184,43 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
             { QMetaType::Int, 22 },
         }}),
         // Slot 'addTask'
-        QtMocHelpers::SlotData<void(const QString &, const QString &, bool, const QString &, const QString &)>(23, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(const QString &, const QString &, bool, const QString &, const QString &, const QStringList &)>(23, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 24 }, { QMetaType::QString, 25 }, { QMetaType::Bool, 26 }, { QMetaType::QString, 27 },
-            { QMetaType::QString, 28 },
+            { QMetaType::QString, 28 }, { QMetaType::QStringList, 29 },
         }}),
         // Slot 'removeTask'
-        QtMocHelpers::SlotData<void(const QString &)>(29, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(const QString &)>(30, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 24 },
         }}),
         // Slot 'clearTasks'
-        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'updateMetrics'
-        QtMocHelpers::SlotData<void(const QString &, const QString &, const QString &, const QString &, const QString &)>(31, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 32 }, { QMetaType::QString, 33 }, { QMetaType::QString, 34 }, { QMetaType::QString, 35 },
-            { QMetaType::QString, 36 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &, const QString &, const QString &, const QString &)>(32, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 33 }, { QMetaType::QString, 34 }, { QMetaType::QString, 35 }, { QMetaType::QString, 36 },
+            { QMetaType::QString, 37 },
         }}),
         // Slot 'updateEvaluation'
-        QtMocHelpers::SlotData<void(const QString &, const QString &)>(37, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 38 }, { QMetaType::QString, 39 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &)>(38, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 39 }, { QMetaType::QString, 40 },
         }}),
         // Slot 'onSceneSelectionChanged'
-        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onTaskSelectionChanged'
         QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onPhysicalTopologyClicked'
+        // Slot 'onTaskSelectionChanged'
         QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onLogicalTopologyClicked'
+        // Slot 'onPhysicalTopologyClicked'
         QtMocHelpers::SlotData<void()>(43, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onOptimizeTopologyClicked'
+        // Slot 'onLogicalTopologyClicked'
         QtMocHelpers::SlotData<void()>(44, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onDestroyButtonClicked'
+        // Slot 'onOptimizeLatencyClicked'
         QtMocHelpers::SlotData<void()>(45, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onOptimizeReliabilityClicked'
+        QtMocHelpers::SlotData<void()>(46, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onDestroyButtonClicked'
+        QtMocHelpers::SlotData<void()>(47, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSwitchSceneClicked'
+        QtMocHelpers::SlotData<void()>(48, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSimulateMoveClicked'
+        QtMocHelpers::SlotData<void()>(49, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -243,7 +253,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->updateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4]))); break;
         case 7: _t->updateNodeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
         case 8: _t->updateEdgeStyle((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QColor>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[5]))); break;
-        case 9: _t->addTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
+        case 9: _t->addTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5])),(*reinterpret_cast<std::add_pointer_t<QStringList>>(_a[6]))); break;
         case 10: _t->removeTask((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 11: _t->clearTasks(); break;
         case 12: _t->updateMetrics((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[5]))); break;
@@ -252,8 +262,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 15: _t->onTaskSelectionChanged(); break;
         case 16: _t->onPhysicalTopologyClicked(); break;
         case 17: _t->onLogicalTopologyClicked(); break;
-        case 18: _t->onOptimizeTopologyClicked(); break;
-        case 19: _t->onDestroyButtonClicked(); break;
+        case 18: _t->onOptimizeLatencyClicked(); break;
+        case 19: _t->onOptimizeReliabilityClicked(); break;
+        case 20: _t->onDestroyButtonClicked(); break;
+        case 21: _t->onSwitchSceneClicked(); break;
+        case 22: _t->onSimulateMoveClicked(); break;
         default: ;
         }
     }
@@ -282,14 +295,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 20)
+        if (_id < 23)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 20;
+        _id -= 23;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 20)
+        if (_id < 23)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 20;
+        _id -= 23;
     }
     return _id;
 }

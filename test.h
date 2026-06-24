@@ -24,8 +24,9 @@ signals:
     void requestUpdateEdgeStyle(const QString& sourceId, const QString& destId, const QColor& color, int thickness, int style);
 
     // 业务队列信号
-    // 【修改】：末尾增加 srcId 和 dstId
-    void requestAddTask(const QString& taskId, const QString& taskName, bool isCompliant, const QString& srcId, const QString& dstId);
+    // 业务队列信号
+    // 【修改】：末尾增加 const QStringList& routingPath
+    void requestAddTask(const QString& taskId, const QString& taskName, bool isCompliant, const QString& srcId, const QString& dstId, const QStringList& routingPath);
     void requestRemoveTask(const QString& taskId);
     void requestClearTasks();
 

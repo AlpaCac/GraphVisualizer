@@ -71,9 +71,8 @@ public slots:
     // 【确保下面这两个声明都在这里，一个都不能少】
     void updateNodeStyle(const QString& nodeId, const QColor& color, int shape, int size = 80);
     void updateEdgeStyle(const QString& sourceId, const QString& destId, const QColor& color, int thickness, int style);
-
     // 【修改】：同步更新参数
-    void addTask(const QString& taskId, const QString& taskName, bool isCompliant, const QString& srcId, const QString& dstId);
+    void addTask(const QString& taskId, const QString& taskName, bool isCompliant, const QString& srcId, const QString& dstId, const QStringList& routingPath);
     void removeTask(const QString& taskId);
     void clearTasks();
 
@@ -97,9 +96,16 @@ private slots:
     // 【新增】：处理两个拓扑按钮的点击
     void onPhysicalTopologyClicked();
     void onLogicalTopologyClicked();
-    void onOptimizeTopologyClicked(); // 【新增】
+    void onOptimizeLatencyClicked();
+    void onOptimizeReliabilityClicked();
 
     void onDestroyButtonClicked();
+
+    // 【新增】：切换场景按钮的点击事件
+    void onSwitchSceneClicked();
+
+    // 【新增】：模拟移动槽函数
+    void onSimulateMoveClicked();
 
 private:
     QGraphicsScene *scene;
@@ -140,7 +146,8 @@ private:
 
     QPushButton *m_btnPhysical;
     QPushButton *m_btnLogical;
-    QPushButton *m_btnOptimize;
+    QPushButton *m_btnOptimizeLatency;
+    QPushButton *m_btnOptimizeReliability;
     QPushButton *m_btnDestroy;
 
     // 【必须添加这一行】：
@@ -152,7 +159,17 @@ private:
 
     void showLoading(bool visible);
 
+    // 【新增】：统一调度后端算法引擎并加载结果的通用函数
+    void runBackendAndLoad(const QString& nextFileName);
+
     bool m_isDestroyed = false;
+
+    // 【新增】：切换场景按钮与当前场景记录
+    QPushButton *m_btnSwitchScene;
+    int m_currentSceneId = 1; // 默认指向 1 号文件夹
+
+    // 【新增】：模拟移动按钮
+    QPushButton *m_btnSimulateMove;
 };
 
 #endif // MAINWINDOW_H

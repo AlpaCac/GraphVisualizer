@@ -190,8 +190,19 @@ void TestWorker::loadGraphFromJson(const QString& fileName) { // 【修改】增
         QString srcId = QString::number(srcNode);
         QString dstId = QString::number(dstNode);
 
-        // 发射带有起点和终点的完整信号，交由前端渲染徽章和绿色虚线
-        emit requestAddTask(taskId, taskName, isCompliant, srcId, dstId);
+        // ==========================================================
+        // 【核心新增】：提取 routing_path 数组并转换为字符串列表
+        // ==========================================================
+        QStringList routingPathList;
+        if (flowObj.contains("routing_path")) {
+            QJsonArray pathArr = flowObj["routing_path"].toArray();
+            for (int p = 0; p < pathArr.size(); ++p) {
+                routingPathList.append(QString::number(pathArr[p].toInt()));
+            }
+        }
+
+        // 发射带有起点、终点和【完整路径】的信号
+        emit requestAddTask(taskId, taskName, isCompliant, srcId, dstId, routingPathList);
     }
 
     // ==============================================================

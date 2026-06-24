@@ -1,219 +1,229 @@
-# 天鸿软总线拓扑评估及优化策略仿真 (C 实现)
+# 天鸿软总线拓扑评估与优化后端（C++17）
 
-面向物联集群的天鸿软总线拓扑建模、效能评估与 NSGA-II 优化算法的**纯 C 实现**。
-完全对应 Python 参考算法（`evaluation/`、`routing/`、`simulation/`），单线程
-全工程不依赖任何第三方库，仅需 `libc + libm`。
+`topoopt` 是供仿真前端调用的独立命令行后端。它读取一份物理拓扑 JSON，构建初始逻辑拓扑，执行五目标 NSGA-II 优化，并从 Pareto 前沿中分别选择低时延策略和高可靠策略。
 
-## 1. 工程结构
+## 后端输入与输出
 
-```
-tianhong-softbus-sim/
-├── README.md                 本文档
-├── Makefile                  构建脚本
-├── src/                      核心库
-│   ├── task_data.{h,c}        需求文档表2 任务数据（含 JSON/CSV 解析）
-│   ├── sb_models.{h,c}        建模：物理层 / 软总线层 / 业务流层 / 拓扑层
-│   ├── sb_phys_bind.{h,c}     物理对象绑定（被各评估器共享）
-│   ├── initializer.{h,c}      沙箱：20 节点 / 83 候选链路 / 14 业务流
-│   ├── routing.{h,c}          确定性 Dijkstra 路由器
-│   ├── cost.{h,c}             组网成本评估
-│   ├── reliability.{h,c}      端到端可靠性评估
-│   ├── connectivity.{h,c}     代数连通度 (Fiedler 值, Jacobi 旋转)
-│   ├── latency.{h,c}          CPA 端到端最坏时延评估
-│   ├── ga.{h,c}               NSGA-II 主循环（含故障注入与重建入口）
-│   └── jsonw.{h,c}            极简增量式 JSON writer
-├── apps/                     可执行入口
-│   ├── main_ga.c              拓扑优化常规演化 demo
-│   ├── main_full.c            完整实验（常规 + 故障 + 重建 + JSON 输出）
-│   └── main_demo.c            数据模型 + TaskData 演示
-├── tests/                    与 Python 参考实现的等价性测试
-├── bench/                    性能基准
-└── data/                     示例 JSON / CSV 任务数据
-```
+输入：
 
-## 2. 编译与运行
+- 一份统一格式的物理拓扑 JSON。
+- `nodes` 表示物理节点。
+- `links` 表示物理链路。
+- `flows` 表示业务流。
 
-需要 `gcc` 或兼容的 C99 编译器：
+前端固定命名模式一次运行输出三份 JSON：
+
+| 输出文件 | 含义 |
+| --- | --- |
+| `luoji.json` | 根据正常物理拓扑构建的初始逻辑拓扑 |
+| `youhua1.json` | 正常场景低时延优化逻辑拓扑 |
+| `youhua2.json` | 正常场景高可靠优化逻辑拓扑 |
+| `luoji_sunhui.json` | 损毁场景初始逻辑拓扑 |
+| `youhua1_sunhui.json` | 损毁场景低时延优化逻辑拓扑 |
+| `youhua2_sunhui.json` | 损毁场景高可靠优化逻辑拓扑 |
+
+输入文件名包含 `_sunhui` 时，后端自动使用损毁文件名。推荐前端使用 `--output-dir`。原 `--output result.json` 基名模式仍保留作兼容接口。
+
+输出 JSON 保持输入配置的整体字段格式和顺序；其中 `links` 改为对应阶段的逻辑链路，`flows[].routing_path` 和 `flows[].pass` 更新为本次评估结果，`assess_data` 更新为总体指标。
+
+## 快速调用
 
 ```bash
-make                     # 编译全部
-make run-ga              # 跑一次 NSGA-II 常规演化（约 4 秒）
-make run-full            # 完整实验：常规 + 故障注入 + 重建 + JSON 输出（约 8 秒）
-make run-demo            # 演示数据模型
-make run-tests           # 等价性测试
-make bench               # 性能基准
-make clean               # 清理
+./topoopt \
+  --config /absolute/path/wuli.json \
+  --output-dir /absolute/path/data \
+  --pop 100 \
+  --gen 50 \
+  --mutation 0.01 \
+  --seed 42
 ```
 
-主程序接受可选种子参数：
+前端随后读取：
+
+```text
+/absolute/path/data/luoji.json
+/absolute/path/data/youhua1.json
+/absolute/path/data/youhua2.json
+```
+
+查看完整参数：
 
 ```bash
-./build/main_ga    42
-./build/main_full  42  experiment.json
+./topoopt --help
 ```
 
-## 3. 完整实验流水线 (`main_full`)
+## 命令行参数
 
-`main_full` 实现需求文档 3.1.2 节"节点损毁重构场景"的端到端流程：
+| 参数 | 是否必需 | 说明 |
+| --- | --- | --- |
+| `--config <path>` | 正常调用必需 | 物理拓扑输入 JSON |
+| `--output-dir <dir>` | 前端推荐 | 固定命名输出目录；自动区分正常/损毁 |
+| `--output <path>` | 兼容模式 | 自定义输出基名，生成三个带策略后缀的文件 |
+| `--pop <n>` | 可选 | 种群规模，覆盖 `ga_params.pop_size` |
+| `--gen <n>` | 可选 | 迭代代数，覆盖 `ga_params.max_gen` |
+| `--mutation <rate>` | 可选 | 基础变异率，覆盖 `ga_params.mutation_rate` |
+| `--seed <n>` | 可选 | 随机种子，覆盖输入中的 `rng_seed` |
+| `--demo` | 可选 | 运行内置快速演示，不读取配置文件 |
+| `-h`, `--help` | 可选 | 显示帮助 |
 
+命令行参数优先于配置文件中的对应参数。建议正式展示使用 `--pop 100 --gen 50`；联调时可使用 `--pop 20 --gen 5` 缩短等待时间。
+
+## 构建
+
+### CMake（推荐）
+
+macOS / Linux：
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
 ```
-1. 构造 baseline seed（5 个核心节点的 MST 拓扑）
-        │
-2. 常规演化 50 代 (NSGA-II 在正常网络上爬 Pareto 前沿)
-        │
-3. 取 best_lat（时延最优解）作为基础
-        │
-4. 故障注入：node 15 损毁
-   ├─ role_gene[15] = -1
-   ├─ 与 node 15 相连的所有候选链路 link_gene[j] = -1
-   └─ sb.flow_graph 剔除源/目的为 node 15 的流
-        │
-5. 即时评估损毁后的网络（routing 可能失败，fitness 退化）
-        │
-6. 以 damaged_ind 为新种子，重建演化 50 代
-        │
-7. 全程结果写入 experiment.json
+
+Windows（Visual Studio 2022）：
+
+```powershell
+cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+cmake --build build --config Release
 ```
 
-输出 JSON 顶层结构：
+生成位置通常为：
+
+```text
+macOS/Linux: build/topoopt
+Windows:     build/Release/topoopt.exe
+```
+
+### Make（macOS / Linux）
+
+```bash
+make
+./topoopt --help
+```
+
+要求：支持 C++17 的编译器和 CMake 3.12 及以上版本。后端只使用 C++ 标准库，无第三方运行时依赖。
+
+## 输入配置关键字段
+
+顶层字段：
+
+| 字段 | 说明 |
+| --- | --- |
+| `sandbox_name` | 场景名称 |
+| `rng_seed` | 默认随机种子 |
+| `nodes` | 物理节点数组 |
+| `links` | 物理链路数组，至少保证物理网络可连通 |
+| `flows` | 业务流数组 |
+| `ga_params` | 默认 GA 参数 |
+| `mac_params` | MAC 层时延与误码参数 |
+| `assess_data` | 输入可保留；运行后由后端覆盖 |
+
+节点常用字段：
 
 ```json
 {
-  "config":                  { ... 实验配置 ... },
-  "seed":                    { ... baseline seed 个体 ... },
-  "snapshots_seed_topology": { "nodes": [...], "links": [...] },
-
-  "normal_evolution": [
-    { "generation": 0,  "sched_total": 0,   "min_comp_lat": null, ... },
-    { "generation": 1,  "sched_total": 0,   ... },
-    ...
-    { "generation": 50, "sched_total": 100, "min_comp_lat": 0.21, ... }
-  ],
-  "normal_final": {
-    "min_latency":     { "individual": {...}, "flows": [...], "topology": {...} },
-    "max_fiedler":     { ... },
-    "max_reliability": { ... },
-    "min_cost":        { ... }
-  },
-
-  "disaster": {
-    "type": "node",
-    "target_id": 15,
-    "cascading_links_destroyed": 13,
-    "flows_annihilated_count": 1,
-    "post_disaster_individual": {...},
-    "post_disaster_flows":      [...],
-    "post_disaster_topology":   {...}
-  },
-
-  "reconstruct_evolution": [ ... 51 条同结构 ... ],
-  "reconstruct_final":     { ... 同 normal_final ... },
-
-  "total_time_ms": 21430.2
+  "id": 0,
+  "x": 120.0,
+  "y": 150.0,
+  "cpu_capacity": 7000.0,
+  "memory_mb": 16384.0,
+  "max_ports": 5,
+  "reliability": 0.995,
+  "device_name": "Node-00",
+  "static_type": "Master",
+  "R": 0
 }
 ```
 
-文件约 100 KB，可被任意 JSON 库读取（Python `json.tool`、jq、前端 D3 等）。
+- `static_type` 可为 `Master`、`Backup` 或省略为普通节点。
+- `R` 是前端使用的节点移动半径；后端保持该字段，不用它改变当前优化算法。
 
-## 3. 算法等价性
+物理链路常用字段：
 
-各模块与 Python 参考实现的对照结果：
-
-| 模块 | 验证方式 | 结果 |
-|---|---|---|
-| `initializer`     | 20 节点 / 83 链路 / 14 流逐项 diff | 完全一致 |
-| `routing`         | 100 个随机拓扑路径逐字节 diff | 完全一致 |
-| `cost`            | `total_cost = 3142.962329` 等 | 6 位小数一致 |
-| `reliability`     | 14 条流可靠性 | 8 位小数一致 |
-| `connectivity`    | 100 个随机拓扑 Fiedler 值 | 10 位小数一致 |
-| `latency` (CPA)   | 200 个不同密度的随机拓扑 | 6 位小数一致 |
-| `ga` (NSGA-II)    | 演化曲线 + 最终 Pareto 极值量级 | 一致（RNG 不同，统计等价） |
-
-## 4. 性能（NSGA-II 50 代 × 100 个体）
-
-| 实现 | 总耗时 | 单次评估 |
-|---|---|---|
-| Python 参考 | 135 秒 | ~25 ms |
-| **C (O2)**  | **3.9 秒** | **~0.7 ms** |
-| 加速比 | **~35×** | |
-
-测试机器：单核运行，无并行。
-
-## 5. 数据模型扩展（需求文档 → 代码）
-
-| 需求文档 | 代码字段 |
-|---|---|
-| **表1 节点数据**（基础标识 / 类型 / 计算资源 / 通信资源 / 运行状态 / 拓扑位置） | `PhysicalNode.meta: PhysicalNodeMeta`（6 个子结构）|
-| **表2 任务数据**（基础 / 通信 / 质量 / 资源 / 优先级与约束） | `Flow.meta: TaskData`（5 个子结构）|
-| **表3 场景数据** | 当前由 `Sandbox` 字段 + GA 故障注入接口承载 |
-
-加载 JSON / CSV 任务：
-
-```c
-TaskSet set;
-task_load_json_file("data/tasks.json", &set);
-task_load_csv_file ("data/tasks.csv",  &set);
+```json
+{
+  "id": 0,
+  "node_a": 0,
+  "node_b": 1,
+  "bandwidth": 10.0,
+  "propagation_delay": 0.3,
+  "reliability": 0.99,
+  "cost": 10.0,
+  "type": "光纤"
+}
 ```
 
-## 6. NSGA-II 优化指标
+`type` 当前场景使用：`星闪`、`wifi`、`蓝牙`、`光纤`。
 
-四维适应度（**全部最小化**）：
+业务流常用字段：
 
-| 指标 | 含义 | 公式 |
-|---|---|---|
-| `comp_lat`  | 加权时延比 | `Σ (prio × e2e/deadline) / Σ prio` |
-| `-fiedler`  | 代数连通度（取反） | 拉普拉斯矩阵第二小特征值 |
-| `-comp_rel` | 加权可靠性（取反） | `Σ (prio × reliability) / Σ prio` |
-| `cost`      | 总成本 | `Σ link.cost` |
+```json
+{
+  "id": 0,
+  "name": "视频传输任务1（0到10）",
+  "src": 0,
+  "dst": 10,
+  "priority": 10,
+  "period": 20,
+  "deadline": 800,
+  "message_size": 128,
+  "reliability_req": 0.7,
+  "routing_path": [],
+  "pass": 0
+}
+```
 
-硬约束（6 条 `validate_topology` 规则）：
+## 输出指标
 
-1. 核心节点数 ∈ [4, 7]
-2. 每节点链路数 ≤ `max_physical_ports`
-3. 边缘节点连 1~2 个核心
-4. 边缘-边缘链路总数 ≤ 4
-5. 全图连通
-6. 核心子图连通
+`assess_data`：
 
-可行解（`is_fully_schedulable=1`）永远支配不可行解，是支配比较的最高优先级规则。
+| 字段 | 含义 |
+| --- | --- |
+| `comp_lat` | 综合时延占比，越低越好 |
+| `C_conn_norm` | 相对初始逻辑拓扑的归一化连通度 |
+| `E_throughput` | 有效吞吐量，单位 Gbps |
+| `comp_rel` | 综合可靠性 |
+| `cost` | 归一化组网成本 |
+| `data1` | 当前版本的低时延策略得分 |
+| `data2` | 当前版本的可靠性策略得分 |
 
-## 7. 已知差异 / 注意事项
+每条业务流：
 
-- **PRNG 不同**：Python 用 Mersenne Twister，C 用 xoshiro256\*\*。同一种子下两边产生的随机序列**不同**，因此具体每一代的种群成员不会逐字节一致，但**统计行为和最终 Pareto 极值量级一致**。
-- **沙箱里业务流的链路时延** = `propagation_delay + message_size / bandwidth`（与 flow 相关，与 `ga_core.calculate_topology_latency` 一致）。
-- **故障重建后**链路 ID 会**从 0 重新编号**（与 Python `init_candidate_links` 一致），故障前后的 `link_gene[i]` 指代不同对象。
-- 路径回溯失败的流（`path_len == 0`）**仍然作为 source/sink 挂在节点上**，CPA 会把它当作 cross-flow competitor 计算（与 Python 通过 `dict.get(..., 0.0)` 默认值的行为一致）。
+- `routing_path`：本次评估得到的物理承载路径节点 ID 数组。
+- `pass`：`1` 表示时延、吞吐量、可靠性和可达性硬约束全部满足；否则为 `0`。
 
-## 8. 常用 API 速览
+## 退出码与日志
 
-```c
-/* 构建沙箱 */
-Sandbox sb; sb_build_sandbox(&sb);
+| 退出码 | 含义 |
+| --- | --- |
+| `0` | 运行成功，三份输出已写出 |
+| `1` | 参数、输入 JSON、文件访问或算法执行异常 |
 
-/* 故障重建 */
-sb_rebuild_with_damage(&sb, /*failed_node_id=*/15);
+标准输出包含初始化、每代 Pareto 前沿、硬约束达标数、最佳指标、输出路径和业务流详情。标准错误输出包含失败原因。前端应同时收集 stdout/stderr，并以进程退出码作为成功判断依据。
 
-/* 绑定物理对象表（所有评估器之前必须做一次） */
-sb_phys_bind(sb.p_nodes, sb.c_links);
+## 前端对接
 
-/* 路由 */
-DeterministicRouter rt; sb_router_init(&rt);
-sb_router_route_all(&rt, &topo);
+Qt `QProcess` 对接示例、输出文件检查和路径处理见 [FRONTEND_INTEGRATION.md](FRONTEND_INTEGRATION.md)。
 
-/* 四项评估 */
-double cost      = sb_cost_evaluate(&topo);
-double fiedler   = sb_connectivity_evaluate(&topo);
-sb_reliability_evaluate_all(&topo);  /* 写回 flow.actual_reliability */
+## 当前算法说明
 
-CpaAnalyzer cpa;
-sb_cpa_init(&cpa, &topo);
-sb_cpa_analyze(&cpa);
-sb_cpa_write_back(&cpa);             /* 写回 flow.worst_case_delay */
+- 五目标：时延、吞吐量、代数连通度、可靠性、组网成本。
+- 硬约束：逐业务流执行 `is_schedulable` 判断。
+- 变异：以 `lambda = N * Pm` 为期望进行泊松采样，至少执行一次 Add / Remove / Swap 拓扑动作。
+- 不执行最终剪枝后处理，输出保持为 NSGA-II Pareto 解。
+- 主节点角色不参与遗传变化。
+- 低时延和高可靠结果均从同一次五目标优化的 Pareto 前沿中选择。
 
-/* NSGA-II 主循环 */
-GaContext ctx = { .sb = &sb, .verbose = 1 };
-sb_router_init(&ctx.router);
-ga_seed_rng(42);
-Population pop;
-ga_run(&ctx, &pop);
+## 目录
+
+```text
+TopoOptV2_CPP/
+├── CMakeLists.txt
+├── Makefile
+├── README.md
+├── FRONTEND_INTEGRATION.md
+├── include/
+├── src/
+└── examples/
+    ├── input/
+    └── output_sample/
 ```

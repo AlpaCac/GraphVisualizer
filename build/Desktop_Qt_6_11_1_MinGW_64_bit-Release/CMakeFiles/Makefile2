@@ -79,8 +79,8 @@ clean: CMakeFiles/GraphVisualizer_autogen.dir/clean
 # Target rules for target CMakeFiles/GraphVisualizer.dir
 
 # All Build rule for target.
-CMakeFiles/GraphVisualizer.dir/all: CMakeFiles/GraphVisualizer_autogen_timestamp_deps.dir/all
 CMakeFiles/GraphVisualizer.dir/all: CMakeFiles/GraphVisualizer_autogen.dir/all
+CMakeFiles/GraphVisualizer.dir/all: CMakeFiles/GraphVisualizer_autogen_timestamp_deps.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\GraphVisualizer.dir\build.make CMakeFiles/GraphVisualizer.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\GraphVisualizer.dir\build.make CMakeFiles/GraphVisualizer.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=F:\items\tuopuyouhua\GraphVisualizer\build\Desktop_Qt_6_11_1_MinGW_64_bit-Release\CMakeFiles --progress-num=1,2,3,4,5,6 "Built target GraphVisualizer"

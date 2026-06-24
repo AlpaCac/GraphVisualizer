@@ -549,6 +549,41 @@ CMakeFiles/GraphVisualizer.dir/mainwindow.cpp.obj: \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicsproxywidget.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicswidget.h \
  F:/ide/qt/qt/6.11.1/mingw_64/include/QtWidgets/qgraphicslayoutitem.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QJsonDocument \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qjsondocument.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qjsonparseerror.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QJsonObject \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qjsonobject.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qjsonvalue.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qcborvalue.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qcborcommon.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdatetime.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qcalendar.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/quuid.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QJsonArray \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qjsonarray.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QFile \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qfile.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qfiledevice.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/filesystem \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_fwd.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_path.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/locale \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets_nonio.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets_nonio.tcc \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_conv.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iomanip \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/quoted_string.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/codecvt \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_dir.h \
+ F:/ide/qt/qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_ops.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/QDir \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdir.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qdirlisting.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qfileinfo.h \
+ F:/ide/qt/qt/6.11.1/mingw_64/include/QtCore/qtimezone.h \
  F:/env/ogdf_install/include/ogdf/basic/GraphAttributes.h \
  F:/env/ogdf_install/include/ogdf/basic/geometry.h \
  F:/env/ogdf_install/include/ogdf/basic/EpsilonTest.h \

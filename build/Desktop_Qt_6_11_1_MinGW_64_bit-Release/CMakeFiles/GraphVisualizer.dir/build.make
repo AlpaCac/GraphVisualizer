@@ -162,10 +162,10 @@ GraphVisualizer.exe: CMakeFiles/GraphVisualizer.dir/test.cpp.obj
 GraphVisualizer.exe: CMakeFiles/GraphVisualizer.dir/build.make
 GraphVisualizer.exe: F:/ide/qt/qt/6.11.1/mingw_64/lib/libQt6Widgets.a
 GraphVisualizer.exe: F:/ide/qt/qt/6.11.1/mingw_64/lib/libQt6Gui.a
-GraphVisualizer.exe: F:/env/ogdf/libOGDF.a
+GraphVisualizer.exe: F:/env/ogdf_install/lib/libOGDF.a
 GraphVisualizer.exe: F:/ide/qt/qt/6.11.1/mingw_64/lib/libQt6Core.a
 GraphVisualizer.exe: F:/ide/qt/qt/6.11.1/mingw_64/lib/libQt6EntryPoint.a
-GraphVisualizer.exe: F:/env/ogdf/libCOIN.a
+GraphVisualizer.exe: F:/env/ogdf_install/lib/libCOIN.a
 GraphVisualizer.exe: GraphVisualizer.exe.manifest
 GraphVisualizer.exe: CMakeFiles/GraphVisualizer.dir/linkLibs.rsp
 GraphVisualizer.exe: CMakeFiles/GraphVisualizer.dir/objects1.rsp

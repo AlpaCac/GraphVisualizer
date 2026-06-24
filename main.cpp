@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
     // ==========================================================
     QObject::connect(&w, &MainWindow::requestLoadJson, &worker, &TestWorker::loadGraphFromJson, Qt::QueuedConnection);
 
-    // 【修改】：程序刚启动时，初始读取 wuli.json
-    worker.loadGraphFromJson("wuli.json");
+    // 【修改】：程序刚启动时，默认读取场景 1 的 wuli.json
+    worker.loadGraphFromJson("1/wuli.json");
 
     return a.exec();
 }

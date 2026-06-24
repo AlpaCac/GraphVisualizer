@@ -8,6 +8,15 @@
 #include <QCoreApplication> // 确保包含了这个头文件
 #include <QGraphicsProxyWidget>
 
+// 在开头补充需要的头文件
+#include <QRandomGenerator>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QFile>
+#include <QtCore/qmath.h>
+#include <QDir>
+
 // ==================== OGDF 核心与布局库引入 ====================
 #include <ogdf/basic/Graph.h>
 #include <ogdf/basic/GraphAttributes.h>
@@ -223,8 +232,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_btnPhysical = new QPushButton("🌐 物理拓扑", sideBarWidget);
     m_btnLogical  = new QPushButton("🔗 逻辑拓扑", sideBarWidget);
-    m_btnOptimize = new QPushButton("⚡ 拓扑优化", sideBarWidget);
+    // 【新增】：两个全新的优化策略按钮
+    m_btnOptimizeLatency     = new QPushButton("⚡ 低时延优先", sideBarWidget);
+    m_btnOptimizeReliability = new QPushButton("🛡 高可靠优先", sideBarWidget);
     m_btnDestroy  = new QPushButton("💥 损毁模拟", sideBarWidget);
+
+    // 【新增】：切换场景按钮
+    m_btnSwitchScene = new QPushButton("🗺️ 切换场景 (当前: 场景 1)", sideBarWidget);
+
+    m_btnSimulateMove = new QPushButton("🚶 模拟移动", sideBarWidget);
 
     // 标准科技蓝按钮样式
     QString btnStyle =
@@ -266,23 +282,49 @@ MainWindow::MainWindow(QWidget *parent)
         "   background-color: #922b21; "
         "}";
 
+    // 【新增】：给场景切换按钮一个更深邃的高级灰蓝色涂装
+    QString btnSceneStyle =
+        "QPushButton { "
+        "   background-color: #34495e; "
+        "   color: white; "
+        "   border: 1px solid #7f8c8d; "
+        "   border-radius: 6px; "
+        "   padding: 12px; "
+        "   font-weight: bold; "
+        "   font-size: 14px; "
+        "   font-family: 'Microsoft YaHei'; "
+        "}"
+        "QPushButton:hover { background-color: #7f8c8d; }"
+        "QPushButton:pressed { background-color: #2c3e50; }";
+
     // 应用样式
     m_btnPhysical->setStyleSheet(btnStyle);
     m_btnLogical->setStyleSheet(btnStyle);
-    m_btnOptimize->setStyleSheet(btnStyle);
+    m_btnOptimizeLatency->setStyleSheet(btnStyle);       // 新按钮应用样式
+    m_btnOptimizeReliability->setStyleSheet(btnStyle);   // 新按钮应用样式
     m_btnDestroy->setStyleSheet(btnDangerStyle); // 特殊红色涂装
+    m_btnSwitchScene->setStyleSheet(btnSceneStyle); // 应用新样式
+    m_btnSimulateMove->setStyleSheet(btnStyle); // 复用常规按钮的样式
 
     // 鼠标悬停变小手
     m_btnPhysical->setCursor(Qt::PointingHandCursor);
     m_btnLogical->setCursor(Qt::PointingHandCursor);
-    m_btnOptimize->setCursor(Qt::PointingHandCursor);
+    m_btnOptimizeLatency->setCursor(Qt::PointingHandCursor);
+    m_btnOptimizeReliability->setCursor(Qt::PointingHandCursor);
     m_btnDestroy->setCursor(Qt::PointingHandCursor);
+    m_btnSwitchScene->setCursor(Qt::PointingHandCursor);
+    m_btnSimulateMove->setCursor(Qt::PointingHandCursor);
 
-    // 组装到 2x2 网格中
-    buttonLayout->addWidget(m_btnPhysical, 0, 0); // 第 1 行，左
-    buttonLayout->addWidget(m_btnLogical, 0, 1);  // 第 1 行，右
-    buttonLayout->addWidget(m_btnOptimize, 1, 0); // 第 2 行，左
-    buttonLayout->addWidget(m_btnDestroy, 1, 1);  // 第 2 行，右
+    // ==============================================================
+    // 重新排列极其对称的 4x2 网格布局
+    // ==============================================================
+    buttonLayout->addWidget(m_btnSwitchScene,         0, 0, 1, 2); // 第 0 行，横跨 2 列
+    buttonLayout->addWidget(m_btnPhysical,            1, 0);       // 第 1 行左
+    buttonLayout->addWidget(m_btnLogical,             1, 1);       // 第 1 行右
+    buttonLayout->addWidget(m_btnOptimizeLatency,     2, 0);       // 第 2 行左
+    buttonLayout->addWidget(m_btnOptimizeReliability, 2, 1);       // 第 2 行右
+    buttonLayout->addWidget(m_btnDestroy,             3, 0);       // 第 3 行左
+    buttonLayout->addWidget(m_btnSimulateMove,        3, 1);       // 第 3 行右
 
     // 将网格添加到侧边栏最底部
     sideLayout->addLayout(buttonLayout);
@@ -365,21 +407,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_optimizerProcess = new QProcess(this);
 
-    connect(scene, &QGraphicsScene::selectionChanged, this, &MainWindow::onSceneSelectionChanged);
-    // 【新增】：监听业务流队列的点击事件
-    connect(m_taskListWidget, &QListWidget::itemSelectionChanged, this, &MainWindow::onTaskSelectionChanged);
-    // ==========================================================
-    // 【新增】：绑定物理与逻辑拓扑按钮的点击事件
-    // ==========================================================
+    // 绑定槽函数 (删掉旧的 Optimize 绑定，加入新的)
     connect(m_btnPhysical, &QPushButton::clicked, this, &MainWindow::onPhysicalTopologyClicked);
     connect(m_btnLogical, &QPushButton::clicked, this, &MainWindow::onLogicalTopologyClicked);
-
-    // 【新增】：连接拓扑优化按钮
-    connect(m_btnOptimize, &QPushButton::clicked, this, &MainWindow::onOptimizeTopologyClicked);
-    // ==========================================================
-    // 【必须补上这一行】：连接损毁模拟按钮！
-    // ==========================================================
+    connect(m_btnOptimizeLatency, &QPushButton::clicked, this, &MainWindow::onOptimizeLatencyClicked);
+    connect(m_btnOptimizeReliability, &QPushButton::clicked, this, &MainWindow::onOptimizeReliabilityClicked);
     connect(m_btnDestroy, &QPushButton::clicked, this, &MainWindow::onDestroyButtonClicked);
+    connect(m_btnSwitchScene, &QPushButton::clicked, this, &MainWindow::onSwitchSceneClicked);
+    connect(m_btnSimulateMove, &QPushButton::clicked, this, &MainWindow::onSimulateMoveClicked);
+    connect(m_taskListWidget, &QListWidget::itemSelectionChanged, this, &MainWindow::onTaskSelectionChanged);
+    connect(scene, &QGraphicsScene::selectionChanged, this, &MainWindow::onSceneSelectionChanged);
 
 } // 构造函数结束
 MainWindow::~MainWindow() {}
@@ -446,7 +483,8 @@ void MainWindow::updateEdgeStyle(const QString& sourceId, const QString& destId,
 // 业务流调度队列 (任务) 动态控制接口
 // =========================================================================
 
-void MainWindow::addTask(const QString& taskId, const QString& taskName, bool isCompliant, const QString& srcId, const QString& dstId) {
+// 【修改】：函数签名增加 const QStringList& routingPath
+void MainWindow::addTask(const QString& taskId, const QString& taskName, bool isCompliant, const QString& srcId, const QString& dstId, const QStringList& routingPath) {
     Q_UNUSED(taskId);
     if (!m_taskListWidget) return;
 
@@ -458,6 +496,7 @@ void MainWindow::addTask(const QString& taskId, const QString& taskName, bool is
     // ==========================================================
     item->setData(Qt::UserRole, srcId);
     item->setData(Qt::UserRole + 1, dstId);
+    item->setData(Qt::UserRole + 2, routingPath);
 
     // ... (下面创建 QWidget 和徽章的代码保持不变) ...
 
@@ -647,8 +686,11 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
 // ==========================================================
 // 处理业务流队列的点击联动 (支持同时绘制多条发光连线)
 // ==========================================================
+// ==========================================================
+// 处理业务流队列的点击联动 (支持同时绘制多条发光连线)
+// ==========================================================
 void MainWindow::onTaskSelectionChanged() {
-    // 1. 每次发生选择改变时，先清除图上之前画的所有绿线
+    // 1. 每次发生选择改变时，先清除图上之前画的所有连线
     for (QGraphicsLineItem* edge : m_flowEdges) {
         scene->removeItem(edge);
         delete edge;
@@ -659,23 +701,48 @@ void MainWindow::onTaskSelectionChanged() {
     QList<QListWidgetItem*> items = m_taskListWidget->selectedItems();
     if (items.isEmpty()) return;
 
-    // 3. 遍历所有选中的任务，为它们一一拉起绿色虚线
+    //统一的高亮画笔配置（紫色虚线，圆滑端点）
+    QPen glowPen(QColor("#9b59b6"), 4, Qt::DashLine, Qt::RoundCap);
+
+    // 3. 遍历所有选中的任务，为它们一一拉起高亮轨迹
     for (QListWidgetItem* item : items) {
-        QString srcId = item->data(Qt::UserRole).toString();
-        QString dstId = item->data(Qt::UserRole + 1).toString();
+        // 从列表项中提取出刚刚存进去的路径数组
+        QStringList routingPath = item->data(Qt::UserRole + 2).toStringList();
 
-        if (m_nodeMap.contains(srcId) && m_nodeMap.contains(dstId)) {
-            GraphNode* srcNode = m_nodeMap[srcId];
-            GraphNode* dstNode = m_nodeMap[dstId];
+        // 【智能降级】：如果后端算法没有给出路由路径（或路径为空/长度不足），退化为起点连终点的直线
+        if (routingPath.size() < 2) {
+            QString srcId = item->data(Qt::UserRole).toString();
+            QString dstId = item->data(Qt::UserRole + 1).toString();
 
-            QPen glowPen(QColor("#9b59b6"), 4, Qt::DashLine, Qt::RoundCap);
-            QGraphicsLineItem* flowEdge = new QGraphicsLineItem(QLineF(srcNode->scenePos(), dstNode->scenePos()));
-            flowEdge->setPen(glowPen);
-            flowEdge->setZValue(5);
+            if (m_nodeMap.contains(srcId) && m_nodeMap.contains(dstId)) {
+                GraphNode* srcNode = m_nodeMap[srcId];
+                GraphNode* dstNode = m_nodeMap[dstId];
+                QGraphicsLineItem* flowEdge = new QGraphicsLineItem(QLineF(srcNode->scenePos(), dstNode->scenePos()));
+                flowEdge->setPen(glowPen);
+                flowEdge->setZValue(5);
+                scene->addItem(flowEdge);
+                m_flowEdges.append(flowEdge);
+            }
+        }
+        // 【核心渲染】：如果有完整的路由路径，则逐段连接
+        else {
+            for (int i = 0; i < routingPath.size() - 1; ++i) {
+                QString currNodeId = routingPath[i];
+                QString nextNodeId = routingPath[i + 1];
 
-            scene->addItem(flowEdge);
-            // 加入到列表中统一管理，方便下次清除
-            m_flowEdges.append(flowEdge);
+                // 确保两个途经节点在当前画布上都存在
+                if (m_nodeMap.contains(currNodeId) && m_nodeMap.contains(nextNodeId)) {
+                    GraphNode* currNode = m_nodeMap[currNodeId];
+                    GraphNode* nextNode = m_nodeMap[nextNodeId];
+
+                    QGraphicsLineItem* segmentEdge = new QGraphicsLineItem(QLineF(currNode->scenePos(), nextNode->scenePos()));
+                    segmentEdge->setPen(glowPen);
+                    segmentEdge->setZValue(5);
+
+                    scene->addItem(segmentEdge);
+                    m_flowEdges.append(segmentEdge); // 加入列表统一管理，方便销毁
+                }
+            }
         }
     }
 }
@@ -684,67 +751,36 @@ void MainWindow::onTaskSelectionChanged() {
 // ==========================================================
 // 确保函数名前面带有 MainWindow::
 void MainWindow::onPhysicalTopologyClicked() {
-    if (m_canvasTitle) {
-        m_canvasTitle->setText("物理拓扑");
-    }
-    emit requestLoadJson("wuli.json");
+    if (m_canvasTitle) m_canvasTitle->setText(m_isDestroyed ? "物理拓扑" : "物理拓扑");
+    // 【修改】：拼装文件夹前缀
+    QString fileName = QString::number(m_currentSceneId) + "/" + (m_isDestroyed ? "wuli_sunhui.json" : "wuli.json");
+    emit requestLoadJson(fileName);
 }
 
 void MainWindow::onLogicalTopologyClicked() {
-    if (m_canvasTitle) {
-        m_canvasTitle->setText("逻辑拓扑");
-    }
-    emit requestLoadJson("luoji.json");
+    if (m_canvasTitle) m_canvasTitle->setText(m_isDestroyed ? "逻辑拓扑" : "逻辑拓扑");
+    QString fileName = QString::number(m_currentSceneId) + "/" + (m_isDestroyed ? "luoji_sunhui.json" : "luoji.json");
+    // 【修改】：不再直接发信号，而是调用底层计算后再读取
+    runBackendAndLoad(fileName);
+}
+// ==========================================================
+// 拓扑优化：低时延优先
+// ==========================================================
+void MainWindow::onOptimizeLatencyClicked() {
+    if (m_canvasTitle) m_canvasTitle->setText(m_isDestroyed ? "低时延优化" : "低时延优化");
+    QString fileName = QString::number(m_currentSceneId) + "/" + (m_isDestroyed ? "youhua1_sunhui.json" : "youhua1.json");
+    // 【修改】：调度后端后读取
+    runBackendAndLoad(fileName);
 }
 
 // ==========================================================
-// 拓扑优化按钮点击逻辑
+// 拓扑优化：高可靠优先
 // ==========================================================
-void MainWindow::onOptimizeTopologyClicked() {
-    if (m_canvasTitle) m_canvasTitle->setText("拓扑优化");
-
-    // 1. 弹出遮罩层（因为下面是异步操作，界面绝对不会卡顿）
-    showLoading(true);
-
-    // 2. 准备执行程序路径与参数
-    QString rootDir = "F:/items/tuopuyouhua/GraphVisualizer";
-    QString program = rootDir + "/backend/build/main_full.exe";
-    QString dataPath = rootDir + "/data/luoji.json";
-
-    m_optimizerProcess->setWorkingDirectory(rootDir + "/backend/build");
-
-    QStringList arguments;
-    arguments << "-c" << dataPath << "42" << rootDir + "/data/youhua.json";
-
-    // ==========================================================
-    // 【核心修复】：全面拥抱异步！断开旧连接，使用 Lambda 监听结束信号
-    // ==========================================================
-
-    // 断开之前的绑定，防止用户多次点击按钮导致重复触发
-    m_optimizerProcess->disconnect();
-
-    // 监听程序【正常结束】信号
-    connect(m_optimizerProcess, &QProcess::finished, this, [this](int exitCode, QProcess::ExitStatus status) {
-        // 判断程序是否完美运行完毕
-        if (status == QProcess::NormalExit && exitCode == 0) {
-            emit requestLoadJson("youhua.json");
-        } else {
-            qDebug() << "❌ 优化程序执行异常，退出代码:" << exitCode;
-        }
-        // 核心：无论成功还是失败，程序一结束，立刻隐蔽遮罩！
-        showLoading(false);
-    });
-
-    // 监听程序【启动失败】信号（比如路径写错了，根本没跑起来）
-    connect(m_optimizerProcess, &QProcess::errorOccurred, this, [this](QProcess::ProcessError error) {
-        qDebug() << "❌ 外部程序启动失败，错误类型:" << error;
-        // 启动失败也要把遮罩关掉，防止死锁
-        showLoading(false);
-    });
-
-    // 3. 启动后台进程 (非阻塞启动，主界面继续如丝般顺滑)
-    qDebug() << "正在后台异步执行:" << program;
-    m_optimizerProcess->start(program, arguments);
+void MainWindow::onOptimizeReliabilityClicked() {
+    if (m_canvasTitle) m_canvasTitle->setText(m_isDestroyed ? "高可靠优化" : "高可靠优化");
+    QString fileName = QString::number(m_currentSceneId) + "/" + (m_isDestroyed ? "youhua2_sunhui.json" : "youhua2.json");
+    // 【修改】：调度后端后读取
+    runBackendAndLoad(fileName);
 }
 void MainWindow::showLoading(bool visible) {
     if (visible) {
@@ -786,72 +822,206 @@ void MainWindow::showLoading(bool visible) {
 // 损毁与恢复按钮的 Toggle 联动逻辑
 // ==========================================================
 void MainWindow::onDestroyButtonClicked() {
+    QString prefix = QString::number(m_currentSceneId) + "/";
     if (!m_isDestroyed) {
-        // ======================================================
         // 当前为【正常状态】 -> 触发【损毁模拟】
-        // ======================================================
         if (m_canvasTitle) m_canvasTitle->setText("物理拓扑 (链路故障)");
-
-        // 1. 读取损毁文件
-        emit requestLoadJson("wuli_sunhui.json");
-
-        // 2. 将按钮改造成“绿色恢复按钮”
         m_btnDestroy->setText("✨ 故障恢复");
-        QString btnSuccessStyle =
-            "QPushButton { "
-            "   background-color: rgba(46, 204, 113, 0.8); " // 半透明微光绿
-            "   color: #ffffff; "
-            "   border: 1px solid #2ecc71; "
-            "   border-radius: 6px; "
-            "   padding: 12px; "
-            "   font-weight: bold; "
-            "   font-size: 14px; "
-            "   font-family: 'Microsoft YaHei'; "
-            "}"
-            "QPushButton:hover { "
-            "   background-color: #2ecc71; "
-            "   border: 1px solid #58d68d; "
-            "}"
-            "QPushButton:pressed { "
-            "   background-color: #27ae60; "
-            "}";
+        // (注：此处保留您原有的按钮样式配置代码 btnSuccessStyle ...)
+        QString btnSuccessStyle = "QPushButton { background-color: rgba(46, 204, 113, 0.8); color: #ffffff; border: 1px solid #2ecc71; border-radius: 6px; padding: 12px; font-weight: bold; font-size: 14px; font-family: 'Microsoft YaHei'; } QPushButton:hover { background-color: #2ecc71; border: 1px solid #58d68d; } QPushButton:pressed { background-color: #27ae60; }";
         m_btnDestroy->setStyleSheet(btnSuccessStyle);
 
-        // 3. 翻转状态记忆
         m_isDestroyed = true;
+        // 【修改】：此时已是损毁状态，后端需要读取 wuli_sunhui.json 作为 config 进行计算，最后加载 wuli_sunhui.json
+        runBackendAndLoad(prefix + "wuli_sunhui.json");
 
     } else {
-        // ======================================================
         // 当前为【损毁状态】 -> 触发【故障恢复】
-        // ======================================================
         if (m_canvasTitle) m_canvasTitle->setText("物理拓扑");
-
-        // 1. 重新读取正常文件
-        emit requestLoadJson("wuli.json");
-
-        // 2. 将按钮变回“红色损毁按钮”
         m_btnDestroy->setText("💥 损毁模拟");
-        QString btnDangerStyle =
-            "QPushButton { "
-            "   background-color: rgba(192, 57, 43, 0.8); " // 半透明微光红
-            "   color: #ecf0f1; "
-            "   border: 1px solid #e74c3c; "
-            "   border-radius: 6px; "
-            "   padding: 12px; "
-            "   font-weight: bold; "
-            "   font-size: 14px; "
-            "   font-family: 'Microsoft YaHei'; "
-            "}"
-            "QPushButton:hover { "
-            "   background-color: #e74c3c; "
-            "   border: 1px solid #ff7675; "
-            "}"
-            "QPushButton:pressed { "
-            "   background-color: #922b21; "
-            "}";
+        // (注：此处保留您原有的按钮样式配置代码 btnDangerStyle ...)
+        QString btnDangerStyle = "QPushButton { background-color: rgba(192, 57, 43, 0.8); color: #ecf0f1; border: 1px solid #e74c3c; border-radius: 6px; padding: 12px; font-weight: bold; font-size: 14px; font-family: 'Microsoft YaHei'; } QPushButton:hover { background-color: #e74c3c; border: 1px solid #ff7675; } QPushButton:pressed { background-color: #922b21; }";
         m_btnDestroy->setStyleSheet(btnDangerStyle);
 
-        // 3. 翻转状态记忆
         m_isDestroyed = false;
+        // 【修改】：此时已恢复正常，后端需要以 wuli.json 作为 config 计算，最后加载 wuli.json
+        runBackendAndLoad(prefix + "wuli.json");
     }
+}
+// ==========================================================
+// 场景切换逻辑
+// ==========================================================
+void MainWindow::onSwitchSceneClicked() {
+    // 1. 文件夹编号从 1 循环到 3
+    m_currentSceneId++;
+    if (m_currentSceneId > 3) {
+        m_currentSceneId = 1;
+    }
+
+    // 2. 更新按钮文字
+    m_btnSwitchScene->setText(QString("🗺️ 切换场景 (当前: 场景 %1)").arg(m_currentSceneId));
+
+    // 3. 丝滑联动：切换场景后，自动重新加载当前正在查看的视图图层
+    if (m_canvasTitle->text().contains("逻辑")) {
+        onLogicalTopologyClicked();
+    } else if (m_canvasTitle->text().contains("时延")) {      // 【新增】判断时延
+        onOptimizeLatencyClicked();
+    } else if (m_canvasTitle->text().contains("可靠")) {      // 【新增】判断可靠
+        onOptimizeReliabilityClicked();
+    } else {
+        onPhysicalTopologyClicked();
+    }
+}
+// ==========================================================
+// 模拟移动逻辑 (读取当前文件 R 属性并产生随机抖动)
+// ==========================================================
+void MainWindow::onSimulateMoveClicked() {
+    // 1. 智能推断当前应该读取哪个 JSON 文件
+    // 1. 智能推断当前应该读取哪个 JSON 文件
+    QString fileName = "";
+    QString title = m_canvasTitle->text();
+    if (title.contains("物理")) {
+        fileName = QString::number(m_currentSceneId) + "/" + (m_isDestroyed ? "wuli_sunhui.json" : "wuli.json");
+    } else if (title.contains("逻辑")) {
+        fileName = QString::number(m_currentSceneId) + "/" + (m_isDestroyed ? "luoji_sunhui.json" : "luoji.json");
+    } else if (title.contains("时延")) {  // 【修改】：对应 youhua1
+        fileName = QString::number(m_currentSceneId) + "/" + (m_isDestroyed ? "youhua1_sunhui.json" : "youhua1.json");
+    } else if (title.contains("可靠")) {  // 【修改】：对应 youhua2
+        fileName = QString::number(m_currentSceneId) + "/" + (m_isDestroyed ? "youhua2_sunhui.json" : "youhua2.json");
+    }
+    // ==========================================================
+    // 2. 智能拼接文件路径 (完美兼容 Qt 开发环境与打包部署环境)
+    // ==========================================================
+    // 获取 .exe 主程序当前所在的绝对路径
+    QString basePath = QCoreApplication::applicationDirPath();
+
+    // 优先尝试 1：打包发布时的标准路径 (exe 旁边的 data 文件夹)
+    QString filePath = basePath + "/data/" + fileName;
+
+    if (!QFile::exists(filePath)) {
+        // 备用尝试 2：Qt Creator 默认的 build 目录 (往上跳两级)
+        filePath = basePath + "/../../data/" + fileName;
+    }
+    if (!QFile::exists(filePath)) {
+        // 备用尝试 3：部分自定义构建目录 (往上跳一级)
+        filePath = basePath + "/../data/" + fileName;
+    }
+
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "❌ 模拟移动失败: 无法打开文件读取 R 属性 ->" << filePath;
+        qDebug() << "🛑 失败原因:" << file.errorString();
+        return;
+    }
+
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+    file.close();
+    QJsonArray nodesArr = doc.object()["nodes"].toArray();
+
+    // 3. 遍历 JSON，提取 R 属性，并在画布上找到对应的节点进行移动
+    for (int i = 0; i < nodesArr.size(); ++i) {
+        QJsonObject nodeObj = nodesArr[i].toObject();
+        QString idStr = QString::number(nodeObj["id"].toInt());
+
+        // 兼容大写 R 或小写 r
+        double r = 0.0;
+        if (nodeObj.contains("R")) {
+            r = nodeObj["R"].toDouble();
+        } else if (nodeObj.contains("r")) {
+            r = nodeObj["r"].toDouble();
+        }
+
+        // 如果没有配置 R 或者 R 为 0，则不移动该节点
+        if (r <= 0) continue;
+
+        // ==========================================================
+        // 【已修正】：将 m_nodes 替换为您真实的变量名 m_nodeMap
+        // ==========================================================
+        if (m_nodeMap.contains(idStr)) {
+            auto nodeItem = m_nodeMap[idStr];
+
+            // 使用极坐标公式，在半径 r 的圆形范围内生成纯随机偏移量
+            double angle = QRandomGenerator::global()->generateDouble() * 2 * M_PI; // 0 到 360 度随机方向
+            double radius = QRandomGenerator::global()->generateDouble() * r;       // 0 到 r 的随机距离
+
+            double dx = radius * std::cos(angle);
+            double dy = radius * std::sin(angle);
+
+            // 获取图元当前位置，叠加随机偏移后重新设置回去
+            QPointF currentPos = nodeItem->pos();
+            nodeItem->setPos(currentPos.x() + dx, currentPos.y() + dy);
+        }
+    }
+}
+// ==========================================================
+// 核心机制：异步调度底层 topoopt 算法，完成后自动刷新前端
+// ==========================================================
+void MainWindow::runBackendAndLoad(const QString& nextFileName) {
+    // 1. 防止用户疯狂连点导致进程重入崩溃
+    if (m_optimizerProcess->state() == QProcess::Running) {
+        qDebug() << "⚠️ 后端算法正在运行中，请耐心等待...";
+        return;
+    }
+
+    // 2. 显示极具科幻感的加载遮罩
+    showLoading(true);
+
+    // 3. 智能解析路径 (完美兼容打包发布与 Qt Creator 调试)
+    QString basePath = QCoreApplication::applicationDirPath();
+    QString sceneDir = QString::number(m_currentSceneId);
+
+    // 【核心】：根据当前是否处于损毁状态，决定 config 输入哪个文件
+    QString configFileName = m_isDestroyed ? "wuli_sunhui.json" : "wuli.json";
+
+    QString exePath = basePath + "/backend/bin/topoopt";
+    QString configPath = basePath + "/data/" + sceneDir + "/" + configFileName;
+    QString outDir = basePath + "/data/" + sceneDir;
+
+#ifdef Q_OS_WIN
+    exePath += ".exe";
+#endif
+
+    // 若当前路径找不到配置文件，自动回退到 ../../ 的开发模式路径
+    if (!QFile::exists(configPath)) {
+        basePath = basePath + "/../..";
+        exePath = basePath + "/backend/bin/topoopt";
+#ifdef Q_OS_WIN
+        exePath += ".exe";
+#endif
+        configPath = basePath + "/data/" + sceneDir + "/" + configFileName;
+        outDir = basePath + "/data/" + sceneDir;
+    }
+
+    // 4. 严格按照要求拼接命令行参数
+    QStringList args;
+    args << "--config" << configPath
+         << "--output-dir" << outDir
+         << "--pop" << "100"
+         << "--gen" << "50"
+         << "--mutation" << "0.01"
+         << "--seed" << "42";
+
+    // 5. 断开之前可能残留的完成信号绑定，防止多重触发
+    m_optimizerProcess->disconnect();
+
+    // 6. 绑定进程结束信号（使用异步 Lambda 表达式）
+    connect(m_optimizerProcess, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this, [this, nextFileName](int exitCode, QProcess::ExitStatus exitStatus) {
+
+                showLoading(false); // 算法结束，立刻隐藏遮罩
+
+                if (exitStatus == QProcess::NormalExit && exitCode == 0) {
+                    qDebug() << "✅ 底层算力引擎执行成功！";
+                } else {
+                    qDebug() << "❌ 底层算力引擎执行异常！";
+                    qDebug() << "错误输出:" << m_optimizerProcess->readAllStandardError();
+                }
+
+                // 算法无论如何跑完，最后都向 TestWorker 发射读取新 JSON 文件的信号
+                emit requestLoadJson(nextFileName);
+            });
+
+    // 7. 正式启动隐藏的 C++ 算法黑盒
+    qDebug() << "🚀 正在拉起后端引擎:" << exePath << args.join(" ");
+    m_optimizerProcess->start(exePath, args);
 }

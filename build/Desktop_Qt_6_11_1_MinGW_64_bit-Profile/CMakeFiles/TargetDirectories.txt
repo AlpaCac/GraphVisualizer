@@ -1,9 +1,0 @@
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/GraphVisualizer.dir
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/edit_cache.dir
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/rebuild_cache.dir
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/list_install_components.dir
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/install.dir
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/install/local.dir
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/install/strip.dir
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/GraphVisualizer_autogen_timestamp_deps.dir
-F:/items/tuopuyouhua/GraphVisualizer/build/Desktop_Qt_6_11_1_MinGW_64_bit-Profile/CMakeFiles/GraphVisualizer_autogen.dir

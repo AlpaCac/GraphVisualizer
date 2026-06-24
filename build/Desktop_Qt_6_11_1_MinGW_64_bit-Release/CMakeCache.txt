@@ -283,7 +283,7 @@ GraphVisualizer_IS_TOP_LEVEL:STATIC=ON
 GraphVisualizer_SOURCE_DIR:STATIC=F:/items/tuopuyouhua/GraphVisualizer
 
 //The directory containing a CMake configuration file for OGDF.
-OGDF_DIR:PATH=F:/env/ogdf
+OGDF_DIR:PATH=F:/env/ogdf_install/share/ogdf
 
 //Additional directories where find(Qt6 ...) host Qt components
 // are searched
